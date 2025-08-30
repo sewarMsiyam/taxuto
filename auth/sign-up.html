@@ -2,13 +2,13 @@
 <html class="h-full" data-theme="true" data-theme-mode="light" dir="rtl" lang="ar">
 
 <head>
-    <base href="../">
+    <base href="../../../">
     <title>
         Metronic - Tailwind CSS Sign Up
     </title>
     <meta charset="utf-8" />
     <meta content="follow, index" name="robots" />
-    <link href="https://127.0.0.1:8001/metronic-tailwind-authentication/classic/sign-up" rel="canonical" />
+    <link href="https://127.0.0.1:8001/metronic-tailwind-html/demo1/authentication/classic/sign-up" rel="canonical" />
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
     <meta content="Sign up page, powered by Tailwind CSS" name="description" />
     <meta content="@keenthemes" name="twitter:site" />
@@ -17,7 +17,7 @@
     <meta content="Metronic - Tailwind CSS Sign Up" name="twitter:title" />
     <meta content="Sign up page, powered by Tailwind CSS" name="twitter:description" />
     <meta content="assets/media/app/og-image.png" name="twitter:image" />
-    <meta content="https://127.0.0.1:8001/metronic-tailwind-authentication/classic/sign-up"
+    <meta content="https://127.0.0.1:8001/metronic-tailwind-html/demo1/authentication/classic/sign-up"
         property="og:url" />
     <meta content="en_US" property="og:locale" />
     <meta content="website" property="og:type" />
@@ -59,24 +59,36 @@
                     <label class="form-label required mb-2">نوع التسجيل</label>
                     <div class="flex gap-2 toggle-group">
                         <label class="cursor-pointer">
-                            <input type="radio" name="date-range" value="individual" class="hidden peer" />
+                            <input type="radio" name="date-range" value="individual"  class="hidden peer" checked />
                             <span class="btn btn-secondary peer-checked:btn-primary">
-                                أفراد
+                                شركة 
                             </span>
                         </label>
                         <label class="cursor-pointer">
-                            <input type="radio" name="date-range" value="accounting" checked class="hidden peer" />
+                            <input type="radio" name="date-range" value="accounting" class="hidden peer" />
                             <span class="btn btn-secondary peer-checked:btn-primary">
-                                مكتب محاسبة
+                                 صندوق
                             </span>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="date-range" value="company" class="hidden peer" />
                             <span class="btn btn-secondary peer-checked:btn-primary">
-                                شركة
+                                مستشار
+                            </span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="date-range" value="company2" class="hidden peer" />
+                            <span class="btn btn-secondary peer-checked:btn-primary">
+                                فرد
                             </span>
                         </label>
                     </div>
+                </div>
+                  <div class="flex flex-col gap-1">
+                    <label class="form-label text-gray-900">
+                         الاسم
+                    </label>
+                    <input class="input" name="name" placeholder="الاسم" type="text" value="" />
                 </div>
                 <div class="flex flex-col gap-1">
                     <label class="form-label text-gray-900">
@@ -117,21 +129,21 @@
                     <input class="checkbox checkbox-sm" name="check" type="checkbox" value="1" />
 
                     <span class="checkbox-label">
-                        هل موافق على
+                        اوافق  على
                         <a class="text-2sm link" href="#">
                             الشروط والأحكام
                         </a>
                     </span>
                 </label>
                 <button class="btn btn-primary flex justify-center grow">
-                    Sign up
+                    تسجيل جديد
                 </button>
 
                 <div class="flex items-center justify-center">
                     <span class="text-2sm text-gray-700 me-1.5">
                         لديك حساب بالفعل؟
                     </span>
-                    <a class="text-2sm link" href="auth/sign-in.html">
+                    <a class="text-2sm link" href="html/demo1/auth/sign-in.html">
                         تسجيل الدخول
                     </a>
                 </div>
