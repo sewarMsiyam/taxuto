@@ -2,7 +2,7 @@
 <html class="h-full" data-theme="true" data-theme-mode="light" dir="rtl" lang="ar">
 
 <head>
-    <base href="../../">
+    <base href="../../../">
     <title>
         Taxuto - لوحة التحكم
     </title>
@@ -53,7 +53,7 @@
                     data-scrollable-offset="0px" data-scrollable-wrappers="#sidebar_content" id="sidebar_scrollable">
                     <div class="menu flex flex-col grow gap-0.5" data-menu="true" data-menu-accordion-expand-all="false"
                         id="sidebar_menu">
-                        <a href="html/demo1/index.html" class="menu-item active">
+                        <a href="html/demo1/index.html" class="menu-item">
                             <div class="menu-link   flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                 tabindex="0">
                                 <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -110,7 +110,7 @@
                             </div>
                         </a>
 
-                        <a href="html/demo1/Settings.html" class="menu-item">
+                        <a href="html/demo1/Settings.html" class="menu-item active">
                             <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                 tabindex="0">
                                 <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -158,6 +158,10 @@
                                             href="html/demo1/index.html">
                                             <span class="menu-title text-nowrap">
                                                 لوحة التحكم
+                                            </span>
+                                            -
+                                            <span class="menu-title text-nowrap">
+                                                الصفحة الرئيسية
                                             </span>
                                         </a>
                                     </div>
@@ -411,34 +415,239 @@
             </header>
             <main class="grow content pt-5" id="content" role="content">
                 <div class="container-fixed" id="content_container">
-                    <div class="grid gap-5 lg:gap-7.5 xl:w-[38.75rem] mx-auto">
-                        <div class="card pb-2.5">
-                            <div class="card-body grid gap-5">
-                                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                                    <label class="form-label max-w-56">
-                                        كلمة المرور القديمة
-                                    </label>
-                                    <input class="input" placeholder="كلمة المرور القديمة" type="text" value="" />
-                                </div>
-                                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                                    <label class="form-label max-w-56">
-                                        كلمة المرور الجديدة
-                                    </label>
-                                    <input class="input" placeholder="كلمة المرور" type="text" value="" />
-                                </div>
-                                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5 mb-2.5">
-                                    <label class="form-label max-w-56">
-                                        تاكيد كلمة المرور الجديدة
-                                    </label>
-                                    <input class="input" placeholder="تاكيد كلمة المرور" type="text" value="" />
-                                </div>
-                                <div class="flex gap-3 justify-end">
-                                    <button class="btn btn-primary">
-                                        تغير كلمة المرور
-                                    </button>
+
+
+
+
+
+
+
+
+                    <style>
+                        .upgrade-bg {
+                            background-image: url('assets/media/images/2600x1200/bg-14.png');
+                        }
+
+                        .dark .upgrade-bg {
+                            background-image: url('assets/media/images/2600x1200/bg-14-dark.png');
+                        }
+                    </style>
+
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-7.5">
+
+                        <div class="col-span-2">
+                            <div class="card">
+                                <div class="card-body p-2 lg:py-7.5 lg:pb-0 lg:px-5 pb-0">
+                                    <div class="flex flex-wrap gap-7.5 upgrade-bg bg-cover bg-no-repeat ">
+                                        <div
+                                            class="flex flex-col gap-3 items-center justify-center size-[140px] rounded-xl ring-1 ring-gray-200 bg-secondary-clarity">
+                                            <img alt="" class="size-[70px]"
+                                                src="assets/media/brand-logos/cloud-one.svg">
+                                            </img>
+                                        </div>
+                                        <div class="flex flex-col gap-5 lg:gap-7.5 grow">
+                                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                                <div class="flex flex-col gap-1">
+                                                    <div class="flex items-center flex-wrap sm:flex-nowrap gap-2.5">
+                                                        <h2 class="text-2xl font-semibold text-gray-900">
+                                                            شركة على مناصرة
+                                                        </h2>
+                                                        <span
+                                                            class="badge badge-sm badge-success badge-outline shrink-0">
+                                                            الخطة الذهبية
+                                                        </span>
+                                                    </div>
+                                                    <p class="text-2sm text-gray-700">
+                                                        <i class="ki-duotone ki-sms fs-1 text-success"></i>
+                                                        ali@gmail.com
+                                                    </p>
+                                                </div>
+                                                <div class="flex items-center gap-2.5">
+                                                    <a class="btn btn-sm btn-light" href="#">
+                                                        Cancel Plan
+                                                    </a>
+                                                    <a class="btn btn-sm btn-primary" href="#">
+                                                        تعليه الخطة
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-wrap gap-6 lg:gap-12">
+                                                <div class="flex flex-col gap-3.5 grow">
+                                                    <div class="text-2sm text-gray-600">
+                                                        اكتمال الصفحة الشخصية
+                                                        <span class="text-2sm font-medium text-gray-900">
+                                                            20%
+                                                        </span>
+                                                    </div>
+                                                    <div class="progress progress-primary max-w-2xl w-full">
+                                                        <div class="progress-bar" style="width: 47%">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="container-fixed p-0" id="hero_container">
+                                            <div class="grid">
+                                                <div class="scrollable-x-auto">
+                                                    <div class="menu gap-3" data-menu="true">
+                                                        <div
+                                                            class="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary">
+                                                            <a class="menu-link gap-1.5 pb-2 lg:pb-4 px-2"
+                                                                href="html/demo1/Settings.html">
+                                                                <span
+                                                                    class="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
+                                                                    التفاصيل
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                        <div
+                                                            class="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary ">
+                                                            <a class="menu-link gap-1.5 pb-2 lg:pb-4 px-2"
+                                                                href="html/demo1/profile/adjustment.html">
+                                                                <span
+                                                                    class="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
+                                                                    الضبط
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                        <div
+                                                            class="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary">
+                                                            <a class="menu-link gap-1.5 pb-2 lg:pb-4 px-2"
+                                                                href="html/demo1/profile/billing.html">
+                                                                <span
+                                                                    class="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
+                                                                    عناوين الفوترة
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                        <div
+                                                            class="menu-item border-b-2 border-b-transparent menu-item-active:border-b-primary menu-item-here:border-b-primary active">
+                                                            <a class="menu-link gap-1.5 pb-2 lg:pb-4 px-2"
+                                                                href="html/demo1/profile/payment.html">
+                                                                <span
+                                                                    class="menu-title text-nowrap font-medium text-sm text-gray-700 menu-item-active:text-primary menu-item-active:font-semibold menu-item-here:text-primary menu-item-here:font-semibold menu-item-show:text-primary menu-link-hover:text-primary">
+                                                                    وسائل الدفع
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="col-span-2 flex">
+                            <div class="card grow">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        وسائل الدفع 
+                                    </h3>
+                                    <button class="btn btn-light btn-sm">
+                                        <i class="ki-filled ki-credit-cart">
+                                        </i>
+                                        Add New
+                                    </button>
+                                </div>
+                                <div class="card-body lg:pb-7.5">
+                                    <div class="grid gap-5">
+                                        <div
+                                            class="flex items-center justify-between border border-gray-200 rounded-xl gap-2 px-4 py-4 bg-secondary-clarity">
+                                            <div class="flex items-center gap-3.5">
+                                                <img alt="" class="w-10 shrink-0"
+                                                    src="assets/media/brand-logos/visa.svg" />
+                                                <div class="flex flex-col">
+                                                    <a class="text-sm font-medium text-gray-900 hover:text-primary-active mb-px"
+                                                        href="#">
+                                                        Jason Tatum
+                                                    </a>
+                                                    <span class="text-2sm text-gray-700">
+                                                        Ending 3604 Expires on 12/2026
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-5">
+                                                <span class="badge badge-sm badge-success badge-outline">
+                                                    Primary
+                                                </span>
+                                                <div class="flex gap-0.5">
+                                                    <div class="btn btn-sm btn-icon btn-clear btn-light">
+                                                        <i class="ki-filled ki-notepad-edit">
+                                                        </i>
+                                                    </div>
+                                                    <div class="btn btn-sm btn-icon btn-clear btn-light">
+                                                        <i class="ki-filled ki-trash">
+                                                        </i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="flex items-center justify-between border border-gray-200 rounded-xl gap-2 px-4 py-4 bg-secondary-clarity">
+                                            <div class="flex items-center gap-3.5">
+                                                <img alt="" class="w-10 shrink-0"
+                                                    src="assets/media/brand-logos/ideal.svg" />
+                                                <div class="flex flex-col">
+                                                    <a class="text-sm font-medium text-gray-900 hover:text-primary-active mb-px"
+                                                        href="#">
+                                                        Jason Tatum
+                                                    </a>
+                                                    <span class="text-2sm text-gray-700">
+                                                        iDeal with ABN Ambro
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-5">
+                                                <div class="flex gap-0.5">
+                                                    <div class="btn btn-sm btn-icon btn-clear btn-light">
+                                                        <i class="ki-filled ki-notepad-edit">
+                                                        </i>
+                                                    </div>
+                                                    <div class="btn btn-sm btn-icon btn-clear btn-light">
+                                                        <i class="ki-filled ki-trash">
+                                                        </i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="flex items-center justify-between border border-gray-200 rounded-xl gap-2 px-4 py-4 bg-secondary-clarity">
+                                            <div class="flex items-center gap-3.5">
+                                                <img alt="" class="w-10 shrink-0"
+                                                    src="assets/media/brand-logos/paypal.svg" />
+                                                <div class="flex flex-col">
+                                                    <a class="text-sm font-medium text-gray-900 hover:text-primary-active mb-px"
+                                                        href="#">
+                                                        Jason Tatum
+                                                    </a>
+                                                    <span class="text-2sm text-gray-700">
+                                                        jasontt@studio.co
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-5">
+                                                <div class="flex gap-0.5">
+                                                    <div class="btn btn-sm btn-icon btn-clear btn-light">
+                                                        <i class="ki-filled ki-notepad-edit">
+                                                        </i>
+                                                    </div>
+                                                    <div class="btn btn-sm btn-icon btn-clear btn-light">
+                                                        <i class="ki-filled ki-trash">
+                                                        </i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </main>
@@ -463,6 +672,7 @@
     <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
     <script src="assets/js/widgets/general.js"></script>
     <script src="assets/js/layouts/demo1.js"></script>
+
 </body>
 
 </html>
