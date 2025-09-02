@@ -2,32 +2,16 @@
 <html class="h-full" data-theme="true" data-theme-mode="light" dir="rtl" lang="ar">
 
 <head>
+    <base href="../">
     <title>
-        Metronic - Tailwind CSS
+        Taxuto - لوحة التحكم
     </title>
     <meta charset="utf-8" />
-    <meta content="follow, index" name="robots" />
-    <link href="https://127.0.0.1:8001/metronic-tailwind-index.html" rel="canonical" />
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="@keenthemes" name="twitter:site" />
-    <meta content="@keenthemes" name="twitter:creator" />
-    <meta content="summary_large_image" name="twitter:card" />
-    <meta content="Metronic - Tailwind CSS " name="twitter:title" />
-    <meta content="" name="twitter:description" />
-    <meta content="assets/media/app/og-image.png" name="twitter:image" />
-    <meta content="https://127.0.0.1:8001/metronic-tailwind-index.html" property="og:url" />
-    <meta content="en_US" property="og:locale" />
-    <meta content="website" property="og:type" />
-    <meta content="@keenthemes" property="og:site_name" />
-    <meta content="Metronic - Tailwind CSS " property="og:title" />
-    <meta content="" property="og:description" />
-    <meta content="assets/media/app/og-image.png" property="og:image" />
-    <link href="assets/media/app/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
-    <link href="assets/media/app/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
-    <link href="assets/media/app/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
     <link href="assets/media/app/favicon.ico" rel="shortcut icon" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.google.com/share?selection.family=Amiri:ital,wght@0,400;0,700;1,400;1,700|Archivo:ital,wght@0,100..900;1,100..900|IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700|Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900|Montserrat:ital,wght@0,100..900;1,100..900|Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000|Nunito:ital,wght@0,200..1000;1,200..1000|Rubik:ital,wght@0,300..900;1,300..900"
+        rel="stylesheet" />
     <link href="assets/vendors/apexcharts/apexcharts.css" rel="stylesheet" />
     <link href="assets/vendors/keenicons/styles.bundle.css" rel="stylesheet" />
     <link href="assets/css/styles.css" rel="stylesheet" />
@@ -37,7 +21,7 @@
     class="antialiased flex h-full text-base text-gray-700 [--tw-page-bg:#fefefe] [--tw-page-bg-dark:var(--tw-coal-500)] demo1 sidebar-fixed header-fixed bg-[--tw-page-bg] dark:bg-[--tw-page-bg-dark]">
     <div class="flex grow">
 
-      <div class="sidebar [&.dark]:bg-coal-600 bg-light border-e border-e-gray-200 dark:border-e-coal-100 fixed top-0 bottom-0 z-20 hidden lg:flex flex-col items-stretch shrink-0"
+        <div class="sidebar [&.dark]:bg-coal-600 bg-light border-e border-e-gray-200 dark:border-e-coal-100 fixed top-0 bottom-0 z-20 hidden lg:flex flex-col items-stretch shrink-0"
             data-drawer="true" data-drawer-class="drawer drawer-start top-0 bottom-0" data-drawer-enable="true|lg:false"
             id="sidebar">
             <div class="sidebar-header hidden lg:flex items-center relative justify-between px-3 lg:px-6 shrink-0"
@@ -71,7 +55,7 @@
                     data-scrollable-offset="0px" data-scrollable-wrappers="#sidebar_content" id="sidebar_scrollable">
                     <div class="menu flex flex-col grow gap-0.5" data-menu="true" data-menu-accordion-expand-all="false"
                         id="sidebar_menu">
-                        <a href="index.html" class="menu-item">
+                        <a href="index.html" class="menu-item ">
                             <div class="menu-link   flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                 tabindex="0">
                                 <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -84,7 +68,22 @@
                                 </span>
                             </div>
                         </a>
-                        <a href="users.html" class="menu-item active">
+                        <a href="Companies.html" class="menu-item active">
+                            <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
+                                tabindex="0">
+                                <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
+                                    <i class="ki-filled ki-profile-circle text-lg">
+                                    </i>
+                                </span>
+                                <span
+                                    class="menu-title text-sm font-medium text-gray-800 menu-item-active:text-primary menu-link-hover:!text-primary">
+                                    المكلفين
+                                </span>
+                            </div>
+                        </a>
+
+
+                        <a href="users.html" class="menu-item ">
                             <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                 tabindex="0">
                                 <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -97,7 +96,9 @@
                                 </span>
                             </div>
                         </a>
-                        <a href="Companies.html" class="menu-item">
+
+
+                        <a href="Subscription.html" class="menu-item ">
                             <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                 tabindex="0">
                                 <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -106,12 +107,12 @@
                                 </span>
                                 <span
                                     class="menu-title text-sm font-medium text-gray-800 menu-item-active:text-primary menu-link-hover:!text-primary">
-                                    الشركات
+                                    الاشتراكات
                                 </span>
                             </div>
                         </a>
 
-                        <a href="Settings.html" class="menu-item ">
+                        <a href="Settings.html" class="menu-item">
                             <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                 tabindex="0">
                                 <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -124,21 +125,18 @@
                                 </span>
                             </div>
                         </a>
-
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Wrapper -->
         <div class="wrapper flex grow flex-col">
             <header
                 class="header fixed top-0 z-10 start-0 end-0 flex items-stretch shrink-0 bg-[--tw-page-bg] dark:bg-[--tw-page-bg-dark]"
                 data-sticky="true" data-sticky-class="shadow-sm" data-sticky-name="header" id="header">
                 <div class="container-fixed flex justify-between items-stretch lg:gap-4" id="header_container">
-                    <!-- Mobile Logo -->
                     <div class="flex gap-1 lg:hidden items-center -ms-1">
                         <a class="shrink-0" href="index.html">
-                            <img class="max-h-[25px] w-full" src="assets/media/app/logo.png" />
+                            <img class="max-h-[25px] w-full" src="assets/media/app/Taxuto - X.png" />
                         </a>
                         <div class="flex items-center">
                             <button class="btn btn-icon btn-light btn-clear btn-sm" data-drawer-toggle="#sidebar">
@@ -148,6 +146,7 @@
 
                         </div>
                     </div>
+                    <!-- End of Mobile Logo -->
                     <!--Megamenu Contaoner-->
                     <div class="flex items-stretch" id="mega_menu_container">
                         <div class="flex items-stretch" data-reparent="true" data-reparent-mode="prepend|lg:prepend"
@@ -156,25 +155,11 @@
                                 data-drawer-class="drawer drawer-start fixed z-10 top-0 bottom-0 w-full me-5 max-w-[250px] p-5 lg:p-0 overflow-auto"
                                 data-drawer-enable="true|lg:false">
                                 <div class="menu flex-col lg:flex-row gap-5 lg:gap-7.5" data-menu="true" id="mega_menu">
-                                    <div class="menu-item flex flex-row items-center gap-1 active">
+                                    <div class="menu-item active">
                                         <a class="menu-link text-nowrap text-sm text-gray-800 font-medium menu-item-hover:text-primary menu-item-active:text-gray-900 menu-item-active:font-medium"
                                             href="index.html">
                                             <span class="menu-title text-nowrap">
                                                 لوحة التحكم
-                                            </span>
-                                        </a>
-                                        -
-                                        <a class="menu-link text-nowrap text-sm text-gray-800 font-medium menu-item-hover:text-primary menu-item-active:text-gray-900 menu-item-active:font-medium"
-                                            href="users.html">
-                                            <span class="menu-title text-nowrap">
-                                                المستخدمين
-                                            </span>
-                                        </a>
-                                          -
-                                        <a class="menu-link text-nowrap text-sm text-gray-800 font-medium menu-item-hover:text-primary menu-item-active:text-gray-900 menu-item-active:font-medium"
-                                            href="addUsers.html">
-                                            <span class="menu-title text-nowrap">
-                                                اضافة مستخدم جديد
                                             </span>
                                         </a>
                                     </div>
@@ -182,25 +167,195 @@
                             </div>
                         </div>
                     </div>
+                    <!--End of Megamenu Contaoner-->
                     <!-- Topbar -->
-                    <div class="flex items-center gap-2 lg:gap-3.5">
+                    <div class="flex items-center gap-2 ">
+                        <div class="dropdown" data-dropdown="true" data-dropdown-offset="70px, 10px"
+                            data-dropdown-offset-rtl="-70px, 10px" data-dropdown-placement="bottom-end"
+                            data-dropdown-placement-rtl="bottom-start" data-dropdown-trigger="click|lg:click">
+                            <button
+                                class="dropdown-toggle relative btn btn-icon btn-icon-lg relative cursor-pointer size-9 rounded-full hover:bg-primary-light hover:text-primary dropdown-open:bg-primary-light dropdown-open:text-primary text-gray-500">
+                                <i class="ki-filled ki-notification-status">
+                                </i>
+                                <span
+                                    class="absolute top-0 left-1/2 -translate-x-1/2 h-[6px] w-[6px] rounded-full bg-green-500 animate-pulse">
+                                </span>
+                            </button>
+                            <div class="dropdown-content light:border-gray-300 w-full max-w-[460px]">
+                                <div class="flex items-center justify-between gap-2.5 text-sm text-gray-900 font-semibold px-5 py-2.5 border-b border-b-gray-200"
+                                    id="notifications_header">
+                                    الاشعارات
+                                    <button class="btn btn-sm btn-icon btn-light btn-clear shrink-0"
+                                        data-dropdown-dismiss="true">
+                                        <i class="ki-filled ki-cross">
+                                        </i>
+                                    </button>
+                                </div>
+                                <div class="tabs justify-between px-5 mb-2" data-tabs="true" id="notifications_tabs">
+                                    <div class="menu" data-menu="true">
+                                        <div class="menu-item" data-menu-item-offset="0, 10px"
+                                            data-menu-item-placement="bottom-end"
+                                            data-menu-item-placement-rtl="bottom-start" data-menu-item-toggle="dropdown"
+                                            data-menu-item-trigger="click|lg:hover">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grow" id="notifications_tab_all">
+                                    <div class="flex flex-col">
+                                        <div class="scrollable-y-auto" data-scrollable="true"
+                                            data-scrollable-dependencies="#header" data-scrollable-max-height="auto"
+                                            data-scrollable-offset="200px">
+                                            <div class="flex flex-col gap-5 pt-3 pb-4">
+                                                <div class="flex grow gap-2.5 px-5">
+                                                    <div class="relative shrink-0 mt-0.5">
+                                                        <img alt="" class="rounded-full size-8"
+                                                            src="assets/media/avatars/300-2.png" />
+                                                        <span
+                                                            class="size-1.5 badge badge-circle bg-gray-400 absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2">
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex flex-col gap-2.5 grow">
+                                                        <div class="flex flex-col gap-1 mb-1">
+                                                            <div class="text-2sm font-medium mb-px">
+                                                                <a class="hover:text-primary-active text-gray-900 font-semibold"
+                                                                    href="#">
+                                                                    محمد احمد
+                                                                </a>
+                                                                <span class="text-gray-700">
+                                                                    اضاف اقرار جديد الي
+                                                                </span>
+                                                                <a class="hover:text-primary-active text-primary font-semibold"
+                                                                    href="#">
+                                                                    شركة على مناصرة
+                                                                </a>
+                                                            </div>
+                                                            <span
+                                                                class="flex items-center text-2xs font-medium text-gray-500">
+                                                                23 hours ago
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="border-b border-b-gray-200">
+                                                </div>
+                                                <div class="flex grow gap-2.5 px-5" id="notification_request_17">
+                                                    <div class="relative shrink-0 mt-0.5">
+                                                        <img alt="" class="rounded-full size-8"
+                                                            src="assets/media/avatars/300-19.png" />
+                                                        <span
+                                                            class="size-1.5 badge badge-circle badge-success absolute top-7 end-0.5 ring-1 ring-light transform -translate-y-1/2">
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex flex-col gap-2.5 grow">
+                                                        <div class="flex flex-col gap-1 mb-1">
+                                                            <div class="text-2sm font-medium mb-px">
+
+                                                                <span class="text-gray-700">
+                                                                    تم تنزيل عدد من الاقرارات من قبل
+                                                                </span>
+                                                                <a class="hover:text-primary-active text-gray-900 font-semibold"
+                                                                    href="#">
+                                                                    يوسف
+                                                                </a>
+                                                            </div>
+                                                            <span
+                                                                class="flex items-center text-2xs font-medium text-gray-500">
+                                                                1 day ago
+                                                                <span
+                                                                    class="badge badge-circle bg-gray-500 size-1 mx-1.5">
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="border-b border-b-gray-200">
+                                    </div>
+                                    <div class="grid grid-cols-2 p-5 gap-2.5" id="notifications_following_footer">
+                                        <button class="btn btn-sm btn-light justify-center">
+                                            ارشفة الكل
+                                        </button>
+                                        <button class="btn btn-sm btn-light justify-center">
+                                            تعليم الكل كمقروء
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="dropdown" data-dropdown="true" data-dropdown-offset="70px, 10px"
+                            data-dropdown-offset-rtl="-70px, 10px" data-dropdown-placement="bottom-end"
+                            data-dropdown-placement-rtl="bottom-start" data-dropdown-trigger="click|lg:click">
+                            <button
+                                class="dropdown-toggle btn btn-icon btn-icon-lg relative cursor-pointer size-9 rounded-full hover:bg-primary-light hover:text-primary dropdown-open:bg-primary-light dropdown-open:text-primary text-gray-500">
+                                <div
+                                    class="flex items-center gap-1.5 rounded-md text-gray-600 p-1.5 text-2xs font-medium shrink-0">
+                                    <img alt="" class="inline-block size-4 rounded-full"
+                                        src="assets/media/flags/saudi-arabia.svg" />
+                                </div>
+                            </button>
+                            <div
+                                class="dropdown-content menu-dropdown menu-default light:border-gray-300 w-full max-w-[170px]">
+                                <div class="menu-item">
+                                    <a class="menu-link h-10" href="index-EN.html">
+                                        <span class="menu-icon">
+                                            <img alt="" class="inline-block size-4 rounded-full"
+                                                src="assets/media/flags/united-states.svg" />
+                                        </span>
+                                        <span class="menu-title">
+                                            English
+                                        </span>
+                                        <span class="menu-badge">
+                                            <i class="ki-solid ki-check-circle text-success text-base">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="menu-item active">
+                                    <a class="menu-link h-10" href="index.html">
+                                        <span class="menu-icon">
+                                            <img alt="" class="inline-block size-4 rounded-full"
+                                                src="assets/media/flags/saudi-arabia.svg" />
+                                        </span>
+                                        <span class="menu-title">
+                                            Arabic(Saudi)
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button data-theme-toggle="true"
+                                class="btn btn-icon btn-icon-lg size-9 rounded-full hover:bg-primary-light hover:text-primary dropdown-open:bg-primary-light dropdown-open:text-primary text-gray-500">
+                                <i class="ki-filled ki-moon dark:hidden">
+                                </i>
+                                <i class="ki-filled ki-sun hidden dark:block">
+                                </i>
+                            </button>
+                        </div>
                         <div class="menu" data-menu="true">
                             <div class="menu-item" data-menu-item-offset="80px, 10px"
                                 data-menu-item-offset-rtl="-80px, 10px" data-menu-item-placement="bottom-end"
                                 data-menu-item-placement-rtl="bottom-start" data-menu-item-toggle="dropdown"
                                 data-menu-item-trigger="click|lg:click">
-                                <div class="menu-toggle btn rounded-full">
-                                    <div class="flex items-center justify-between px-5 py-1.5 gap-1.5">
+                                <div class="menu-toggle btn p-0 rounded-full">
+                                    <div class="flex items-center justify-between py-1.5 gap-1.5">
                                         <div class="flex items-center gap-2">
                                             <img alt="" class="size-9 rounded-full border-2 border-success"
                                                 src="assets/media/avatars/300-2.png">
                                             <div class="flex flex-col gap-1.5">
                                                 <span class="text-sm text-gray-800 font-semibold leading-none">
-                                                    Cody Fisher
+                                                    شركة على مناصرة
                                                 </span>
                                                 <a class="text-xs text-gray-600 hover:text-primary font-medium leading-none"
                                                     href="account/home/get-started.html">
-                                                    c.fisher@gmail.com
+                                                    c.ali@gmail.com
                                                 </a>
                                             </div>
                                         </div>
@@ -213,17 +368,17 @@
                                                 src="assets/media/avatars/300-2.png">
                                             <div class="flex flex-col gap-1.5">
                                                 <span class="text-sm text-gray-800 font-semibold leading-none">
-                                                    Cody Fisher
+                                                    شركة على مناصرة
                                                 </span>
                                                 <a class="text-xs text-gray-600 hover:text-primary font-medium leading-none"
                                                     href="account/home/get-started.html">
-                                                    c.fisher@gmail.com
+                                                    c.ali@gmail.com
                                                 </a>
                                             </div>
                                             </img>
                                         </div>
                                         <span class="badge badge-xs badge-primary badge-outline">
-                                            Pro
+                                            مدفوع
                                         </span>
                                     </div>
                                     <div class="menu-separator">
@@ -240,107 +395,9 @@
                                                 </span>
                                             </a>
                                         </div>
-                                        <div class="menu-item" data-menu-item-offset="-10px, 0"
-                                            data-menu-item-placement="left-start" data-menu-item-toggle="dropdown"
-                                            data-menu-item-trigger="click|lg:hover">
-                                            <div class="menu-link">
-                                                <span class="menu-icon">
-                                                    <i class="ki-filled ki-icon">
-                                                    </i>
-                                                </span>
-                                                <span class="menu-title">
-                                                    Language
-                                                </span>
-                                                <div
-                                                    class="flex items-center gap-1.5 rounded-md border border-gray-300 text-gray-600 p-1.5 text-2xs font-medium shrink-0">
-                                                    English
-                                                    <img alt="" class="inline-block size-3.5 rounded-full"
-                                                        src="assets/media/flags/united-states.svg" />
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="menu-dropdown menu-default light:border-gray-300 w-full max-w-[170px]">
-                                                <div class="menu-item active">
-                                                    <a class="menu-link h-10" href="?dir=ltr">
-                                                        <span class="menu-icon">
-                                                            <img alt="" class="inline-block size-4 rounded-full"
-                                                                src="assets/media/flags/united-states.svg" />
-                                                        </span>
-                                                        <span class="menu-title">
-                                                            English
-                                                        </span>
-                                                        <span class="menu-badge">
-                                                            <i class="ki-solid ki-check-circle text-success text-base">
-                                                            </i>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="menu-item">
-                                                    <a class="menu-link h-10" href="?dir=rtl">
-                                                        <span class="menu-icon">
-                                                            <img alt="" class="inline-block size-4 rounded-full"
-                                                                src="assets/media/flags/saudi-arabia.svg" />
-                                                        </span>
-                                                        <span class="menu-title">
-                                                            Arabic(Saudi)
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="menu-item">
-                                                    <a class="menu-link h-10" href="?dir=ltr">
-                                                        <span class="menu-icon">
-                                                            <img alt="" class="inline-block size-4 rounded-full"
-                                                                src="assets/media/flags/spain.svg" />
-                                                        </span>
-                                                        <span class="menu-title">
-                                                            Spanish
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="menu-item">
-                                                    <a class="menu-link h-10" href="?dir=ltr">
-                                                        <span class="menu-icon">
-                                                            <img alt="" class="inline-block size-4 rounded-full"
-                                                                src="assets/media/flags/germany.svg" />
-                                                        </span>
-                                                        <span class="menu-title">
-                                                            German
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="menu-item">
-                                                    <a class="menu-link h-10" href="?dir=ltr">
-                                                        <span class="menu-icon">
-                                                            <img alt="" class="inline-block size-4 rounded-full"
-                                                                src="assets/media/flags/japan.svg" />
-                                                        </span>
-                                                        <span class="menu-title">
-                                                            Japanese
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-separator">
                                     </div>
                                     <div class="flex flex-col">
-                                        <div class="menu-item mb-0.5">
-                                            <div class="menu-link">
-                                                <span class="menu-icon">
-                                                    <i class="ki-filled ki-moon">
-                                                    </i>
-                                                </span>
-                                                <span class="menu-title">
-                                                    Dark Mode
-                                                </span>
-                                                <label class="switch switch-sm">
-                                                    <input data-theme-state="dark" data-theme-toggle="true" name="check"
-                                                        type="checkbox" value="1">
-                                                    </input>
-                                                </label>
-                                            </div>
-                                        </div>
+
                                         <div class="menu-item px-4 py-1.5">
                                             <a class="btn btn-sm btn-light justify-center"
                                                 href="auth/login.html">
@@ -356,10 +413,6 @@
             </header>
             <main class="grow content pt-5" id="content" role="content">
                 <div class="container-fixed" id="content_container">
-                </div>
-
-
-                <div class="container-fixed">
                     <div class="grid gap-5 lg:gap-7.5 xl:w-[38.75rem] mx-auto">
                         <div class="card pb-2.5">
                             <div class="card-body grid gap-5">
@@ -416,6 +469,12 @@
                                 </div>
                                 <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                                     <label class="form-label max-w-56">
+                                        المسمى الوظيفي
+                                    </label>
+                                    <input class="input" type="text" value="" placeholder="المسمى الوظيفي " />
+                                </div>
+                                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                                    <label class="form-label max-w-56">
                                         الايميل
                                     </label>
                                     <input class="input" type="email" value="" placeholder="info@taxuto.com" />
@@ -441,10 +500,7 @@
                                         <table class="table table-auto table-border" data-datatable-table="true">
                                             <thead>
                                                 <tr>
-                                                    <th class="w-[60px] text-center">
-                                                        <input class="checkbox checkbox-sm" data-datatable-check="true"
-                                                            type="checkbox" />
-                                                    </th>
+                                                  
                                                     <th class="min-w-[300px]">
                                                         <span class="sort asc">
                                                             <span class="sort-label font-normal text-gray-700">
@@ -467,10 +523,6 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td class="text-center">
-                                                        <input class="checkbox checkbox-sm"
-                                                            data-datatable-row-check="true" type="checkbox" value="1" />
-                                                    </td>
                                                     <td>
                                                         <div
                                                             class="flex items-center text-gray-800 font-normal gap-1.5">
@@ -488,12 +540,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-
-
-
-
-
-
 
                                     <div class="flex justify-end">
                                         <button class="btn btn-primary">
@@ -556,7 +602,7 @@
                                 <th class="min-w-24 text-gray-700 font-normal text-center">
                                     تعديل
                                 </th>
-                                <th class="min-w-24 text-gray-700 font-normal text-center" >
+                                <th class="min-w-24 text-gray-700 font-normal text-center">
                                     حذف
                                 </th>
                             </tr>
@@ -605,7 +651,7 @@
                 </div>
                 <div class="flex items-center gap-2.5 justify-end p-5" id="role_user_modal">
                     <button class="btn btn-sm btn-primary">
-                       حفظ الصلاحيات
+                        حفظ الصلاحيات
                     </button>
                     <button class="btn btn-sm btn-light" data-modal-dismiss="true">
                         الغاء
