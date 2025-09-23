@@ -53,7 +53,7 @@
                     data-scrollable-offset="0px" data-scrollable-wrappers="#sidebar_content" id="sidebar_scrollable">
                     <div class="menu flex flex-col grow gap-0.5" data-menu="true" data-menu-accordion-expand-all="false"
                         id="sidebar_menu">
-                        <a href="html/demo1/index.html" class="menu-item active">
+                        <a href="html/demo1/index.html" class="menu-item">
                             <div class="menu-link   flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                 tabindex="0">
                                 <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -80,6 +80,8 @@
                             </div>
                         </a>
 
+
+                      
 
                               <div class="menu-item" data-menu-item-toggle="accordion" data-menu-item-trigger="click">
                                    <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
@@ -128,6 +130,7 @@
                                         </div>
                                    </div>
                               </div>
+
 
 
                         <a href="html/demo1/Subscription.html" class="menu-item ">
@@ -191,7 +194,7 @@
                                         <a class="menu-link text-nowrap text-sm text-gray-800 font-medium menu-item-hover:text-primary menu-item-active:text-gray-900 menu-item-active:font-medium"
                                             href="html/demo1/index.html">
                                             <span class="menu-title text-nowrap">
-                                                لوحة التحكم
+                                                لوحة التحكم - الفرق
                                             </span>
                                         </a>
                                     </div>
@@ -445,36 +448,208 @@
             </header>
             <main class="grow content pt-5" id="content" role="content">
                 <div class="container-fixed" id="content_container">
-                    <div class="grid gap-5 lg:gap-7.5 xl:w-[38.75rem] mx-auto">
-                        <div class="card pb-2.5">
-                            <div class="card-body grid gap-5">
-                                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                                    <label class="form-label max-w-56">
-                                        كلمة المرور القديمة
-                                    </label>
-                                    <input class="input" placeholder="كلمة المرور القديمة" type="text" value="" />
+                    <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
+                        <div class="flex flex-col justify-center gap-2">
+                            <h1 class="text-xl font-medium leading-none text-gray-900">
+                                الفرق
+                            </h1>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <button data-modal-toggle="#modalAddTeam" type="button" class="btn btn-sm btn-primary">
+                                <i class="ki-filled ki-plus"></i>
+                                اضافة فريق جديد
+                                </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fixed">
+                    <div class="grid gap-5 lg:gap-7.5">
+                        <div class="card card-grid min-w-full">
+                            <div class="card-header flex-wrap gap-2">
+                                <!-- <h3 class="card-title font-medium text-sm">
+                                    Showing 20 of 68 users
+                                </h3> -->
+                                <div class="flex flex-wrap gap-2 lg:gap-5">
+                                    <div class="flex">
+                                        <label class="input input-sm">
+                                            <i class="ki-filled ki-magnifier">
+                                            </i>
+                                            <input data-datatable-search="#team_crew_table" placeholder="بحث عن مستخدم"
+                                                type="text" value="" />
+                                        </label>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2.5">
+                                        <select class="select select-sm w-28">
+                                            <option value="1">
+                                                الفعالية
+                                            </option>
+                                            <option value="2">
+                                                غير فعال
+                                            </option>
+                                            <option value="2">
+                                                انتظار
+                                            </option>
+                                        </select>
+                                        <select class="select select-sm w-28">
+                                            <option value="1">
+                                                2 فريق العمل
+                                            </option>
+                                            <option value="2">
+                                                فريق 2
+                                            </option>
+                                        </select>
+                                        <button class="btn btn-sm btn-outline btn-primary">
+                                            <i class="ki-filled ki-setting-4">
+                                            </i>
+                                            بحث
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                                    <label class="form-label max-w-56">
-                                        كلمة المرور الجديدة
-                                    </label>
-                                    <input class="input" placeholder="كلمة المرور" type="text" value="" />
-                                </div>
-                                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5 mb-2.5">
-                                    <label class="form-label max-w-56">
-                                        تاكيد كلمة المرور الجديدة
-                                    </label>
-                                    <input class="input" placeholder="تاكيد كلمة المرور" type="text" value="" />
-                                </div>
-                                <div class="flex gap-3 justify-end">
-                                    <button class="btn btn-primary">
-                                        تغير كلمة المرور
-                                    </button>
+                            </div>
+                            <div class="card-body">
+                                <div data-datatable="true" data-datatable-state-save="false" id="team_crew_table">
+                                    <div class="scrollable-x-auto">
+                                        <table class="table table-auto table-border" data-datatable-table="true">
+                                            <thead>
+                                                <tr>
+                                                    <th class="w-[60px] text-center">
+                                                        <input class="checkbox checkbox-sm" data-datatable-check="true"
+                                                            type="checkbox" />
+                                                    </th>
+                                                    <th class="min-w-[300px]">
+                                                        <span class="sort asc">
+                                                            <span class="sort-label font-normal text-gray-700">
+                                                                اسم الفريق
+                                                            </span>
+                                                            <span class="sort-icon">
+                                                            </span>
+                                                        </span>
+                                                    </th>
+                                                    <th class="min-w-[180px]">
+                                                        <span class="sort">
+                                                            <span class="sort-label font-normal text-gray-700">
+                                                                مدير الفريق </span>
+                                                            <span class="sort-icon">
+                                                            </span>
+                                                        </span>
+                                                    </th>
+                                                    <th class="min-w-[180px]">
+                                                        <span class="sort">
+                                                            <span class="sort-label font-normal text-gray-700">
+                                                                عدد المستخدمين
+                                                            </span>
+                                                            <span class="sort-icon">
+                                                            </span>
+                                                        </span>
+                                                    </th>
+                                                    <th class="w-[60px]">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <input class="checkbox checkbox-sm"
+                                                            data-datatable-row-check="true" type="checkbox" value="1" />
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex items-center gap-2.5">
+                                                            <img alt="" class="rounded-full size-9 shrink-0"
+                                                                src="assets/media/avatars/300-1.png" />
+                                                            <div class="flex flex-col">
+                                                                <a class="text-sm font-medium text-gray-900 hover:text-primary-active mb-px"
+                                                                    href="#">
+                                                                    فريق التنين
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-gray-800 font-normal">
+                                                        احمد محمد
+                                                    </td>
+                                                    <td>
+                                                        5
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="menu flex-inline" data-menu="true">
+                                                            <div class="menu-item" data-menu-item-offset="0, 10px"
+                                                                data-menu-item-placement="bottom-end"
+                                                                data-menu-item-placement-rtl="bottom-start"
+                                                                data-menu-item-toggle="dropdown"
+                                                                data-menu-item-trigger="click|lg:click">
+                                                                <button
+                                                                    class="menu-toggle btn btn-sm btn-icon btn-light btn-clear">
+                                                                    <i class="ki-filled ki-dots-vertical">
+                                                                    </i>
+                                                                </button>
+                                                                <div class="menu-dropdown menu-default w-full max-w-[175px]"
+                                                                    data-menu-dismiss="true">
+                                                                    <div class="menu-item">
+                                                                        <a class="menu-link" href="#">
+                                                                            <span class="menu-icon">
+                                                                                <i class="ki-filled ki-search-list">
+                                                                                </i>
+                                                                            </span>
+                                                                            <span class="menu-title">
+                                                                                عرض
+                                                                            </span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="menu-item">
+                                                                        <a class="menu-link" href="#">
+                                                                            <span class="menu-icon">
+                                                                                <i class="ki-filled ki-pencil">
+                                                                                </i>
+                                                                            </span>
+                                                                            <span class="menu-title">
+                                                                                تعديل
+                                                                            </span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="menu-item">
+                                                                        <a class="menu-link" data-modal-toggle="#modal">
+                                                                            <span class="menu-icon">
+                                                                                <i class="ki-filled ki-trash">
+                                                                                </i>
+                                                                            </span>
+                                                                            <span class="menu-title">
+                                                                                حذف
+                                                                            </span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div
+                                        class="card-footer justify-center md:justify-between flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
+                                        <div class="flex items-center gap-2 order-2 md:order-1">
+                                            عرض
+                                            <select class="select select-sm w-16" data-datatable-size="true"
+                                                name="perpage">
+                                            </select>
+                                            لكل صفحة
+                                        </div>
+                                        <div class="flex items-center gap-4 order-1 md:order-2">
+                                            <span data-datatable-info="true">
+                                            </span>
+                                            <div class="pagination" data-datatable-pagination="true">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
             </main>
             <footer class="footer">
                 <div class="container-fixed">
@@ -492,6 +667,152 @@
             </footer>
         </div>
     </div>
+
+
+    <div class="modal modal-center" data-modal="true" id="modal">
+        <div class="modal-content max-w-[400px]">
+            <div class="modal-body">
+                <div class="flex justify-end">
+                    <button type="button" class="modal-close" aria-label="Close modal" data-modal-dismiss="#modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-x" aria-hidden="true">
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="my-4">هل انت متاكد من حذف المستخدم <span class="text-primary font-bold">بطيخة ؟؟</span></h3>
+
+                <div class="flex justify-end gap-4 mt-4">
+                    <button class="btn btn-sm btn-secondary" data-modal-dismiss="#modal"> الغاء</button>
+                    <button class="btn btn-sm btn-primary">حذف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- المودال الرئيسي لإضافة فريق -->
+    <div class="modal modal-center" data-modal="true" id="modalAddTeam">
+        <div class="modal-content max-w-[600px]">
+            <div class="modal-header flex justify-between items-center">
+                <h2 class="text-lg font-medium text-gray-900">اضافة فريق جديد</h2>
+                <button type="button" class="modal-close" aria-label="Close modal" data-modal-dismiss="#modalAddTeam">
+                    ✖
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form class="form" id="addTeamForm" method="post" action="#">
+                    <div class="grid grid-cols-1 gap-5">
+                        <!-- اسم الفريق -->
+                        <div class="form-group">
+                            <label class="form-label mb-2">اسم الفريق</label>
+                            <input class="input w-full border px-3 py-2 rounded" name="team_name"
+                                placeholder="ادخل اسم الفريق" />
+                        </div>
+
+                        <!-- مدير الفريق -->
+                        <div class="form-group">
+                            <label class="form-label mb-2">مدير الفريق</label>
+                            <div class="flex items-center gap-2">
+
+                                <select class="select" data-select="true" data-select-enable-search="true"
+                                    data-select-search-placeholder="Search..."
+                                    data-select-placeholder="Select a user..." data-select-config='{
+			"displayTemplate": "&lt;div class=\"flex items-center gap-2\"&gt;&lt;img src=\"{{avatar}}\" alt=\"{{text}}\" class=\"size-5 border border-input rounded-full\" /&gt; &lt;span class=\"text-foreground\"&gt;{{text}}&lt;/span&gt;&lt;/div&gt;",
+			"optionTemplate": "&lt;div class=\"flex items-center gap-2\"&gt;&lt;img src=\"{{avatar}}\" alt=\"{{text}}\" class=\"size-6 border border-input rounded-full\" /&gt; &lt;span class=\"text-foreground\"&gt;{{text}}&lt;/span&gt;&lt;/div&gt;&lt;svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"size-3.5 ms-auto hidden text-primary select-option-selected:block\"&gt;&lt;path d=\"M20 6 9 17l-5-5\"/&gt;&lt;/svg&gt;",
+			"optionsClass": "scrollable overflow-auto max-h-[250px]"
+		}'>
+                                    <option value="1"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/women/68.jpg"}'>
+                                        Ana Nilson
+                                    </option>
+                                    <option value="2"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/men/46.jpg"}'>
+                                        Robert Brown
+                                    </option>
+                                    <option value="3"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/men/29.jpg"}'>
+                                        John Doe
+                                    </option>
+                                    <option value="4"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/women/48.jpg"}'
+                                        selected="">
+                                        Nina Erin
+                                    </option>
+                                    <option value="5"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/men/58.jpg"}'>
+                                        Mark Larson
+                                    </option>
+                                    <option value="6"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/men/68.jpg"}'>
+                                        Nick Strong
+                                    </option>
+                                    <option value="7"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/women/68.jpg"}'>
+                                        Ana Nilson
+                                    </option>
+                                    <option value="8"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/women/58.jpg"}'>
+                                        Kate Leo
+                                    </option>
+                                    <option value="9"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/men/38.jpg"}'>
+                                        Elon White
+                                    </option>
+                                    <option value="10"
+                                        data-select-option='{"avatar": "https://randomuser.me/api/portraits/men/8.jpg"}'>
+                                        Bill Smith
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <!-- اضافة مستخدمين -->
+                        <div class="form-group">
+                            <label class="form-label mb-2">اعضاء الفريق</label>
+                            <div class="flex items-center gap-2">
+                                <input class="input w-full border px-3 py-2 rounded" name="team_users"
+                                    placeholder="اختر مستخدمين" readonly />
+                                <button type="button" class="btn btn-sm btn-outline"
+                                    data-modal-open="#modalSelectUsers">➕</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="flex justify-end gap-4 mt-4">
+                    <button class="btn btn-sm btn-secondary" data-modal-dismiss="#modalAddTeam">الغاء</button>
+                    <button class="btn btn-sm btn-primary" form="addTeamForm">اضافة فريق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة اختيار المستخدمين -->
+    <div class="modal modal-center" data-modal="true" id="modalSelectUsers">
+        <div class="modal-content max-w-[500px]">
+            <div class="modal-header flex justify-between items-center">
+                <h2 class="text-lg font-medium text-gray-900">اختر مستخدمين</h2>
+                <button type="button" class="modal-close" data-modal-dismiss="#modalSelectUsers">✖</button>
+            </div>
+            <div class="modal-body">
+                <ul class="space-y-2">
+                    <li><label class="flex items-center gap-2"><input type="checkbox" /> مستخدم 1</label></li>
+                    <li><label class="flex items-center gap-2"><input type="checkbox" /> مستخدم 2</label></li>
+                    <li><label class="flex items-center gap-2"><input type="checkbox" /> مستخدم 3</label></li>
+                </ul>
+                <div class="flex justify-end mt-4">
+                    <button class="btn btn-sm btn-primary" data-modal-dismiss="#modalSelectUsers">تم</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <script src="assets/js/core.bundle.js"></script>
     <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>

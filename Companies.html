@@ -2,7 +2,7 @@
 <html class="h-full" data-theme="true" data-theme-mode="light" dir="rtl" lang="ar">
 
 <head>
-     <base href="../">
+     <base href="../../">
      <title>
           Taxuto - لوحة التحكم
      </title>
@@ -24,7 +24,7 @@
                data-drawer-enable="true|lg:false" id="sidebar">
                <div class="sidebar-header hidden lg:flex items-center relative justify-between px-3 lg:px-6 shrink-0"
                     id="sidebar_header">
-                    <a href="index.html">
+                    <a href="html/demo1/index.html">
                          <img class="default-logo min-h-[22px] max-w-[75%] p-5" src="assets/media/app/logo.png" />
                          <img class="small-logo min-h-[22px] max-w-none" src="assets/media/app/mini-logo.svg" />
                     </a>
@@ -54,7 +54,7 @@
                          id="sidebar_scrollable">
                          <div class="menu flex flex-col grow gap-0.5" data-menu="true"
                               data-menu-accordion-expand-all="false" id="sidebar_menu">
-                              <a href="index.html" class="menu-item">
+                              <a href="html/demo1/index.html" class="menu-item">
                                    <div class="menu-link   flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                         tabindex="0">
                                         <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -67,7 +67,7 @@
                                         </span>
                                    </div>
                               </a>
-                              <a href="Companies.html" class="menu-item active">
+                              <a href="html/demo1/Companies.html" class="menu-item active">
                                    <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                         tabindex="0">
                                         <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -82,7 +82,7 @@
                               </a>
 
 
-                              <a href="users.html" class="menu-item ">
+                              <div class="menu-item" data-menu-item-toggle="accordion" data-menu-item-trigger="click">
                                    <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                         tabindex="0">
                                         <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -93,11 +93,45 @@
                                              class="menu-title text-sm font-medium text-gray-800 menu-item-active:text-primary menu-link-hover:!text-primary">
                                              المستخدمين
                                         </span>
+                                        <span
+                                             class="menu-arrow text-gray-400 w-[20px] shrink-0 justify-end ms-1 me-[-10px]">
+                                             <i class="ki-filled ki-plus text-2xs menu-item-show:hidden">
+                                             </i>
+                                             <i class="ki-filled ki-minus text-2xs hidden menu-item-show:inline-flex">
+                                             </i>
+                                        </span>
                                    </div>
-                              </a>
+                                   <div
+                                        class="menu-accordion gap-0.5 ps-[10px] relative before:absolute before:start-[20px] before:top-0 before:bottom-0 before:border-s before:border-gray-200">
+                                        <div class="menu-item">
+                                             <a class="menu-link border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg gap-[14px] ps-[10px] pe-[10px] py-[8px]"
+                                                  href="html/demo1/users.html" tabindex="0">
+                                                  <span
+                                                       class="menu-bullet flex w-[6px] -start-[3px] rtl:start-0 relative before:absolute before:top-0 before:size-[6px] before:rounded-full rtl:before:translate-x-1/2 before:-translate-y-1/2 menu-item-active:before:bg-primary menu-item-hover:before:bg-primary">
+                                                  </span>
+                                                  <span
+                                                       class="menu-title text-2sm font-normal text-gray-800 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
+                                                       المستخدمين
+                                                  </span>
+                                             </a>
+                                        </div>
+                                        <div class="menu-item">
+                                             <a class="menu-link border border-transparent items-center grow menu-item-active:bg-secondary-active dark:menu-item-active:bg-coal-300 dark:menu-item-active:border-gray-100 menu-item-active:rounded-lg hover:bg-secondary-active dark:hover:bg-coal-300 dark:hover:border-gray-100 hover:rounded-lg gap-[14px] ps-[10px] pe-[10px] py-[8px]"
+                                                  href="html/demo1/usersTeam.html" tabindex="0">
+                                                  <span
+                                                       class="menu-bullet flex w-[6px] -start-[3px] rtl:start-0 relative before:absolute before:top-0 before:size-[6px] before:rounded-full rtl:before:translate-x-1/2 before:-translate-y-1/2 menu-item-active:before:bg-primary menu-item-hover:before:bg-primary">
+                                                  </span>
+                                                  <span
+                                                       class="menu-title text-2sm font-normal text-gray-800 menu-item-active:text-primary menu-item-active:font-semibold menu-link-hover:!text-primary">
+                                                       فريق العمل
+                                                  </span>
+                                             </a>
+                                        </div>
+                                   </div>
+                              </div>
 
 
-                              <a href="Subscription.html" class="menu-item ">
+                              <a href="html/demo1/Subscription.html" class="menu-item ">
                                    <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                         tabindex="0">
                                         <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -111,7 +145,7 @@
                                    </div>
                               </a>
 
-                              <a href="Settings.html" class="menu-item">
+                              <a href="html/demo1/Settings.html" class="menu-item">
                                    <div class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] ps-[10px] pe-[10px] py-[6px]"
                                         tabindex="0">
                                         <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
@@ -134,7 +168,7 @@
                     data-sticky="true" data-sticky-class="shadow-sm" data-sticky-name="header" id="header">
                     <div class="container-fixed flex justify-between items-stretch lg:gap-4" id="header_container">
                          <div class="flex gap-1 lg:hidden items-center -ms-1">
-                              <a class="shrink-0" href="index.html">
+                              <a class="shrink-0" href="html/demo1/index.html">
                                    <img class="max-h-[25px] w-full" src="assets/media/app/Taxuto - X.png" />
                               </a>
                               <div class="flex items-center">
@@ -159,7 +193,7 @@
                                              id="mega_menu">
                                              <div class="menu-item active">
                                                   <a class="menu-link text-nowrap text-sm text-gray-800 font-medium menu-item-hover:text-primary menu-item-active:text-gray-900 menu-item-active:font-medium"
-                                                       href="index.html">
+                                                       href="html/demo1/index.html">
                                                        <span class="menu-title text-nowrap">
                                                             لوحة التحكم
                                                        </span>
@@ -361,7 +395,7 @@
                                                                  شركة على مناصرة
                                                             </span>
                                                             <a class="text-xs text-gray-600 hover:text-primary font-medium leading-none"
-                                                                 href="account/home/get-started.html">
+                                                                 href="html/demo1/account/home/get-started.html">
                                                                  c.ali@gmail.com
                                                             </a>
                                                        </div>
@@ -380,7 +414,7 @@
                                                                  شركة على مناصرة
                                                             </span>
                                                             <a class="text-xs text-gray-600 hover:text-primary font-medium leading-none"
-                                                                 href="account/home/get-started.html">
+                                                                 href="html/demo1/account/home/get-started.html">
                                                                  c.ali@gmail.com
                                                             </a>
                                                        </div>
@@ -395,7 +429,7 @@
                                              <div class="flex flex-col">
                                                   <div class="menu-item">
                                                        <a class="menu-link"
-                                                            href="account/home/user-profile.html">
+                                                            href="html/demo1/account/home/user-profile.html">
                                                             <span class="menu-icon">
                                                                  <i class="ki-filled ki-profile-circle">
                                                                  </i>
@@ -410,7 +444,7 @@
 
                                                   <div class="menu-item px-4 py-1.5">
                                                        <a class="btn btn-sm btn-light justify-center"
-                                                            href="auth/login.html">
+                                                            href="html/demo1/auth/login.html">
                                                             Log out
                                                        </a>
                                                   </div>
@@ -434,7 +468,7 @@
                             <a class="btn btn-sm btn-light" href="#">
                                 رفع ملف المكلفين
                             </a>
-                            <a class="btn btn-sm btn-primary" href="Companie/AddCompany.html">
+                            <a class="btn btn-sm btn-primary" href="html/demo1/Companie/AddCompany.html">
                                 <i class="ki-filled ki-plus"></i>
                                 اضافة مكلف جديدة
                             </a>
@@ -526,7 +560,7 @@
                                                                 src="assets/media/app/logo.png" />
                                                             <div class="flex flex-col">
                                                                 <a class="text-sm font-medium text-gray-900 hover:text-primary-active mb-px"
-                                                                    href="Companie/CompaniesDetails.html">
+                                                                    href="html/demo1/Companie/CompaniesDetails.html">
                                                                     شركة علي مناصرة
                                                                 </a>
                                                             </div>
@@ -607,7 +641,7 @@
                                                                 src="assets/media/app/logo.png" />
                                                             <div class="flex flex-col">
                                                                 <a class="text-sm font-medium text-gray-900 hover:text-primary-active mb-px"
-                                                                    href="Companie/CompaniesDetails.html">
+                                                                    href="html/demo1/Companie/CompaniesDetails.html">
                                                                     شركة علي مناصرة
                                                                 </a>
                                                             </div>
