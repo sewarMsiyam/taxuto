@@ -479,6 +479,37 @@
                                                 <input type="text" class="input" placeholder="اسم الشركة " />
                                             </div>
                                         </div>
+                                         <div class="form-item mb-4">
+                                            <label class="form-label mb-2">  الفئة <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="form-control">
+                                                <select class="select">
+                                                    <option value="1">زكوي</option>
+                                                    <option value="2">ضريبي</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <hr class="my-5" />
+                                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                            <div class="form-item mb-4">
+                                                <label class="form-label mb-2">الرقم المميز  <span
+                                                    class="text-danger">*</span></label>
+                                                <div class="form-control">
+                                                    <input type="email" class="input" placeholder="الرقم المميز " />
+                                                </div>
+                                            </div>
+                                            <div class="form-item mb-4">
+                                                <label class="form-label mb-2">الرقم الضريبي  <span
+                                                    class="text-danger">*</span></label>
+                                                <div class="form-control">
+                                                    <input type="text" class="input" placeholder="الرقم الضريبي " />
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                             <div class="form-item mb-4">
                                                 <label class="form-label mb-2">البريد الإلكتروني </label>
@@ -513,27 +544,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-item mb-4">
-                                            <label class="form-label mb-2">  الفئة <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="form-control">
-                                                <select class="select">
-                                                    <option value="1">زكوي</option>
-                                                    <option value="2">ضريبي</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                       
+<hr class="my-5" />
 
-
+<style>
+     .btn-secondary.active {
+          background-color: #249978 !important;
+          color: #fff !important;
+     }
+</style>
                                         <div class="space-y-3 text-sm">
                                             <div class="flex items-center gap-2.5" data-tabs="true">
                                                 <span class="text-gray-800">هل الشركة سعودية بالكامل ؟</span>
-                                                <button class="btn btn-secondary  btn-sm active "
+                                                <button class="btn btn-secondary active:border-2 active:border-primary btn-sm active "
                                                     data-tab-toggle="#yes">نعم</button>
-                                                <button class="btn btn-secondary btn-sm "
+                                                <button class="btn btn-secondary active:border-2 active:border-primary btn-sm "
                                                     data-tab-toggle="#no">لا
                                                 </button>
                                             </div>
