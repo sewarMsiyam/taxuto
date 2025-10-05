@@ -6,6 +6,21 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
+
+
+setTimeout(() => {
+  document.querySelectorAll('[data-kt-select-search]').forEach(input => {
+    input.addEventListener('keydown', e => {
+      if (e.key === ' ') {
+        e.stopPropagation(); // يمنع Metronic من منع الفراغ
+      }
+    });
+  });
+}, 500);
+
+
+
+
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();

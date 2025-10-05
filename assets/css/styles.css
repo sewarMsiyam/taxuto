@@ -11020,3 +11020,30 @@ html.dark .\[html\.dark_\&\]\:hidden {
 
 
 
+.kt-input {
+    display: block;
+    width: 100%;
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+    border-color: var(--input);
+    background-color: var(--background);
+    color: var(--foreground);
+    --tw-shadow: 0 1px 2px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.05));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    --tw-shadow-color: rgba(0, 0, 0, 0.05);
+}
+.kt-input {
+    height: calc(var(--spacing) * 8.5);
+    border-radius: calc(var(--radius) - 2px);
+    padding-inline: calc(var(--spacing) * 3);
+    font-size: 0.8125rem;
+    --tw-leading: var(--text-sm--line-height);
+    line-height: var(--text-sm--line-height);
+}
+.kt-input {
+    outline-style: var(--tw-outline-style);
+    outline-width: 0px;
+    transition-property: color, box-shadow;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
