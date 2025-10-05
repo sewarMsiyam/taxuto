@@ -11047,3 +11047,6 @@ html.dark .\[html\.dark_\&\]\:hidden {
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
 }
+.kt-select-options .hidden {
+    display: none;
+}
