@@ -430,8 +430,7 @@
                                     <div class="flex flex-col">
 
                                         <div class="menu-item px-4 py-1.5">
-                                            <a class="btn btn-sm btn-light justify-center"
-                                                href="auth/login.html">
+                                            <a class="btn btn-sm btn-light justify-center" href="auth/login.html">
                                                 Log out
                                             </a>
                                         </div>
@@ -453,17 +452,17 @@
                                 <div class="px-3">
                                     <div class="text-2xl font-bold">الخطة الأولى</div>
                                     <div class="text-gray-500 py-2">خطة مبدئية لتجربة الموقع</div>
-                                    <span class="text-gray-500">5/5/2025 - 5/5/2026</span><br/>
-                                    <span class="mt-2 flex items-center gap-2">  
-                                    
-                                    <label class="switch switch-sm">
-                                                                 <input class="order-2" name="check" type="checkbox" value="1">
-                                                                 <span class="switch-label order-1">
-                                                                     التجديد التلقائي  
-                                                                 </span>
-                                                            </label>
-                                                        
-                                                        </span>
+                                    <span class="text-gray-500">5/5/2025 - 5/5/2026</span><br />
+                                    <span class="mt-2 flex items-center gap-2">
+
+                                        <label class="switch switch-sm">
+                                            <input class="order-2" name="check" type="checkbox" value="1">
+                                            <span class="switch-label order-1">
+                                                التجديد التلقائي
+                                            </span>
+                                        </label>
+
+                                    </span>
                                 </div>
                             </div>
                             <div>
@@ -480,31 +479,69 @@
 
 
                     <div class="my-5">
-                        <h3 class="font-semibold mb-4 px-3">فواتير  </h3>
-                        <table class="table table-auto table-border" data-datatable-table="true">
-                            <thead>
-                                <tr>
-                                    <th>رقم الفاتورة</th>
-                                    <th>تاريخ صدور الفاتورة</th>
-                                    <th>التحميل</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>#112 </td>
-                                    <td>7/3/2024</td>
-                                    <td>
-                                        <a href="#" class="text-primary hover:underline">تحميل PDF</a>
-                                    </td>
-                                </tr>
-                                <!-- <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr> -->
-                            </tbody>
-                        </table>
+                        <h3 class="font-semibold mb-4 px-3">فواتير </h3>
+                        <div data-datatable="true" data-datatable-state-save="false" id="team_crew_table">
+                            <div class="scrollable-x-auto">
+                                <table class="table table-auto table-border" data-datatable-table="true">
+                                    <thead>
+                                        <tr>
+                                            <th class="min-w-[300px]">
+                                                <span class="sort asc">
+                                                    <span class="sort-label font-normal text-gray-700">
+                                                        رقم الفاتورة
+                                                    </span>
+                                                    <span class="sort-icon">
+                                                    </span>
+                                                </span>
+                                            </th>
+                                            <th class="min-w-[180px]">
+                                                <span class="sort">
+                                                    <span class="sort-label font-normal text-gray-700">
+                                                        تاريخ صدور الفاتورة</span>
+                                                    <span class="sort-icon">
+                                                    </span>
+                                                </span>
+                                            </th>
+                                            <th class="min-w-[180px]">
+                                                <span class="sort">
+                                                    <span class="sort-label font-normal text-gray-700">
+                                                        التحميل
+                                                    </span>
+                                                    <span class="sort-icon">
+                                                    </span>
+                                                </span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#112</td>
+                                            <td>7/3/2024</td>
+                                            <td>
+                                                <a href="#" class="text-primary hover:underline">تحميل PDF</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div
+                                class="card-footer justify-center md:justify-between flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
+                                <div class="flex items-center gap-2 order-2 md:order-1">
+                                    عرض
+                                    <select class="select select-sm w-16" data-datatable-size="true" name="perpage">
+                                    </select>
+                                    لكل صفحة
+                                </div>
+                                <div class="flex items-center gap-4 order-1 md:order-2">
+                                    <span data-datatable-info="true">
+                                    </span>
+                                    <div class="pagination" data-datatable-pagination="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
 
