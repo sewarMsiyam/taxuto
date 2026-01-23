@@ -1090,7 +1090,7 @@
         }
 
         .label-cell {
-            padding: 10px 15px;
+            padding: 5px 15px;
             font-weight: 500;
             font-size: 15px;
             color: var(--dark-gray);
@@ -1100,19 +1100,19 @@
         }
 
         .action-cell {
-            padding: 10px 15px;
+            padding: 5px 15px;
             text-align: center;
             width: 30%;
         }
 
         .info-cell {
-            padding: 10px 15px;
+            padding: 5px 15px;
             text-align: center;
             width: 50px;
         }
 
         .value-cell {
-            padding: 10px 15px;
+            padding: 5px 15px;
             text-align: right;
             width: 180px;
             position: relative;
@@ -1358,7 +1358,7 @@
             .info-cell,
             .value-cell {
                 width: 100%;
-                padding: 8px 0;
+                padding: 5px 0;
                 text-align: left;
                 border: none;
             }
