@@ -514,7 +514,7 @@
             font-weight: 500;
             font-size: 16px;
             color: #253632;
-            padding: 12px;
+            padding: 12px 14px;
         }
 
 
@@ -1749,10 +1749,11 @@
     box-shadow: 0 0 0 3px rgb(0 0 0 / 2%);
 }
 .copy-icon-summary{
-    background-color: #fff;
-    padding: 6px 11px;
+   background-color: #fff;
+    padding: 6px 9px;
     border-radius: 8px;
     border: 1px solid #D1D1D6;
     color: #9b9b9b;
     margin: 0 10px;
+    font-size: 14px;
 }
