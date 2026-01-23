@@ -429,3 +429,19 @@ function copyValue(btn) {
         btn.innerHTML = '<i class="fa-solid fa-copy"></i>';
     }, 2000);
 }
+
+
+
+
+
+  function copyText() {
+  const text = document.getElementById("grandTotal").innerText;
+  navigator.clipboard.writeText(text);
+
+  const icon = document.querySelector(".copy-icon-summary");
+  icon.innerHTML = '<i class="fa-solid fa-check"></i>';
+
+  setTimeout(() => {
+    icon.innerHTML = '<i class="fa-regular fa-copy"></i>';
+  }, 1000);
+}
