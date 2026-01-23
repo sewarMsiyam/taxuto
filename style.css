@@ -1742,3 +1742,9 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        input.table-input:not([readonly]):focus {
+    outline: none;
+    border-color: #3cb58b;
+    box-shadow: 0 0 0 3px rgb(0 0 0 / 2%);
+}

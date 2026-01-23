@@ -11,7 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">   
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="validation-styles.css">
 
 </head>
@@ -480,7 +480,7 @@
                                                 <input type="text" class="table-input" value="0.00" readonly>
                                             </td>
                                         </tr>
-                                        
+
                                         <tr class="primary-row">
                                             <td class="label-cell primary-label">Total Income</td>
                                             <td class="action-cell"></td>
@@ -1673,7 +1673,18 @@
                                 <tr>
                                     <td class="label-cell">Zakat On Investments Funds In Internal Entities</td>
                                     <td class="action-cell">
-
+                                        <button class="edit-btn-table" style="float: inline-end;">
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                <path
+                                                    d="M5.8335 5.8335H5.00016C4.55814 5.8335 4.13421 6.00909 3.82165 6.32165C3.50909 6.63421 3.3335 7.05814 3.3335 7.50016V15.0002C3.3335 15.4422 3.50909 15.8661 3.82165 16.1787C4.13421 16.4912 4.55814 16.6668 5.00016 16.6668H12.5002C12.9422 16.6668 13.3661 16.4912 13.6787 16.1787C13.9912 15.8661 14.1668 15.4422 14.1668 15.0002V14.1668"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path
+                                                    d="M13.3333 4.16676L15.8333 6.66676M16.9875 5.48759C17.3157 5.15938 17.5001 4.71424 17.5001 4.25009C17.5001 3.78594 17.3157 3.34079 16.9875 3.01259C16.6593 2.68438 16.2142 2.5 15.75 2.5C15.2858 2.5 14.8407 2.68438 14.5125 3.01259L7.5 10.0001V12.5001H10L16.9875 5.48759Z"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </button>
                                     </td>
                                     <td class="info-cell">
                                         <i class="fa-solid fa-circle-exclamation info-icon"></i>
@@ -1681,7 +1692,15 @@
                                     </td>
                                     <td class="value-cell">
                                         <input type="text" class="table-input" value="0.00" readonly>
-                                        <button class="edit-btn-table">
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label-cell">Zakat On Investments In External Entities As Per The
+                                        Certified Accountant</td>
+                                      <td class="action-cell">
+                                        <button class="edit-btn-table" style="float: inline-end;">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                 <path
                                                     d="M5.8335 5.8335H5.00016C4.55814 5.8335 4.13421 6.00909 3.82165 6.32165C3.50909 6.63421 3.3335 7.05814 3.3335 7.50016V15.0002C3.3335 15.4422 3.50909 15.8661 3.82165 16.1787C4.13421 16.4912 4.55814 16.6668 5.00016 16.6668H12.5002C12.9422 16.6668 13.3661 16.4912 13.6787 16.1787C13.9912 15.8661 14.1668 15.4422 14.1668 15.0002V14.1668"
@@ -1693,13 +1712,6 @@
                                                     stroke-linejoin="round" />
                                             </svg>
                                         </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="label-cell">Zakat On Investments In External Entities As Per The Certified Accountant</td>
-                                    <td class="action-cell">
-
                                     </td>
                                     <td class="info-cell">
                                         <i class="fa-solid fa-circle-exclamation info-icon"></i>
@@ -1707,18 +1719,7 @@
                                     </td>
                                     <td class="value-cell">
                                         <input type="text" class="table-input" value="0.00" readonly>
-                                        <button class="edit-btn-table">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                                <path
-                                                    d="M5.8335 5.8335H5.00016C4.55814 5.8335 4.13421 6.00909 3.82165 6.32165C3.50909 6.63421 3.3335 7.05814 3.3335 7.50016V15.0002C3.3335 15.4422 3.50909 15.8661 3.82165 16.1787C4.13421 16.4912 4.55814 16.6668 5.00016 16.6668H12.5002C12.9422 16.6668 13.3661 16.4912 13.6787 16.1787C13.9912 15.8661 14.1668 15.4422 14.1668 15.0002V14.1668"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                                <path
-                                                    d="M13.3333 4.16676L15.8333 6.66676M16.9875 5.48759C17.3157 5.15938 17.5001 4.71424 17.5001 4.25009C17.5001 3.78594 17.3157 3.34079 16.9875 3.01259C16.6593 2.68438 16.2142 2.5 15.75 2.5C15.2858 2.5 14.8407 2.68438 14.5125 3.01259L7.5 10.0001V12.5001H10L16.9875 5.48759Z"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                            </svg>
-                                        </button>
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -1969,7 +1970,7 @@
                                             </button>
                                         </td>
                                     </tr>
-                                      <tr class="primary-row">
+                                    <tr class="primary-row">
                                         <td class="label-cell primary-label">Income Tax on the share of non-Saudi's</td>
                                         <td class="action-cell"></td>
                                         <td class="info-cell">
@@ -1996,23 +1997,23 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Page 7: Summary -->
                 <div class="wizard-page" id="page-7">
 
                     <div class="section-summary">
                         <!-- Section Header -->
                         <div class="section-summary-header-box">
-                               <div class="expand-icon">
-                            <i class="fa-solid fa-cube"></i>
-                        </div>
+                            <div class="expand-icon">
+                                <i class="fa-solid fa-cube"></i>
+                            </div>
                             <h2 class="section-summary-header-text">Alkhoraif for water and power technologies</h2>
                         </div>
 
                         <!-- Section Items -->
                         <div class="section-summary-item">
                             <div class="section-summary-item-label">Filing Period</div>
-                            <span class="section-summary-item-label">01/10/2025  –  31/12/2025</span>
+                            <span class="section-summary-item-label">01/10/2025 – 31/12/2025</span>
                         </div>
 
                         <div class="section-summary-item">
@@ -2025,7 +2026,7 @@
                             <span class="section-summary-item-label">12,750.50 SAR</span>
                         </div>
 
-                         <div class="section-summary-item highlighted">
+                        <div class="section-summary-item highlighted">
                             <div class="section-summary-item-label">Grand Total</div>
                             <span class="section-summary-item-label">37,250.50 SAR</span>
                         </div>
@@ -2053,10 +2054,10 @@
                     </div>
         </div>
 
-<script src="validation.js"></script>
-<script src="conditional-show-hide.js"></script>
-<script src="set-default-not-applicable.js"></script>
-   <script src="wizard-complete.js"></script>
+        <script src="validation.js"></script>
+        <script src="conditional-show-hide.js"></script>
+        <script src="set-default-not-applicable.js"></script>
+        <script src="wizard-complete.js"></script>
 
 
 </body>
