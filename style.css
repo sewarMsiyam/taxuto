@@ -1161,7 +1161,7 @@
             font-family: 'Poppins';
             font-weight: 400;
             font-size: 15px;
-            color: var(--dark-gray);
+            color: #1b1c1d;
             text-align: right;
             transition: all 0.3s ease;
         }
