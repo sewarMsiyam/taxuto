@@ -346,6 +346,14 @@
             position: relative;
             z-index: 1;
         }
+        .section-m {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+            margin-top: 10px;
+        }
 
         .section2 {
             display: flex;
@@ -354,6 +362,18 @@
         }
 
         .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background: var(--primary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+          .section-header-m {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1822,9 +1842,10 @@
 .modal-content {
   background: #fff;
   border-radius: 8px;
-  padding: 20px;
+  padding: 30px;
   position: relative;
   height: 100%;
+  overflow: auto;
 }
 
 .modal-close {
@@ -1836,3 +1857,36 @@
   font-size: 22px;
   cursor: pointer;
 }
+.modal-footer {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.modal-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    padding: 12px 40px;
+    border-radius: 8px;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    flex-shrink: 0;
+    white-space: nowrap;
+    text-decoration: none;
+        gap: 8px;
+        margin-top: 10px;
+}
+.button-save-modal{
+    background: var(--primary);
+    color: var(--white);
+}
+.button-close-modal{
+    border: 1px solid var(--light-gray);
+    background: #fff;
+}
+

@@ -359,7 +359,7 @@
                                                         <input type="radio" name="insurance" value="applicable">
                                                         <span>Applicable</span>
                                                     </label>
-                                                    <label class="radio-label"   data-toggle="modal" data-target="#myModal">
+                                                    <label class="radio-label">
                                                         <input type="radio" name="insurance" value="not-applicable">
                                                         <span>Not Applicable</span>
                                                     </label>
@@ -2099,7 +2099,8 @@
                             <div class="footer-summary-buttons">
                                 <button class="btn-summary-excel">Download as Excel</button>
                                 <button class="btn-summary-pdf">Download as PDF</button>
-                                <button class="btn-summary-new" data-toggle="modal" data-target="#myModal">Zatca's Template</button>
+                                <button class="btn-summary-new" data-toggle="modal" data-target="#myModal">Zatca's
+                                    Template</button>
                             </div>
                         </div>
                     </div>
@@ -2130,28 +2131,221 @@
             </div>
         </div>
 
+        <div class="modal" id="modal-insurance">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="header">
+                        <div class="logo">
+                            <img src="Taxuto.png" width="150" alt="Logo" />
+                        </div>
+                        <div class="buttons">
+                            <button class="button-primary">
+                                <i class="fa-solid fa-paperclip" style="transform: rotateZ(317deg);"></i>
+                                ATTACHMENT
+                            </button>
+                            <button class="button-primary">
+                                <i class="fa-solid fa-plus"></i>
+                                NOTES
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                    <button class="modal-close">&times;</button>
+
+
+                    <div class="section-m">
+                        <div class="section-header-m">
+                            <span class="section-header-text">REVENUE FROM INSURANCE ACTIVITY</span>
+                        </div>
+
+                        <div class="section-item">
+                            <div class="table-container">
+                                <table class="data-table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="label-cell">Total insurance premiums earned and payable
+                                                subscribed</td>
+                                            <td class="info-cell">
+                                                <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                <span> Total insurance premiums earned and payable subscribed</span>
+                                            </td>
+                                            <td class="value-cell">
+                                                <input type="text" class="table-input" value="0.00">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">Cancelled Insurance premiums</td>
+                                            <td class="info-cell">
+                                                <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                <span> Cancelled Insurance premiums</span>
+                                            </td>
+                                            <td class="value-cell">
+                                                <input type="text" class="table-input" value="0.00">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">Reinsurance premiums issued to local entities</td>
+                                            <td class="info-cell">
+                                                <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                <span> Reinsurance premiums issued to local entities</span>
+                                            </td>
+                                            <td class="value-cell">
+                                                <input type="text" class="table-input" value="0.00">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <hr class="divider" />
+                                <table class="data-table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="label-cell">Net premiums earned</td>
+                                            <td class="info-cell">
+                                                <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                <span> Net premiums earned</span>
+                                            </td>
+                                            <td class="value-cell">
+                                                <input type="text" class="table-input" value="0.00">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">Reinsurance fees</td>
+                                            <td class="info-cell">
+                                                <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                <span> Reinsurance fees</span>
+                                            </td>
+                                            <td class="value-cell">
+                                                <input type="text" class="table-input" value="0.00">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">Differences in unearned installment</td>
+                                            <td class="info-cell">
+                                                <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                <span> Differences in unearned installment</span>
+                                            </td>
+                                            <td class="value-cell">
+                                                <input type="text" class="table-input" value="0.00">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <hr class="divider" />
+                                <table class="data-table">
+                                    <tbody>
+                                        <tr class="primary-row">
+                                            <td class="label-cell primary-label">Investment income </td>
+                                            <td class="info-cell">
+                                                <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                <span> Investment income</span>
+                                            </td>
+                                            <td class="value-cell">
+                                                <input type="text" class="table-input" value="0.00" readonly="">
+                                            </td>
+                                        </tr>
+                                        <tr class="primary-row">
+                                            <td class="label-cell primary-label">Other income </td>
+                                            <td class="info-cell">
+                                                <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                <span> Other income</span>
+                                            </td>
+                                            <td class="value-cell">
+                                                <input type="text" class="table-input" value="0.00" readonly="">
+                                            </td>
+                                        </tr>
+                                        <tr class="total-row">
+                                            <td class="label-cell total-label">Total insurance income</td>
+                                            <td class="info-cell">
+                                                <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                <span>Total insurance income</span>
+                                            </td>
+                                            <td class="value-cell">
+                                                <input type="text" class="table-input" value="0.00" readonly>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button class="modal-btn button-close-modal"
+                            onclick="this.closest('.modal').classList.remove('show')">
+                            <i class="fa-solid fa-times"></i> close
+                        </button>
+                        <button class="modal-btn button-save-modal">
+                            <i class="fa-solid fa-check"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const modalMap = {
+                    'insurance': '#modal-insurance',
+                    'contracts': '#modal-contracts',
+                    'subcon': '#modal-subcontractors',
+                    'machinery': '#modal-machinery',
+                    'provisions': '#modal-provisions',
+                    'Royalties': '#modal-royalties',
+                    'other-expenses': '#modal-other-expenses',
+                    'zakat-adjustment': '#modal-zakat-adj',
+                    'tax-adjustment': '#modal-tax-adj',
+                    'repair-maintenance': '#modal-repair',
+                    'depreciation': '#modal-depreciation',
+                    'loan-charges': '#modal-loan',
+                    'equity': '#modal-equity',
+                    'liabilities': '#modal-liabilities',
+                    'non-current-assets': '#modal-noncurrent',
+                    'investments': '#modal-investments',
+                    'real-estate-dev': '#modal-realestate',
+                    'off-plan': '#modal-offplan',
+                    'current-assets': '#modal-current',
+                    'losses_up': '#modal-losses',
+                    'Taxable_amount': '#modal-taxable'
+                };
+                const radios = document.querySelectorAll('input[type="radio"][value="not-applicable"]');
+
+                radios.forEach(radio => {
+                    radio.addEventListener('click', function () {
+                        const radioName = this.name;
+                        const modalId = modalMap[radioName];
+
+                        if (modalId) {
+                            const modal = document.querySelector(modalId);
+                            if (modal) {
+                                modal.classList.add('show');
+                            } else {
+                                console.warn('⚠️ Modal not found:', modalId);
+                            }
+                        }
+                    });
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (e.target.classList.contains('modal')) {
+                        e.target.classList.remove('show');
+                    }
+                    if (e.target.classList.contains('modal-close')) {
+                        e.target.closest('.modal').classList.remove('show');
+                    }
+                });
+
+            });
+        </script>
 
         <script src="validation.js"></script>
         <script src="conditional-show-hide.js"></script>
         <script src="set-default-not-applicable.js"></script>
         <script src="wizard-complete.js"></script>
-
-        <script>
-            document.addEventListener("click", function (e) {
-                if (e.target.matches('[data-toggle="modal"]')) {
-                    const target = document.querySelector(
-                        e.target.getAttribute("data-target")
-                    );
-                    target.classList.add("show");
-                }
-                if (
-                    e.target.classList.contains("modal") ||
-                    e.target.classList.contains("modal-close")
-                ) {
-                    e.target.closest(".modal").classList.remove("show");
-                }
-            });
-        </script>
 
 </body>
 
