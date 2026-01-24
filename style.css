@@ -1848,7 +1848,12 @@
   height: 100%;
   overflow: auto;
 }
-
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: var(--bs-modal-padding);
+        min-height: 90%;
+}
 .modal-close {
   position: absolute;
   top: 10px;
@@ -1863,6 +1868,8 @@
     gap: 10px;
     justify-content: flex-end;
     width: 87%;
+    flex-shrink: 0;
+    flex-wrap: wrap;
 }
 .modal-btn {
     display: flex;
