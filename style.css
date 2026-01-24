@@ -353,6 +353,9 @@
             position: relative;
             z-index: 1;
             margin-top: 10px;
+            width: 75%;
+    margin-left: auto;
+    margin-right: auto;
         }
 
         .section2 {
@@ -1861,6 +1864,7 @@
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    width: 87%;
 }
 .modal-btn {
     display: flex;
@@ -1890,3 +1894,12 @@
     background: #fff;
 }
 
+.modal-content .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 75%;
+    margin: auto;
+}
