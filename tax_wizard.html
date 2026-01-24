@@ -359,7 +359,7 @@
                                                         <input type="radio" name="insurance" value="applicable">
                                                         <span>Applicable</span>
                                                     </label>
-                                                    <label class="radio-label">
+                                                    <label class="radio-label"   data-toggle="modal" data-target="#myModal">
                                                         <input type="radio" name="insurance" value="not-applicable">
                                                         <span>Not Applicable</span>
                                                     </label>
@@ -2099,7 +2099,7 @@
                             <div class="footer-summary-buttons">
                                 <button class="btn-summary-excel">Download as Excel</button>
                                 <button class="btn-summary-pdf">Download as PDF</button>
-                                <button class="btn-summary-new">new</button>
+                                <button class="btn-summary-new" data-toggle="modal" data-target="#myModal">new</button>
                             </div>
                         </div>
                     </div>
@@ -2117,11 +2117,41 @@
                     </div>
         </div>
 
+
+
+
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button class="modal-close">&times;</button>
+                    <h3>Modal Title</h3>
+                    <p>Modal content here...</p>
+                </div>
+            </div>
+        </div>
+
+
         <script src="validation.js"></script>
         <script src="conditional-show-hide.js"></script>
         <script src="set-default-not-applicable.js"></script>
         <script src="wizard-complete.js"></script>
 
+        <script>
+            document.addEventListener("click", function (e) {
+                if (e.target.matches('[data-toggle="modal"]')) {
+                    const target = document.querySelector(
+                        e.target.getAttribute("data-target")
+                    );
+                    target.classList.add("show");
+                }
+                if (
+                    e.target.classList.contains("modal") ||
+                    e.target.classList.contains("modal-close")
+                ) {
+                    e.target.closest(".modal").classList.remove("show");
+                }
+            });
+        </script>
 
 </body>
 
