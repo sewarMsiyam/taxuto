@@ -592,6 +592,10 @@
             font-size: 16px;
             color: var(--secondary);
             min-width: 212px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
         }
 
         .input-field-summary {
@@ -696,6 +700,24 @@
             transition: all 0.3s;
         }
 
+        
+.btn-summary-new {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 16px;
+            width: 100%;
+            height: 55px;
+            background: var(--primary-50);
+            border: none;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 18px;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
         /* Input Field */
         .input-field,
         .input-field2 {
@@ -920,7 +942,7 @@
             border: none;
 
             /* Amber color for Edit */
-            background: var(--dark-gray);
+            background: #FF9800;
             color: var(--white);
         }
 
@@ -937,7 +959,7 @@
             background: var(--bg-color);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            display: flex;
+            display: inline-grid;
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -1090,7 +1112,7 @@
         }
 
         .label-cell {
-            padding: 5px 15px;
+            padding: 5px 20px;
             font-weight: 500;
             font-size: 15px;
             color: var(--dark-gray);
@@ -1634,7 +1656,7 @@
             .container-main {
                 padding: 0px 8px;
                 padding-top: 16px;
-                padding-bottom: 160px;
+                padding-bottom: 200px;
             }
 
             .container-content {
@@ -1756,4 +1778,18 @@
     color: #9b9b9b;
     margin: 0 10px;
     font-size: 14px;
+}
+.primary-row .value-cell .table-input , .total-row .value-cell .table-input{
+       color: #000000;
+    font-weight: 600;
+    opacity: 0.8;
+}
+.total-row .value-cell input.table-input[readonly]{
+       color: #000000;
+    font-weight: 600;
+    opacity: 1;
+}
+
+.footer-summary-container {
+    display: none; /* مخفية افتراضياً */
 }

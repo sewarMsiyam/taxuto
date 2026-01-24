@@ -1,10 +1,10 @@
 /* ========================================
-   TAXUTO TAX WIZARD - COMPLETE VERSION
-   Features:
-   - Auto calculations
-   - First section open by default
-   - Confirmation modal on submit
-   - Fixed validation
+   TAXUTO TAX WIZARD - COMPLETE FINAL
+   بعد Submit:
+   - أزرار التحميل تظهر في Page 7
+   - يقدر يشوف كل الـ Steps (1-7)
+   - ما يقدر يعدل إلا إذا ضغط Edit
+   - لا يوجد Page 8
    ======================================== */
 
 (function () {
@@ -18,6 +18,9 @@
     const draftBtn = document.getElementById('draftBtn');
     const progressSteps = document.querySelectorAll('.progress-step');
 
+    /**
+     * عرض الصفحة
+     */
     function showPage(pageNumber) {
         wizardPages.forEach(function (page) {
             page.classList.remove('active');
@@ -28,15 +31,15 @@
         if (targetPage) {
             targetPage.classList.add('active');
             targetPage.style.display = 'block';
-            
-            // Open first section by default
             openFirstSection(targetPage);
         }
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Open first section in each page
+    /**
+     * فتح أول قسم
+     */
     function openFirstSection(page) {
         const sections = page.querySelectorAll('.section');
         sections.forEach(function (section, index) {
@@ -48,25 +51,41 @@
         });
     }
 
+    /**
+     * تحديث الأزرار
+     */
     function updateButtons() {
-        if (!isSubmitted) {
+        if (isSubmitted) {
+            // بعد Submit
             prevBtn.disabled = currentPage === 1;
-            nextBtn.textContent = currentPage === totalPages ? 'SUBMIT' : 'NEXT >>';
+            
+            nextBtn.textContent = 'EDIT';
+            nextBtn.classList.remove('button-next');
+            nextBtn.classList.add('button-edit');
+            
+            draftBtn.style.display = 'none';
         } else {
+            // قبل Submit
             prevBtn.disabled = currentPage === 1;
-            prevBtn.style.opacity = currentPage === 1 ? '0.5' : '1';
-            prevBtn.style.cursor = currentPage === 1 ? 'not-allowed' : 'pointer';
+            
+            nextBtn.textContent = currentPage === totalPages ? 'SUBMIT' : 'NEXT >>';
+            nextBtn.classList.remove('button-edit');
+            nextBtn.classList.add('button-next');
+            
+            draftBtn.style.display = 'inline-block';
         }
     }
 
+    /**
+     * تحديث شريط التقدم
+     */
     function updateProgressBar() {
         if (isSubmitted) {
             progressSteps.forEach(function (step, index) {
-                var stepNumber = index + 1;
                 step.classList.remove('active', 'completed', 'notactive');
                 step.classList.add('completed');
 
-                if (stepNumber === currentPage) {
+                if (index + 1 === currentPage) {
                     step.classList.add('active');
                 }
             });
@@ -86,7 +105,49 @@
         }
     }
 
-    // Show confirmation modal
+    /**
+     * إظهار/إخفاء أزرار التحميل
+     */
+    function toggleDownloadButtons(show) {
+        const downloadContainer = document.querySelector('.footer-summary-container');
+        if (downloadContainer) {
+            downloadContainer.style.display = show ? 'block' : 'none';
+        }
+    }
+
+    /**
+     * تعطيل جميع الحقول (Read-only)
+     */
+    function disableAllInputs() {
+        document.querySelectorAll('input, select, textarea').forEach(function (element) {
+            element.disabled = true;
+            element.style.opacity = '0.7';
+            element.style.cursor = 'not-allowed';
+        });
+
+        document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+            radio.disabled = true;
+        });
+    }
+
+    /**
+     * تفعيل جميع الحقول
+     */
+    function enableAllInputs() {
+        document.querySelectorAll('input, select, textarea').forEach(function (element) {
+            element.disabled = false;
+            element.style.opacity = '1';
+            element.style.cursor = 'auto';
+        });
+
+        document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+            radio.disabled = false;
+        });
+    }
+
+    /**
+     * عرض نافذة التأكيد
+     */
     function showConfirmationModal() {
         const modal = document.createElement('div');
         modal.className = 'confirmation-modal';
@@ -101,9 +162,9 @@
                     Please review all information before confirming.
                 </div>
                 <div class="confirmation-modal-footer">
-                    <a href="print-tax.html" class="confirmation-btn confirmation-btn-yes">
+                    <button class="confirmation-btn confirmation-btn-yes" onclick="confirmSubmit(true)">
                         <i class="fa-solid fa-check"></i> Yes, Submit
-                    </a>
+                    </button>
                     <button class="confirmation-btn confirmation-btn-no" onclick="confirmSubmit(false)">
                         <i class="fa-solid fa-times"></i> No, Go Back
                     </button>
@@ -113,50 +174,44 @@
         document.body.appendChild(modal);
     }
 
-    // Global function for confirmation
+    /**
+     * التأكيد على Submit
+     */
     window.confirmSubmit = function(confirmed) {
         const modal = document.querySelector('.confirmation-modal');
         if (modal) modal.remove();
 
         if (confirmed) {
-            // Submit accepted - go to success page
+            // تحديث الحالة
             isSubmitted = true;
-            
-            nextBtn.textContent = 'EDIT';
-            nextBtn.classList.remove('button-next');
-            nextBtn.classList.add('button-edit');
 
-            prevBtn.disabled = false;
-            prevBtn.style.opacity = '1';
-            prevBtn.style.cursor = 'pointer';
+            // تعطيل جميع الحقول
+            disableAllInputs();
 
-            draftBtn.disabled = true;
-            draftBtn.style.opacity = '0.5';
-            draftBtn.style.cursor = 'not-allowed';
+            // إظهار أزرار التحميل
+            toggleDownloadButtons(true);
 
-            document.querySelectorAll('input, select, textarea').forEach(function (element) {
-                element.disabled = true;
-                element.style.opacity = '0.6';
-            });
-
+            // تحديث الأزرار و Progress Bar
+            updateButtons();
             updateProgressBar();
-            
-            showToast('Success!', 'Declaration submitted successfully!', 'success');
 
+            showToast('Success!', 'Declaration submitted successfully!', 'success');
+            
+            // حذف المسودة
             if (typeof localStorage !== 'undefined') {
                 localStorage.removeItem('taxuto_draft');
             }
-
-            // Here you can redirect to another page
-            // window.location.href = '/success-page';
         } else {
-            // Stay on current page
             showToast('Cancelled', 'You can continue editing the form', 'info');
         }
     };
 
+    /**
+     * زر Previous
+     */
     prevBtn.addEventListener('click', function (e) {
         e.preventDefault();
+        
         if (currentPage > 1) {
             currentPage--;
             showPage(currentPage);
@@ -165,40 +220,37 @@
         }
     });
 
+    /**
+     * زر Next/Submit/Edit
+     */
     nextBtn.addEventListener('click', function (e) {
         e.preventDefault();
 
-        // Edit mode
+        // إذا ضغط Edit
         if (isSubmitted) {
             isSubmitted = false;
-
+            
+            // تفعيل الحقول
+            enableAllInputs();
+            
+            // إخفاء أزرار التحميل
+            toggleDownloadButtons(false);
+            
             nextBtn.textContent = currentPage === totalPages ? 'SUBMIT' : 'NEXT >>';
             nextBtn.classList.remove('button-edit');
             nextBtn.classList.add('button-next');
-
-            prevBtn.disabled = currentPage === 1;
-            prevBtn.style.opacity = currentPage === 1 ? '0.5' : '1';
-            prevBtn.style.cursor = currentPage === 1 ? 'not-allowed' : 'pointer';
-
-            draftBtn.disabled = false;
-            draftBtn.style.opacity = '1';
-            draftBtn.style.cursor = 'pointer';
-
-            document.querySelectorAll('input, select, textarea').forEach(function (element) {
-                element.disabled = false;
-                element.style.opacity = '1';
-            });
-
-            updateProgressBar();
+            
+            draftBtn.style.display = 'inline-block';
+            
             updateButtons();
-
+            updateProgressBar();
+            
             showToast('Edit Mode', 'You can now edit the form', 'info');
             return;
         }
 
-        // Navigate to next page
+        // التنقل للصفحة التالية
         if (currentPage < totalPages) {
-            // Validate before moving
             if (typeof window.validateCurrentPage === 'function') {
                 if (!window.validateCurrentPage(currentPage)) {
                     return;
@@ -212,21 +264,21 @@
             return;
         }
 
-        // Submit (on last page)
+        // Submit في Page 7
         if (currentPage === totalPages) {
-            // Final validation
             if (typeof window.validateCurrentPage === 'function') {
                 if (!window.validateCurrentPage(currentPage)) {
                     return;
                 }
             }
 
-            // Show confirmation modal
             showConfirmationModal();
         }
     });
 
-    // Progress bar clicks
+    /**
+     * النقر على Progress Steps
+     */
     progressSteps.forEach(function (step, index) {
         step.style.cursor = 'pointer';
 
@@ -237,6 +289,7 @@
             const targetPage = index + 1;
 
             if (isSubmitted) {
+                // بعد Submit - يمكن التنقل بين جميع الصفحات
                 currentPage = targetPage;
                 showPage(currentPage);
                 updateButtons();
@@ -244,6 +297,7 @@
                 return;
             }
 
+            // قبل Submit - التنقل للخلف فقط
             if (targetPage <= currentPage) {
                 currentPage = targetPage;
                 showPage(currentPage);
@@ -255,6 +309,9 @@
         });
     });
 
+    /**
+     * حفظ مسودة
+     */
     draftBtn.addEventListener('click', function (e) {
         e.preventDefault();
         if (!isSubmitted) {
@@ -278,7 +335,9 @@
         }));
     }
 
-    // Toast notification
+    /**
+     * Toast إشعار
+     */
     function showToast(title, message, type = 'info') {
         const colors = {
             success: '#10B981',
@@ -334,7 +393,7 @@
 
     window.showToast = showToast;
 
-    // Animations CSS
+    // Animations
     const style = document.createElement('style');
     style.textContent = `
         @keyframes slideInRight {
@@ -348,7 +407,9 @@
     `;
     document.head.appendChild(style);
 
-    // Section collapse/expand
+    /**
+     * Section collapse/expand
+     */
     document.querySelectorAll('.section-header').forEach(function (header) {
         header.addEventListener('click', function (e) {
             e.preventDefault();
@@ -373,18 +434,143 @@
         });
     });
 
-    // Auto-calculate totals
-    setupAutoCalculations();
+    /**
+     * ربط أزرار التحميل
+     */
+    function setupDownloadButtons() {
+        const excelBtn = document.querySelector('.btn-summary-excel');
+        const pdfBtn = document.querySelector('.btn-summary-pdf');
+        
+        if (excelBtn) {
+            excelBtn.addEventListener('click', downloadExcel);
+        }
+        
+        if (pdfBtn) {
+            pdfBtn.addEventListener('click', downloadPDF);
+        }
+    }
 
     // Initialize
+    setupAutoCalculations();
+    setupDownloadButtons();
+    setupNumberFormatting();
+    toggleDownloadButtons(false); // إخفاء الأزرار في البداية
     updateButtons();
     updateProgressBar();
     showPage(1);
 })();
 
-// Auto calculation system
+/**
+ * تنسيق الأرقام: 123,456,789.00
+ */
+function formatNumberWithCommas(value) {
+    if (!value || value === '') return '0.00';
+    let num = parseFloat(value.toString().replace(/,/g, ''));
+    if (isNaN(num)) return '0.00';
+    let formatted = num.toFixed(2);
+    let parts = formatted.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+}
+
+function setupNumberFormatting() {
+    const inputs = document.querySelectorAll('.table-input, .input-field[type="number"]');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value && this.value !== '' && !this.readOnly) {
+                this.value = formatNumberWithCommas(this.value);
+            }
+        });
+        input.addEventListener('focus', function() {
+            if (!this.readOnly) {
+                this.value = this.value.replace(/,/g, '');
+            }
+        });
+        if (input.value && input.value !== '') {
+            input.value = formatNumberWithCommas(input.value);
+        }
+    });
+}
+/**
+ * وظائف التحميل
+ */
+function downloadExcel() {
+    showToast('Downloading', 'Preparing Excel file...', 'info');
+    
+    setTimeout(() => {
+        const csvContent = `TAXUTO Tax Return Summary
+
+Company Name,Alkhoraif for water and power technologies
+Filing Period,01/10/2025 – 31/12/2025
+Total Zakat Payable,24500.00 SAR
+Total Income Tax Payable,12750.50 SAR
+Grand Total,37250.50 SAR`;
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'TAXUTO_Tax_Return_' + new Date().getTime() + '.csv';
+        link.click();
+        
+        showToast('Success', 'Excel file downloaded!', 'success');
+    }, 1000);
+}
+
+function downloadPDF() {
+    showToast('Downloading', 'Preparing PDF file...', 'info');
+    
+    setTimeout(() => {
+        const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+    <title>TAXUTO Tax Return</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #667eea; }
+        .section { margin: 20px 0; border-bottom: 1px solid #eee; padding: 10px 0; }
+        .label { font-weight: bold; color: #333; }
+        .value { margin-left: 20px; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>TAXUTO Tax Return Summary</h1>
+    <div class="section">
+        <div class="label">Company Name:</div>
+        <div class="value">Alkhoraif for water and power technologies</div>
+    </div>
+    <div class="section">
+        <div class="label">Filing Period:</div>
+        <div class="value">01/10/2025 – 31/12/2025</div>
+    </div>
+    <div class="section">
+        <div class="label">Total Zakat Payable:</div>
+        <div class="value">24,500.00 SAR</div>
+    </div>
+    <div class="section">
+        <div class="label">Total Income Tax Payable:</div>
+        <div class="value">12,750.50 SAR</div>
+    </div>
+    <div class="section">
+        <div class="label">Grand Total:</div>
+        <div class="value" style="font-size: 18px; font-weight: bold;">37,250.50 SAR</div>
+    </div>
+</body>
+</html>`;
+
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'TAXUTO_Tax_Return_' + new Date().getTime() + '.html';
+        link.click();
+        
+        showToast('Success', 'PDF file downloaded!', 'success');
+    }, 1000);
+}
+
+/**
+ * Auto calculation system
+ */
 function setupAutoCalculations() {
-    // Listen to all input changes
     document.querySelectorAll('input.table-input').forEach(input => {
         if (!input.readOnly) {
             input.addEventListener('input', function() {
@@ -395,53 +581,38 @@ function setupAutoCalculations() {
 }
 
 function calculateTotals() {
-    // This is a placeholder - you need to add specific calculation logic
-    // based on your form structure
-    console.log('Calculating totals...');
-    
-    // Example: Calculate total for a section
     document.querySelectorAll('.section').forEach(section => {
         const inputs = section.querySelectorAll('input.table-input:not([readonly])');
         let total = 0;
         
         inputs.forEach(input => {
-            const value = parseFloat(input.value || 0);
+            // إزالة الفواصل قبل الحساب
+            const value = parseFloat(input.value.replace(/,/g, '') || 0);
             if (!isNaN(value)) {
                 total += value;
             }
         });
         
-        // Update total field if exists
         const totalInput = section.querySelector('.total-row input.table-input[readonly]');
         if (totalInput) {
-            totalInput.value = total.toFixed(2);
+            // تنسيق الناتج
+            totalInput.value = formatNumberWithCommas(total);
         }
     });
 }
 
-function copyValue(btn) {
-    const input = btn.previousElementSibling;
-    input.select();
-    document.execCommand('copy');
+/**
+ * Copy text function
+ */
+function copyText() {
+    const text = document.getElementById("grandTotal").innerText;
+    navigator.clipboard.writeText(text);
 
-    btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-    setTimeout(() => {
-        btn.innerHTML = '<i class="fa-solid fa-copy"></i>';
-    }, 2000);
-}
-
-
-
-
-
-  function copyText() {
-  const text = document.getElementById("grandTotal").innerText;
-  navigator.clipboard.writeText(text);
-
-  const icon = document.querySelector(".copy-icon-summary");
-  icon.innerHTML = '<i class="fa-solid fa-check"></i>';
-
-  setTimeout(() => {
-    icon.innerHTML = '<i class="fa-regular fa-copy"></i>';
-  }, 1000);
+    const icon = document.querySelector(".copy-btn");
+    if (icon) {
+        icon.innerHTML = '<i class="fa-solid fa-check"></i>';
+        setTimeout(() => {
+            icon.innerHTML = '<i class="fa-regular fa-copy"></i>';
+        }, 1000);
+    }
 }
