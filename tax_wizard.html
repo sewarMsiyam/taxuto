@@ -35,6 +35,18 @@
                     </button>
                 </div>
             </div>
+            <td class="action-cell">
+                <div class="radio-group-table">
+                    <label class="radio-label">
+                        <input type="radio" name="provisions" value="applicable">
+                        <span>Applicable</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="provisions" value="not-applicable">
+                        <span>Not Applicable</span>
+                    </label>
+                </div>
+            </td>
 
             <!-- Navigation and Company Info -->
             <div>
@@ -2120,6 +2132,31 @@
 
 
 
+        <div class="modal modal-confirmation" id="modal-confirm-save">
+            <div class="modal-dialog-confirm">
+                <div class="modal-content-confirm">
+                    <button class="modal-close-confirm" onclick="closeConfirmModal()">&times;</button>
+
+                    <div class="confirm-header">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Back to Table</span>
+                    </div>
+
+                    <h2 class="confirm-title">ARE YOU SURE YOU WANT TO CLOSE WITHOUT SAVING ?</h2>
+
+                    <div class="confirm-actions">
+                        <button class="confirm-btn btn-close-without-save" onclick="closeWithoutSaving()">
+                            CLOSE WITHOUT SAVING
+                        </button>
+                        <button class="confirm-btn btn-save-close" onclick="saveAndClose()">
+                            SAVE & CLOSE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <div class="modal" id="myModal">
             <div class="modal-dialog">
@@ -2140,15 +2177,11 @@
                         </div>
                     </div> -->
                     <button class="modal-close">&times;</button>
-
                     <div class="modal-body">
-
-
                         <div class="section-m">
                             <div class="section-header-m">
                                 <span class="section-header-text">REVENUE FROM INSURANCE ACTIVITY</span>
                             </div>
-
                             <div class="section-item">
                                 <div class="table-container">
                                     <table class="data-table">
@@ -2260,7 +2293,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="modal-footer">
                         <button class="modal-btn button-close-modal"
                             onclick="this.closest('.modal').classList.remove('show')">
@@ -2275,8 +2307,217 @@
         </div>
 
 
+        <div class="modal" id="modal-provisions">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button class="modal-close">&times;</button>
+                    <div class="modal-body">
+                      
+
+                        <div class="section-item-model">
+                              <h3  class="section-title-model">PROVISIONS</h3>
+                            <div class="table-container">
+                                <table class="modal-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span class="primary-model-icon-table"><svg width="14" height="10"
+                                                        viewBox="0 0 14 10" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="3.00012" y="6" width="1.66667" height="8.16667"
+                                                            rx="0.833333" transform="rotate(-90 3.00012 6)"
+                                                            fill="white" />
+                                                    </svg>
+                                                </span>
+                                            </th>
+                                            <th>Serial No</th>
+                                            <th class="name-cell px-10">Name</th>
+                                            <th class="text-left">Provisions Balance At The Beginning Of The Period
+                                            </th>
+                                            <th class="text-left">Provisions Made During The Year</th>
+                                            <th>Adjustments</th>
+                                            <th class="text-left">Provisions Balance At The End Of The Period</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="model-action-cell">
+                                                    <button class="btn-action btn-add">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M10 5L10 15" stroke="#33363F" stroke-width="2"
+                                                                stroke-linecap="round" />
+                                                            <path d="M15 10L5 10" stroke="#33363F" stroke-width="2"
+                                                                stroke-linecap="round" />
+                                                        </svg>
+                                                    </button>
+                                                    <button class="btn-action btn-remove">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <circle cx="10" cy="10" r="7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                            <path d="M7.50012 12.5L12.5001 7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                            <path d="M12.5 12.5L7.5 7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td><input type="text" class="model-table-input" value="1" readonly>
+                                            </td>
+                                            <td class="name-cell"><input type="text" class="model-table-input"
+                                                    value="مخصص حجوزات حسن التنفيذ" placeholder="اسم المخصص"
+                                                    style="text-align: right;"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="model-total-row">
+                                            <td colspan="2" class="total-label">Total</td>
+                                            <td></td>
+                                            <td><input type="text" class="model-table-input" value="3,796,939.00"
+                                                    readonly></td>
+                                            <td><input type="text" class="model-table-input" value="3,796,939.00"
+                                                    readonly></td>
+                                            <td><input type="text" class="model-table-input" value="3,796,939.00"
+                                                    readonly></td>
+                                            <td><input type="text" class="model-table-input" value="3,796,939.00"
+                                                    readonly></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="modal-btn button-close-modal"
+                            onclick="this.closest('.modal').classList.remove('show')">
+                            <i class="fa-solid fa-times"></i> close
+                        </button>
+                        <button class="modal-btn button-save-modal">
+                            <i class="fa-solid fa-check"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="modal" id="modal-provisions">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button class="modal-close">&times;</button>
+                    <div class="modal-body">
+                        <div class="section-m">
+                            <div class="section-header-m">
+                                <span class="section-header-text">PROVISIONS</span>
+                            </div>
+
+                            <div class="section-item">
+                                <div class="table-container">
+                                    <table class="modal-table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span class="primary-model-icon-table"><svg width="14" height="10"
+                                                            viewBox="0 0 14 10" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect x="3.00012" y="6" width="1.66667" height="8.16667"
+                                                                rx="0.833333" transform="rotate(-90 3.00012 6)"
+                                                                fill="white" />
+                                                        </svg>
+                                                    </span>
+                                                </th>
+                                                <th>Serial No</th>
+                                                <th class="name-cell px-10">Name</th>
+                                                <th class="text-left">Provisions Balance At The Beginning Of The Period
+                                                </th>
+                                                <th class="text-left">Provisions Made During The Year</th>
+                                                <th>Adjustments</th>
+                                                <th class="text-left">Provisions Balance At The End Of The Period</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="model-action-cell">
+                                                        <button class="btn-action btn-add">
+                                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M10 5L10 15" stroke="#33363F" stroke-width="2"
+                                                                    stroke-linecap="round" />
+                                                                <path d="M15 10L5 10" stroke="#33363F" stroke-width="2"
+                                                                    stroke-linecap="round" />
+                                                            </svg>
+                                                        </button>
+                                                        <button class="btn-action btn-remove">
+                                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <circle cx="10" cy="10" r="7.5" stroke="#33363F"
+                                                                    stroke-width="2" />
+                                                                <path d="M7.50012 12.5L12.5001 7.5" stroke="#33363F"
+                                                                    stroke-width="2" />
+                                                                <path d="M12.5 12.5L7.5 7.5" stroke="#33363F"
+                                                                    stroke-width="2" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <td><input type="text" class="model-table-input" value="1" readonly>
+                                                </td>
+                                                <td class="name-cell"><input type="text" class="model-table-input"
+                                                        value="مخصص حجوزات حسن التنفيذ" placeholder="اسم المخصص"
+                                                        style="text-align: right;"></td>
+                                                <td><input type="text" class="model-table-input" value="0.00"></td>
+                                                <td><input type="text" class="model-table-input" value="0.00"></td>
+                                                <td><input type="text" class="model-table-input" value="0.00"></td>
+                                                <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="model-total-row">
+                                                <td colspan="2" class="total-label">Total</td>
+                                                <td></td>
+                                                <td><input type="text" class="model-table-input" value="3,796,939.00"
+                                                        readonly></td>
+                                                <td><input type="text" class="model-table-input" value="3,796,939.00"
+                                                        readonly></td>
+                                                <td><input type="text" class="model-table-input" value="3,796,939.00"
+                                                        readonly></td>
+                                                <td><input type="text" class="model-table-input" value="3,796,939.00"
+                                                        readonly></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="modal-btn button-close-modal"
+                            onclick="this.closest('.modal').classList.remove('show')">
+                            <i class="fa-solid fa-times"></i> close
+                        </button>
+                        <button class="modal-btn button-save-modal">
+                            <i class="fa-solid fa-check"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
 
         <script>
+            let currentMainModal = null;
+            let rowCounter = 1; // ✅ عداد الصفوف
+
             document.addEventListener('DOMContentLoaded', function () {
                 const modalMap = {
                     'insurance': '#modal-insurance',
@@ -2301,6 +2542,7 @@
                     'losses_up': '#modal-losses',
                     'Taxable_amount': '#modal-taxable'
                 };
+
                 const radios = document.querySelectorAll('input[type="radio"][value="not-applicable"]');
 
                 radios.forEach(radio => {
@@ -2311,7 +2553,14 @@
                         if (modalId) {
                             const modal = document.querySelector(modalId);
                             if (modal) {
+                                currentMainModal = modal;
                                 modal.classList.add('show');
+
+                                // ✅ تهيئة العداد من عدد الصفوف الموجودة
+                                const tbody = modal.querySelector('.modal-table tbody');
+                                if (tbody) {
+                                    rowCounter = tbody.querySelectorAll('tr').length;
+                                }
                             } else {
                                 console.warn('⚠️ Modal not found:', modalId);
                             }
@@ -2319,16 +2568,216 @@
                     });
                 });
 
+                // ✅ X button
                 document.addEventListener('click', function (e) {
-                    if (e.target.classList.contains('modal')) {
-                        e.target.classList.remove('show');
-                    }
                     if (e.target.classList.contains('modal-close')) {
-                        e.target.closest('.modal').classList.remove('show');
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (currentMainModal) {
+                            currentMainModal.classList.remove('show');
+                        }
                     }
                 });
 
+                // ✅ Close button
+                document.querySelectorAll('.button-close-modal').forEach(btn => {
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (currentMainModal) {
+                            currentMainModal.classList.remove('show');
+                        }
+                    });
+                });
+
+                // ✅ Save button
+                document.querySelectorAll('.button-save-modal').forEach(btn => {
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openConfirmModal();
+                    });
+                });
+
+                // ✅ Event Delegation لأزرار الإضافة والحذف
+                document.addEventListener('click', function (e) {
+                    // زر الإضافة
+                    if (e.target.closest('.btn-add')) {
+                        e.preventDefault();
+                        const button = e.target.closest('.btn-add');
+                        const row = button.closest('tr');
+                        const tbody = row.closest('tbody');
+                        addNewRow(tbody, row);
+                    }
+
+                    // زر الحذف
+                    if (e.target.closest('.btn-remove')) {
+                        e.preventDefault();
+                        const button = e.target.closest('.btn-remove');
+                        const row = button.closest('tr');
+                        const tbody = row.closest('tbody');
+                        removeRow(row, tbody);
+                    }
+                });
             });
+
+            // ✅ إضافة صف جديد
+            function addNewRow(tbody, afterRow) {
+                rowCounter++;
+
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+        <td>
+            <div class="model-action-cell">
+                <button class="btn-action btn-add">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 5L10 15" stroke="#33363F" stroke-width="2"
+                            stroke-linecap="round" />
+                        <path d="M15 10L5 10" stroke="#33363F" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </button>
+                <button class="btn-action btn-remove">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="10" r="7.5" stroke="#33363F"
+                            stroke-width="2" />
+                        <path d="M7.50012 12.5L12.5001 7.5" stroke="#33363F"
+                            stroke-width="2" />
+                        <path d="M12.5 12.5L7.5 7.5" stroke="#33363F"
+                            stroke-width="2" />
+                    </svg>
+                </button>
+            </div>
+        </td>
+        <td><input type="text" class="model-table-input" value="${rowCounter}" readonly></td>
+        <td class="name-cell"><input type="text" class="model-table-input" value="" placeholder="اسم المخصص" style="text-align: right;"></td>
+        <td><input type="text" class="model-table-input" value="0.00" onchange="calculateTotals()"></td>
+        <td><input type="text" class="model-table-input" value="0.00" onchange="calculateTotals()"></td>
+        <td><input type="text" class="model-table-input" value="0.00" onchange="calculateTotals()"></td>
+        <td><input type="text" class="model-table-input" value="0.00" onchange="calculateTotals()"></td>
+    `;
+
+                // ✅ إضافة الصف بعد الصف الحالي
+                afterRow.insertAdjacentElement('afterend', newRow);
+
+                // ✅ تحديث الأرقام التسلسلية
+                updateSerialNumbers(tbody);
+
+                // ✅ حساب المجاميع
+                calculateTotals();
+            }
+
+            // ✅ حذف صف
+            function removeRow(row, tbody) {
+                const allRows = tbody.querySelectorAll('tr');
+
+                // ✅ التأكد من وجود صف واحد على الأقل
+                if (allRows.length <= 1) {
+                    alert('يجب أن يحتوي الجدول على صف واحد على الأقل');
+                    return;
+                }
+
+                // ✅ حذف الصف
+                row.remove();
+
+                // ✅ تحديث الأرقام التسلسلية
+                updateSerialNumbers(tbody);
+
+                // ✅ حساب المجاميع
+                calculateTotals();
+            }
+
+            // ✅ تحديث الأرقام التسلسلية
+            function updateSerialNumbers(tbody) {
+                const rows = tbody.querySelectorAll('tr');
+                rows.forEach((row, index) => {
+                    const serialInput = row.querySelector('td:nth-child(2) input');
+                    if (serialInput) {
+                        serialInput.value = index + 1;
+                    }
+                });
+                rowCounter = rows.length;
+            }
+
+            // ✅ حساب المجاميع
+            function calculateTotals() {
+                const modal = currentMainModal;
+                if (!modal) return;
+
+                const tbody = modal.querySelector('.modal-table tbody');
+                const tfoot = modal.querySelector('.modal-table tfoot');
+
+                if (!tbody || !tfoot) return;
+
+                // ✅ حساب مجموع كل عمود (من 4 إلى 7)
+                const totals = [0, 0, 0, 0];
+
+                const rows = tbody.querySelectorAll('tr');
+                rows.forEach(row => {
+                    for (let i = 0; i < 4; i++) {
+                        const input = row.querySelector(`td:nth-child(${i + 4}) input`);
+                        if (input && !input.readOnly) {
+                            const value = parseFloat(input.value.replace(/,/g, '')) || 0;
+                            totals[i] += value;
+                        }
+                    }
+                });
+
+                // ✅ تحديث خانات Total
+                const totalInputs = tfoot.querySelectorAll('input');
+                totals.forEach((total, index) => {
+                    if (totalInputs[index]) {
+                        totalInputs[index].value = formatNumber(total);
+                    }
+                });
+            }
+
+            // ✅ تنسيق الأرقام
+            function formatNumber(num) {
+                return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+
+            // ✅ تنسيق الأرقام عند الخروج من الـ input
+            document.addEventListener('blur', function (e) {
+                if (e.target.classList.contains('model-table-input') &&
+                    !e.target.readOnly &&
+                    !e.target.closest('.name-cell')) { // ✅ استثني name-cell
+                    const value = parseFloat(e.target.value.replace(/,/g, '')) || 0;
+                    e.target.value = formatNumber(value);
+                }
+            }, true);
+            // ✅ فتح موديل التأكيد
+            function openConfirmModal() {
+                document.getElementById('modal-confirm-save').classList.add('show');
+            }
+
+            // ✅ إغلاق موديل التأكيد
+            function closeConfirmModal() {
+                document.getElementById('modal-confirm-save').classList.remove('show');
+            }
+
+            // ✅ إغلاق بدون حفظ
+            function closeWithoutSaving() {
+                closeConfirmModal();
+                if (currentMainModal) {
+                    currentMainModal.classList.remove('show');
+                }
+                console.log('❌ Closed without saving');
+            }
+
+            // ✅ حفظ وإغلاق
+            function saveAndClose() {
+                console.log('✅ Data saved!');
+
+                closeConfirmModal();
+                if (currentMainModal) {
+                    currentMainModal.classList.remove('show');
+                }
+
+                console.log('✅ Modal closed after saving');
+            }
         </script>
 
         <script src="validation.js"></script>
