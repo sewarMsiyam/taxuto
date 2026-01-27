@@ -393,7 +393,10 @@ body {
     color: var(--white);
     text-transform: uppercase;
 }
-
+.modal .section-header-text {
+    width: 100%;
+    text-align: center;
+}
 .expand-arrow {
     width: 16px;
     height: 16px;
