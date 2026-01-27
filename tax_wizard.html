@@ -2608,74 +2608,76 @@
                 });
             });
 
-            // ✅ إضافة صف جديد
-            function addNewRow(tbody, afterRow) {
-                rowCounter++;
-
-                const newRow = document.createElement('tr');
-                newRow.innerHTML = `
-        <td>
-            <div class="model-action-cell">
-                <button class="btn-action btn-add">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 5L10 15" stroke="#33363F" stroke-width="2"
-                            stroke-linecap="round" />
-                        <path d="M15 10L5 10" stroke="#33363F" stroke-width="2"
-                            stroke-linecap="round" />
-                    </svg>
-                </button>
-                <button class="btn-action btn-remove">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="10" cy="10" r="7.5" stroke="#33363F"
-                            stroke-width="2" />
-                        <path d="M7.50012 12.5L12.5001 7.5" stroke="#33363F"
-                            stroke-width="2" />
-                        <path d="M12.5 12.5L7.5 7.5" stroke="#33363F"
-                            stroke-width="2" />
-                    </svg>
-                </button>
-            </div>
-        </td>
-        <td><input type="text" class="model-table-input" value="${rowCounter}" readonly></td>
-        <td class="name-cell"><input type="text" class="model-table-input" value="" placeholder="اسم المخصص" style="text-align: right;"></td>
-        <td><input type="text" class="model-table-input" value="0.00" onchange="calculateTotals()"></td>
-        <td><input type="text" class="model-table-input" value="0.00" onchange="calculateTotals()"></td>
-        <td><input type="text" class="model-table-input" value="0.00" onchange="calculateTotals()"></td>
-        <td><input type="text" class="model-table-input" value="0.00" onchange="calculateTotals()"></td>
-    `;
-
-                // ✅ إضافة الصف بعد الصف الحالي
-                afterRow.insertAdjacentElement('afterend', newRow);
-
-                // ✅ تحديث الأرقام التسلسلية
-                updateSerialNumbers(tbody);
-
-                // ✅ حساب المجاميع
-                calculateTotals();
-            }
-
-            // ✅ حذف صف
-            function removeRow(row, tbody) {
-                const allRows = tbody.querySelectorAll('tr');
-
-                // ✅ التأكد من وجود صف واحد على الأقل
-                if (allRows.length <= 1) {
-                    alert('يجب أن يحتوي الجدول على صف واحد على الأقل');
-                    return;
+        // ✅ إضافة صف جديد - باستخدام template من الصف الأول
+function addNewRow(tbody, afterRow) {
+    const firstRow = tbody.querySelector('tr');
+    if (!firstRow) return;
+    
+    rowCounter++;
+    
+    // ✅ نسخ كامل structure الصف
+    const newRow = firstRow.cloneNode(true);
+    
+    // ✅ تحديث Serial Number
+    const serialInput = newRow.querySelector('td:nth-child(2) input');
+    if (serialInput) {
+        serialInput.value = rowCounter;
+    }
+    
+    // ✅ إفراغ وتنظيف كل الـ inputs
+    newRow.querySelectorAll('input').forEach((input, idx) => {
+        // تخطي Serial Number (أول input)
+        if (idx === 0) return;
+        
+        // إفراغ القيم
+        if (input.readOnly) {
+            input.value = '0.00';
+        } else {
+            // تحديد القيمة الافتراضية حسب النوع
+            if (input.type === 'date') {
+                input.value = '';
+            } else if (input.type === 'text') {
+                // إذا كان في name-cell، خليه فاضي
+                if (input.closest('.name-cell')) {
+                    input.value = '';
+                } else {
+                    input.value = '0.00';
                 }
-
-                // ✅ حذف الصف
-                row.remove();
-
-                // ✅ تحديث الأرقام التسلسلية
-                updateSerialNumbers(tbody);
-
-                // ✅ حساب المجاميع
-                calculateTotals();
+            } else {
+                input.value = '';
             }
+        }
+    });
+    
+    // ✅ إضافة الصف
+    afterRow.insertAdjacentElement('afterend', newRow);
+    updateSerialNumbers(tbody);
+}
 
+// ✅ حذف صف
+function removeRow(row, tbody) {
+    const allRows = tbody.querySelectorAll('tr');
+    
+    if (allRows.length <= 1) {
+        alert('يجب أن يحتوي الجدول على صف واحد على الأقل');
+        return;
+    }
+    
+    row.remove();
+    updateSerialNumbers(tbody);
+}
+
+// ✅ تحديث الأرقام التسلسلية
+function updateSerialNumbers(tbody) {
+    const rows = tbody.querySelectorAll('tr');
+    rows.forEach((row, index) => {
+        const serialInput = row.querySelector('td:nth-child(2) input');
+        if (serialInput) {
+            serialInput.value = index + 1;
+        }
+    });
+    rowCounter = rows.length;
+}
             // ✅ تحديث الأرقام التسلسلية
             function updateSerialNumbers(tbody) {
                 const rows = tbody.querySelectorAll('tr');
