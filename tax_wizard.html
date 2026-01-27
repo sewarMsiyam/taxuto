@@ -2267,7 +2267,7 @@
                             </div>
                         </div>
                     </div>
-                     <div class="modal-footer">
+                    <div class="modal-footer">
                         <div class="flex gap-10">
                         </div>
                         <div class="flex gap-10">
@@ -2501,7 +2501,7 @@
                             </div>
                         </div>
                     </div>
-                     <div class="modal-footer">
+                    <div class="modal-footer">
                         <div class="flex gap-10">
                             <button class="button-primary">
                                 <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
@@ -2603,16 +2603,32 @@
                                             <td><input type="text" class="model-table-input" value="0.00"></td>
                                             <td><input type="text" class="model-table-input" value="0.00"></td>
                                             <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td>
+                                                <div class="flex align-center justify-between">
+                                                    <button class="btn-copy" onclick="copyValue(this)" title="Copy">
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <path
+                                                                d="M13.3333 6H7.33333C6.59695 6 6 6.59695 6 7.33333V13.3333C6 14.0697 6.59695 14.6667 7.33333 14.6667H13.3333C14.0697 14.6667 14.6667 14.0697 14.6667 13.3333V7.33333C14.6667 6.59695 14.0697 6 13.3333 6Z"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path
+                                                                d="M3.33333 10H2.66667C2.31304 10 1.97391 9.85952 1.72386 9.60947C1.47381 9.35943 1.33333 9.02029 1.33333 8.66667V2.66667C1.33333 2.31304 1.47381 1.97391 1.72386 1.72386C1.97391 1.47381 2.31304 1.33333 2.66667 1.33333H8.66667C9.02029 1.33333 9.35943 1.47381 9.60947 1.72386C9.85952 1.97391 10 2.31304 10 2.66667V3.33333"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                    </button>
+                                                    <input type="text" class="model-table-input" value="0.00">
+                                                </div>
+                                            </td>
                                             <td><input type="text" class="model-table-input" value="0.00"></td>
                                             <td><input type="text" class="model-table-input" value="0.00"></td>
-                                            <td><input type="text" class="model-table-input" value="0.00"></td>
-                                            </tr>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                     <div class="modal-footer">
+                    <div class="modal-footer">
                         <div class="flex gap-10">
                             <button class="button-primary">
                                 <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
@@ -2650,283 +2666,652 @@
             </div>
         </div>
 
-   <script>
-    let currentMainModal = null;
-    let rowCounter = 1;
+        <div class="modal" id="modal-machinery">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header">
+                            <div class="section-header-m w-98">
+                                <span class="section-header-text">Machinery & equipment Rentals </span>
+                                <button class="modal-close">&times;</button>
+                            </div>
+                        </div>
+                        <div class="mx-auto w-98">
+                            <div class="table-container overflow-x-auto">
+                                <table class="modal-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span class="primary-model-icon-table"><svg width="14" height="10"
+                                                        viewBox="0 0 14 10" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="3.00012" y="6" width="1.66667" height="8.16667"
+                                                            rx="0.833333" transform="rotate(-90 3.00012 6)"
+                                                            fill="white" />
+                                                    </svg>
+                                                </span>
+                                            </th>
+                                            <th>Serial No</th>
+                                            <th>ID Number</th>
+                                            <th>Beneficiary Name</th>
+                                            <th>Local \Foreign</th>
+                                            <th>Country</th>
+                                            <th>Beginning of year balance </th>
+                                            <th>charged to the accounts</th>
+                                            <th>paid during the year</th>
+                                            <th>End of year balance</th>
+                                            <th>Total </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="model-action-cell">
+                                                    <button class="btn-action btn-add">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M10 5L10 15" stroke="#33363F" stroke-width="2"
+                                                                stroke-linecap="round" />
+                                                            <path d="M15 10L5 10" stroke="#33363F" stroke-width="2"
+                                                                stroke-linecap="round" />
+                                                        </svg>
+                                                    </button>
+                                                    <button class="btn-action btn-remove">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <circle cx="10" cy="10" r="7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                            <path d="M7.50012 12.5L12.5001 7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                            <path d="M12.5 12.5L7.5 7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td><input type="text" class="model-table-input" value="1" readonly></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><div class="flex align-center justify-between">
+                                                    <button class="btn-copy" onclick="copyValue(this)" title="Copy">
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <path
+                                                                d="M13.3333 6H7.33333C6.59695 6 6 6.59695 6 7.33333V13.3333C6 14.0697 6.59695 14.6667 7.33333 14.6667H13.3333C14.0697 14.6667 14.6667 14.0697 14.6667 13.3333V7.33333C14.6667 6.59695 14.0697 6 13.3333 6Z"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path
+                                                                d="M3.33333 10H2.66667C2.31304 10 1.97391 9.85952 1.72386 9.60947C1.47381 9.35943 1.33333 9.02029 1.33333 8.66667V2.66667C1.33333 2.31304 1.47381 1.97391 1.72386 1.72386C1.97391 1.47381 2.31304 1.33333 2.66667 1.33333H8.66667C9.02029 1.33333 9.35943 1.47381 9.60947 1.72386C9.85952 1.97391 10 2.31304 10 2.66667V3.33333"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                    </button>
+                                                    <input type="text" class="model-table-input" value="0.00">
+                                                </div></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="flex gap-10">
+                            <button class="button-primary">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14 13.75C14 15.4833 13.416 16.9583 12.248 18.175C11.08 19.3917 9.664 20 8 20C6.336 20 4.92 19.3917 3.752 18.175C2.584 16.9583 2 15.4833 2 13.75V4.5C2 3.25 2.42 2.1875 3.26 1.3125C4.1 0.4375 5.12 0 6.32 0C7.52 0 8.54 0.4375 9.38 1.3125C10.22 2.1875 10.64 3.25 10.64 4.5V13.25C10.64 14.0167 10.384 14.6667 9.872 15.2C9.36 15.7333 8.736 16 8 16C7.264 16 6.64 15.7333 6.128 15.2C5.616 14.6667 5.36 14.0167 5.36 13.25V4H7.28V13.25C7.28 13.4667 7.348 13.6458 7.484 13.7875C7.62 13.9292 7.792 14 8 14C8.208 14 8.38 13.9292 8.516 13.7875C8.652 13.6458 8.72 13.4667 8.72 13.25V4.5C8.704 3.8 8.468 3.20833 8.012 2.725C7.556 2.24167 6.992 2 6.32 2C5.648 2 5.08 2.24167 4.616 2.725C4.152 3.20833 3.92 3.8 3.92 4.5V13.75C3.904 14.9333 4.296 15.9375 5.096 16.7625C5.896 17.5875 6.864 18 8 18C9.12 18 10.072 17.5875 10.856 16.7625C11.64 15.9375 12.048 14.9333 12.08 13.75V4H14V13.75Z"
+                                        fill="#1A1A1A" />
+                                </svg>
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const modalMap = {
-            'insurance': '#modal-insurance',
-            'contracts': '#modal-contracts',
-            'subcon': '#modal-subcontractors',
-            'machinery': '#modal-machinery',
-            'provisions': '#modal-provisions',
-            'Royalties': '#modal-royalties',
-            'other-expenses': '#modal-other-expenses',
-            'zakat-adjustment': '#modal-zakat-adj',
-            'tax-adjustment': '#modal-tax-adj',
-            'repair-maintenance': '#modal-repair',
-            'depreciation': '#modal-depreciation',
-            'loan-charges': '#modal-loan',
-            'equity': '#modal-equity',
-            'liabilities': '#modal-liabilities',
-            'non-current-assets': '#modal-noncurrent',
-            'investments': '#modal-investments',
-            'real-estate-dev': '#modal-realestate',
-            'off-plan': '#modal-offplan',
-            'current-assets': '#modal-current',
-            'losses_up': '#modal-losses',
-            'Taxable_amount': '#modal-taxable'
-        };
+                                upload
+                            </button>
+                            <button class="button-primary">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8 10.667L7.29289 11.3741L8 12.0812L8.70711 11.3741L8 10.667ZM9 2.66699C9 2.11471 8.55229 1.66699 8 1.66699C7.44772 1.66699 7 2.11471 7 2.66699L8 2.66699L9 2.66699ZM4 6.66699L3.29289 7.3741L7.29289 11.3741L8 10.667L8.70711 9.95989L4.70711 5.95989L4 6.66699ZM8 10.667L8.70711 11.3741L12.7071 7.3741L12 6.66699L11.2929 5.95989L7.29289 9.95989L8 10.667ZM8 10.667L9 10.667L9 2.66699L8 2.66699L7 2.66699L7 10.667L8 10.667Z"
+                                        fill="#253632" />
+                                    <path d="M3.33301 14L12.6663 14" stroke="#253632" stroke-width="2" />
+                                </svg>
+                                download excel format
+                            </button>
+                        </div>
+                        <div class="flex gap-10">
+                            <button class="modal-btn button-save-modal">
+                                <i class="fa-solid fa-check"></i> Save
+                            </button>
+                            <button class="modal-btn button-close-modal"
+                                onclick="this.closest('.modal').classList.remove('show')">
+                                <i class="fa-solid fa-times"></i> close
+                            </button>
+                        </div>
 
-        // ✅ استهدف كل الـ radio buttons (applicable و not-applicable)
-        const allRadios = document.querySelectorAll('input[type="radio"]');
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        allRadios.forEach(radio => {
-            radio.addEventListener('click', function () {
-                const radioName = this.name;
-                const radioValue = this.value;
-                const modalId = modalMap[radioName];
+        
+        <div class="modal" id="modal-royalties">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header">
+                            <div class="section-header-m w-98">
+                                <span class="section-header-text">ROYALTIES, TECHNICAL SERVICES, CONSULTANCY AND PROFESSIONAL FEES </span>
+                                <button class="modal-close">&times;</button>
+                            </div>
+                        </div>
+                        <div class="mx-auto w-98">
+                            <div class="table-container overflow-x-auto">
+                                <table class="modal-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span class="primary-model-icon-table"><svg width="14" height="10"
+                                                        viewBox="0 0 14 10" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="3.00012" y="6" width="1.66667" height="8.16667"
+                                                            rx="0.833333" transform="rotate(-90 3.00012 6)"
+                                                            fill="white" />
+                                                    </svg>
+                                                </span>
+                                            </th>
+                                            <th>Serial No</th>
+                                            <th>ID Type</th>
+                                            <th>ID Number</th>
+                                            <th>Beneficiary Name</th>
+                                            <th>Local \Foreign</th>
+                                            <th>Country</th>
+                                            <th>Service Type</th>
+                                            <th>Beginning of year balance </th>
+                                            <th>charged to the accounts</th>
+                                            <th>paid during the year</th>
+                                            <th>End of year balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="model-action-cell">
+                                                    <button class="btn-action btn-add">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M10 5L10 15" stroke="#33363F" stroke-width="2"
+                                                                stroke-linecap="round" />
+                                                            <path d="M15 10L5 10" stroke="#33363F" stroke-width="2"
+                                                                stroke-linecap="round" />
+                                                        </svg>
+                                                    </button>
+                                                    <button class="btn-action btn-remove">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <circle cx="10" cy="10" r="7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                            <path d="M7.50012 12.5L12.5001 7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                            <path d="M12.5 12.5L7.5 7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td><input type="text" class="model-table-input" value="1" readonly></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><div class="flex align-center justify-between">
+                                                    <button class="btn-copy" onclick="copyValue(this)" title="Copy">
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <path
+                                                                d="M13.3333 6H7.33333C6.59695 6 6 6.59695 6 7.33333V13.3333C6 14.0697 6.59695 14.6667 7.33333 14.6667H13.3333C14.0697 14.6667 14.6667 14.0697 14.6667 13.3333V7.33333C14.6667 6.59695 14.0697 6 13.3333 6Z"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path
+                                                                d="M3.33333 10H2.66667C2.31304 10 1.97391 9.85952 1.72386 9.60947C1.47381 9.35943 1.33333 9.02029 1.33333 8.66667V2.66667C1.33333 2.31304 1.47381 1.97391 1.72386 1.72386C1.97391 1.47381 2.31304 1.33333 2.66667 1.33333H8.66667C9.02029 1.33333 9.35943 1.47381 9.60947 1.72386C9.85952 1.97391 10 2.31304 10 2.66667V3.33333"
+                                                                stroke="currentColor" stroke-width="1.5"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                    </button>
+                                                    <input type="text" class="model-table-input" value="0.00">
+                                                </div></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="flex gap-10">
+                            <button class="button-primary">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14 13.75C14 15.4833 13.416 16.9583 12.248 18.175C11.08 19.3917 9.664 20 8 20C6.336 20 4.92 19.3917 3.752 18.175C2.584 16.9583 2 15.4833 2 13.75V4.5C2 3.25 2.42 2.1875 3.26 1.3125C4.1 0.4375 5.12 0 6.32 0C7.52 0 8.54 0.4375 9.38 1.3125C10.22 2.1875 10.64 3.25 10.64 4.5V13.25C10.64 14.0167 10.384 14.6667 9.872 15.2C9.36 15.7333 8.736 16 8 16C7.264 16 6.64 15.7333 6.128 15.2C5.616 14.6667 5.36 14.0167 5.36 13.25V4H7.28V13.25C7.28 13.4667 7.348 13.6458 7.484 13.7875C7.62 13.9292 7.792 14 8 14C8.208 14 8.38 13.9292 8.516 13.7875C8.652 13.6458 8.72 13.4667 8.72 13.25V4.5C8.704 3.8 8.468 3.20833 8.012 2.725C7.556 2.24167 6.992 2 6.32 2C5.648 2 5.08 2.24167 4.616 2.725C4.152 3.20833 3.92 3.8 3.92 4.5V13.75C3.904 14.9333 4.296 15.9375 5.096 16.7625C5.896 17.5875 6.864 18 8 18C9.12 18 10.072 17.5875 10.856 16.7625C11.64 15.9375 12.048 14.9333 12.08 13.75V4H14V13.75Z"
+                                        fill="#1A1A1A" />
+                                </svg>
 
-                // ✅ إذا اختار "applicable" → افتح الموديل
-                if (radioValue === 'applicable') {
-                    if (modalId) {
-                        const modal = document.querySelector(modalId);
-                        if (modal) {
-                            currentMainModal = modal;
-                            modal.classList.add('show');
+                                upload
+                            </button>
+                            <button class="button-primary">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8 10.667L7.29289 11.3741L8 12.0812L8.70711 11.3741L8 10.667ZM9 2.66699C9 2.11471 8.55229 1.66699 8 1.66699C7.44772 1.66699 7 2.11471 7 2.66699L8 2.66699L9 2.66699ZM4 6.66699L3.29289 7.3741L7.29289 11.3741L8 10.667L8.70711 9.95989L4.70711 5.95989L4 6.66699ZM8 10.667L8.70711 11.3741L12.7071 7.3741L12 6.66699L11.2929 5.95989L7.29289 9.95989L8 10.667ZM8 10.667L9 10.667L9 2.66699L8 2.66699L7 2.66699L7 10.667L8 10.667Z"
+                                        fill="#253632" />
+                                    <path d="M3.33301 14L12.6663 14" stroke="#253632" stroke-width="2" />
+                                </svg>
+                                download excel format
+                            </button>
+                        </div>
+                        <div class="flex gap-10">
+                            <button class="modal-btn button-save-modal">
+                                <i class="fa-solid fa-check"></i> Save
+                            </button>
+                            <button class="modal-btn button-close-modal"
+                                onclick="this.closest('.modal').classList.remove('show')">
+                                <i class="fa-solid fa-times"></i> close
+                            </button>
+                        </div>
 
-                            const tbody = modal.querySelector('.modal-table tbody');
-                            if (tbody) {
-                                rowCounter = tbody.querySelectorAll('tr').length;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+          <div class="modal" id="modal-other-expenses">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header">
+                            <div class="section-header-m w-98">
+                                <span class="section-header-text">other expensive </span>
+                                <button class="modal-close">&times;</button>
+                            </div>
+                        </div>
+                        <div class="mx-auto w-98">
+                            <div class="table-container overflow-x-auto">
+                                <table class="modal-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span class="primary-model-icon-table"><svg width="14" height="10"
+                                                        viewBox="0 0 14 10" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="3.00012" y="6" width="1.66667" height="8.16667"
+                                                            rx="0.833333" transform="rotate(-90 3.00012 6)"
+                                                            fill="white" />
+                                                    </svg>
+                                                </span>
+                                            </th>
+                                            <th>Serial No</th>
+                                            <th>Statement</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="model-action-cell">
+                                                    <button class="btn-action btn-add">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M10 5L10 15" stroke="#33363F" stroke-width="2"
+                                                                stroke-linecap="round" />
+                                                            <path d="M15 10L5 10" stroke="#33363F" stroke-width="2"
+                                                                stroke-linecap="round" />
+                                                        </svg>
+                                                    </button>
+                                                    <button class="btn-action btn-remove">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <circle cx="10" cy="10" r="7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                            <path d="M7.50012 12.5L12.5001 7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                            <path d="M12.5 12.5L7.5 7.5" stroke="#33363F"
+                                                                stroke-width="2" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td><input type="text" class="model-table-input" value="1" readonly></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="flex gap-10">
+                            <button class="button-primary">
+                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14 13.75C14 15.4833 13.416 16.9583 12.248 18.175C11.08 19.3917 9.664 20 8 20C6.336 20 4.92 19.3917 3.752 18.175C2.584 16.9583 2 15.4833 2 13.75V4.5C2 3.25 2.42 2.1875 3.26 1.3125C4.1 0.4375 5.12 0 6.32 0C7.52 0 8.54 0.4375 9.38 1.3125C10.22 2.1875 10.64 3.25 10.64 4.5V13.25C10.64 14.0167 10.384 14.6667 9.872 15.2C9.36 15.7333 8.736 16 8 16C7.264 16 6.64 15.7333 6.128 15.2C5.616 14.6667 5.36 14.0167 5.36 13.25V4H7.28V13.25C7.28 13.4667 7.348 13.6458 7.484 13.7875C7.62 13.9292 7.792 14 8 14C8.208 14 8.38 13.9292 8.516 13.7875C8.652 13.6458 8.72 13.4667 8.72 13.25V4.5C8.704 3.8 8.468 3.20833 8.012 2.725C7.556 2.24167 6.992 2 6.32 2C5.648 2 5.08 2.24167 4.616 2.725C4.152 3.20833 3.92 3.8 3.92 4.5V13.75C3.904 14.9333 4.296 15.9375 5.096 16.7625C5.896 17.5875 6.864 18 8 18C9.12 18 10.072 17.5875 10.856 16.7625C11.64 15.9375 12.048 14.9333 12.08 13.75V4H14V13.75Z"
+                                        fill="#1A1A1A" />
+                                </svg>
+
+                                upload
+                            </button>
+                            <button class="button-primary">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8 10.667L7.29289 11.3741L8 12.0812L8.70711 11.3741L8 10.667ZM9 2.66699C9 2.11471 8.55229 1.66699 8 1.66699C7.44772 1.66699 7 2.11471 7 2.66699L8 2.66699L9 2.66699ZM4 6.66699L3.29289 7.3741L7.29289 11.3741L8 10.667L8.70711 9.95989L4.70711 5.95989L4 6.66699ZM8 10.667L8.70711 11.3741L12.7071 7.3741L12 6.66699L11.2929 5.95989L7.29289 9.95989L8 10.667ZM8 10.667L9 10.667L9 2.66699L8 2.66699L7 2.66699L7 10.667L8 10.667Z"
+                                        fill="#253632" />
+                                    <path d="M3.33301 14L12.6663 14" stroke="#253632" stroke-width="2" />
+                                </svg>
+                                download excel format
+                            </button>
+                        </div>
+                        <div class="flex gap-10">
+                            <button class="modal-btn button-save-modal">
+                                <i class="fa-solid fa-check"></i> Save
+                            </button>
+                            <button class="modal-btn button-close-modal"
+                                onclick="this.closest('.modal').classList.remove('show')">
+                                <i class="fa-solid fa-times"></i> close
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let currentMainModal = null;
+            let rowCounter = 1;
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const modalMap = {
+                    'insurance': '#modal-insurance',
+                    'contracts': '#modal-contracts',
+                    'subcon': '#modal-subcontractors',
+                    'machinery': '#modal-machinery',
+                    'provisions': '#modal-provisions',
+                    'Royalties': '#modal-royalties',
+                    'other-expenses': '#modal-other-expenses',
+                    'zakat-adjustment': '#modal-zakat-adj',
+                    'tax-adjustment': '#modal-tax-adj',
+                    'repair-maintenance': '#modal-repair',
+                    'depreciation': '#modal-depreciation',
+                    'loan-charges': '#modal-loan',
+                    'equity': '#modal-equity',
+                    'liabilities': '#modal-liabilities',
+                    'non-current-assets': '#modal-noncurrent',
+                    'investments': '#modal-investments',
+                    'real-estate-dev': '#modal-realestate',
+                    'off-plan': '#modal-offplan',
+                    'current-assets': '#modal-current',
+                    'losses_up': '#modal-losses',
+                    'Taxable_amount': '#modal-taxable'
+                };
+
+                // ✅ استهدف كل الـ radio buttons (applicable و not-applicable)
+                const allRadios = document.querySelectorAll('input[type="radio"]');
+
+                allRadios.forEach(radio => {
+                    radio.addEventListener('click', function () {
+                        const radioName = this.name;
+                        const radioValue = this.value;
+                        const modalId = modalMap[radioName];
+
+                        // ✅ إذا اختار "applicable" → افتح الموديل
+                        if (radioValue === 'applicable') {
+                            if (modalId) {
+                                const modal = document.querySelector(modalId);
+                                if (modal) {
+                                    currentMainModal = modal;
+                                    modal.classList.add('show');
+
+                                    const tbody = modal.querySelector('.modal-table tbody');
+                                    if (tbody) {
+                                        rowCounter = tbody.querySelectorAll('tr').length;
+                                    }
+                                } else {
+                                    console.warn('⚠️ Modal not found:', modalId);
+                                }
                             }
-                        } else {
-                            console.warn('⚠️ Modal not found:', modalId);
+                        }
+                        // ✅ إذا اختار "not-applicable" → صفّر القيمة
+                        else if (radioValue === 'not-applicable') {
+                            resetValue(radioName, this);
+                        }
+                    });
+                });
+
+                // ✅ X button
+                document.addEventListener('click', function (e) {
+                    if (e.target.classList.contains('modal-close')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (currentMainModal) {
+                            currentMainModal.classList.remove('show');
                         }
                     }
-                }
-                // ✅ إذا اختار "not-applicable" → صفّر القيمة
-                else if (radioValue === 'not-applicable') {
-                    resetValue(radioName, this);
-                }
-            });
-        });
+                });
 
-        // ✅ X button
-        document.addEventListener('click', function (e) {
-            if (e.target.classList.contains('modal-close')) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (currentMainModal) {
-                    currentMainModal.classList.remove('show');
-                }
-            }
-        });
+                // ✅ Close button
+                document.querySelectorAll('.button-close-modal').forEach(btn => {
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (currentMainModal) {
+                            currentMainModal.classList.remove('show');
+                        }
+                    });
+                });
 
-        // ✅ Close button
-        document.querySelectorAll('.button-close-modal').forEach(btn => {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (currentMainModal) {
-                    currentMainModal.classList.remove('show');
-                }
-            });
-        });
+                // ✅ Save button
+                document.querySelectorAll('.button-save-modal').forEach(btn => {
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openConfirmModal();
+                    });
+                });
 
-        // ✅ Save button
-        document.querySelectorAll('.button-save-modal').forEach(btn => {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                openConfirmModal();
-            });
-        });
-
-        // ✅ Event Delegation لأزرار الإضافة والحذف
-        document.addEventListener('click', function (e) {
-            if (e.target.closest('.btn-add')) {
-                e.preventDefault();
-                const button = e.target.closest('.btn-add');
-                const row = button.closest('tr');
-                const tbody = row.closest('tbody');
-                addNewRow(tbody, row);
-            }
-
-            if (e.target.closest('.btn-remove')) {
-                e.preventDefault();
-                const button = e.target.closest('.btn-remove');
-                const row = button.closest('tr');
-                const tbody = row.closest('tbody');
-                removeRow(row, tbody);
-            }
-        });
-    });
-
-    // ✅ دالة تصفير القيمة عند اختيار "not-applicable"
-    function resetValue(fieldName, radioElement) {
-        // ابحث عن الـ input المرتبط في نفس الصف
-        const row = radioElement.closest('tr');
-        if (row) {
-            const valueInput = row.querySelector('.value-cell input, input.table-input, input[type="number"]');
-            if (valueInput) {
-                valueInput.value = '0.00';
-                console.log(`✅ Reset ${fieldName} to 0.00`);
-                return;
-            }
-        }
-
-        // ابحث بالـ name
-        const input = document.querySelector(`input[name="${fieldName}-value"]`);
-        if (input) {
-            input.value = '0.00';
-            console.log(`✅ Reset ${fieldName} to 0.00`);
-            return;
-        }
-
-        console.warn(`⚠️ Could not find input for: ${fieldName}`);
-    }
-
-    // ✅ إضافة صف جديد
-    function addNewRow(tbody, afterRow) {
-        const firstRow = tbody.querySelector('tr');
-        if (!firstRow) return;
-
-        rowCounter++;
-
-        const newRow = firstRow.cloneNode(true);
-
-        const serialInput = newRow.querySelector('td:nth-child(2) input');
-        if (serialInput) {
-            serialInput.value = rowCounter;
-        }
-
-        newRow.querySelectorAll('input').forEach((input, idx) => {
-            if (idx === 0) return;
-
-            if (input.readOnly) {
-                input.value = '0.00';
-            } else {
-                if (input.type === 'date') {
-                    input.value = '';
-                } else if (input.type === 'text') {
-                    if (input.closest('.name-cell')) {
-                        input.value = '';
-                    } else {
-                        input.value = '0.00';
+                // ✅ Event Delegation لأزرار الإضافة والحذف
+                document.addEventListener('click', function (e) {
+                    if (e.target.closest('.btn-add')) {
+                        e.preventDefault();
+                        const button = e.target.closest('.btn-add');
+                        const row = button.closest('tr');
+                        const tbody = row.closest('tbody');
+                        addNewRow(tbody, row);
                     }
-                } else {
-                    input.value = '';
+
+                    if (e.target.closest('.btn-remove')) {
+                        e.preventDefault();
+                        const button = e.target.closest('.btn-remove');
+                        const row = button.closest('tr');
+                        const tbody = row.closest('tbody');
+                        removeRow(row, tbody);
+                    }
+                });
+            });
+
+            // ✅ دالة تصفير القيمة عند اختيار "not-applicable"
+            function resetValue(fieldName, radioElement) {
+                // ابحث عن الـ input المرتبط في نفس الصف
+                const row = radioElement.closest('tr');
+                if (row) {
+                    const valueInput = row.querySelector('.value-cell input, input.table-input, input[type="number"]');
+                    if (valueInput) {
+                        valueInput.value = '0.00';
+                        console.log(`✅ Reset ${fieldName} to 0.00`);
+                        return;
+                    }
                 }
-            }
-        });
 
-        afterRow.insertAdjacentElement('afterend', newRow);
-        updateSerialNumbers(tbody);
-    }
-
-    // ✅ حذف صف
-    function removeRow(row, tbody) {
-        const allRows = tbody.querySelectorAll('tr');
-
-        if (allRows.length <= 1) {
-            alert('يجب أن يحتوي الجدول على صف واحد على الأقل');
-            return;
-        }
-
-        row.remove();
-        updateSerialNumbers(tbody);
-    }
-
-    // ✅ تحديث الأرقام التسلسلية
-    function updateSerialNumbers(tbody) {
-        const rows = tbody.querySelectorAll('tr');
-        rows.forEach((row, index) => {
-            const serialInput = row.querySelector('td:nth-child(2) input');
-            if (serialInput) {
-                serialInput.value = index + 1;
-            }
-        });
-        rowCounter = rows.length;
-    }
-
-    // ✅ حساب المجاميع
-    function calculateTotals() {
-        const modal = currentMainModal;
-        if (!modal) return;
-
-        const tbody = modal.querySelector('.modal-table tbody');
-        const tfoot = modal.querySelector('.modal-table tfoot');
-
-        if (!tbody || !tfoot) return;
-
-        const totals = [0, 0, 0, 0];
-
-        const rows = tbody.querySelectorAll('tr');
-        rows.forEach(row => {
-            for (let i = 0; i < 4; i++) {
-                const input = row.querySelector(`td:nth-child(${i + 4}) input`);
-                if (input && !input.readOnly) {
-                    const value = parseFloat(input.value.replace(/,/g, '')) || 0;
-                    totals[i] += value;
+                // ابحث بالـ name
+                const input = document.querySelector(`input[name="${fieldName}-value"]`);
+                if (input) {
+                    input.value = '0.00';
+                    console.log(`✅ Reset ${fieldName} to 0.00`);
+                    return;
                 }
+
+                console.warn(`⚠️ Could not find input for: ${fieldName}`);
             }
-        });
 
-        const totalInputs = tfoot.querySelectorAll('input');
-        totals.forEach((total, index) => {
-            if (totalInputs[index]) {
-                totalInputs[index].value = formatNumber(total);
+            // ✅ إضافة صف جديد
+            function addNewRow(tbody, afterRow) {
+                const firstRow = tbody.querySelector('tr');
+                if (!firstRow) return;
+
+                rowCounter++;
+
+                const newRow = firstRow.cloneNode(true);
+
+                const serialInput = newRow.querySelector('td:nth-child(2) input');
+                if (serialInput) {
+                    serialInput.value = rowCounter;
+                }
+
+                newRow.querySelectorAll('input').forEach((input, idx) => {
+                    if (idx === 0) return;
+
+                    if (input.readOnly) {
+                        input.value = '0.00';
+                    } else {
+                        if (input.type === 'date') {
+                            input.value = '';
+                        } else if (input.type === 'text') {
+                            if (input.closest('.name-cell')) {
+                                input.value = '';
+                            } else {
+                                input.value = '0.00';
+                            }
+                        } else {
+                            input.value = '';
+                        }
+                    }
+                });
+
+                afterRow.insertAdjacentElement('afterend', newRow);
+                updateSerialNumbers(tbody);
             }
-        });
-    }
 
-    // ✅ تنسيق الأرقام
-    function formatNumber(num) {
-        return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
+            // ✅ حذف صف
+            function removeRow(row, tbody) {
+                const allRows = tbody.querySelectorAll('tr');
 
-    // ✅ تنسيق الأرقام عند الخروج من الـ input
-    document.addEventListener('blur', function (e) {
-        if (e.target.classList.contains('model-table-input') &&
-            !e.target.readOnly &&
-            !e.target.closest('.name-cell')) {
-            const value = parseFloat(e.target.value.replace(/,/g, '')) || 0;
-            e.target.value = formatNumber(value);
-        }
-    }, true);
+                if (allRows.length <= 1) {
+                    alert('يجب أن يحتوي الجدول على صف واحد على الأقل');
+                    return;
+                }
 
-    // ✅ فتح موديل التأكيد
-    function openConfirmModal() {
-        document.getElementById('modal-confirm-save').classList.add('show');
-    }
+                row.remove();
+                updateSerialNumbers(tbody);
+            }
 
-    // ✅ إغلاق موديل التأكيد
-    function closeConfirmModal() {
-        document.getElementById('modal-confirm-save').classList.remove('show');
-    }
+            // ✅ تحديث الأرقام التسلسلية
+            function updateSerialNumbers(tbody) {
+                const rows = tbody.querySelectorAll('tr');
+                rows.forEach((row, index) => {
+                    const serialInput = row.querySelector('td:nth-child(2) input');
+                    if (serialInput) {
+                        serialInput.value = index + 1;
+                    }
+                });
+                rowCounter = rows.length;
+            }
 
-    // ✅ إغلاق بدون حفظ
-    function closeWithoutSaving() {
-        closeConfirmModal();
-        if (currentMainModal) {
-            currentMainModal.classList.remove('show');
-        }
-        console.log('❌ Closed without saving');
-    }
+            // ✅ حساب المجاميع
+            function calculateTotals() {
+                const modal = currentMainModal;
+                if (!modal) return;
 
-    // ✅ حفظ وإغلاق
-    function saveAndClose() {
-        console.log('✅ Data saved!');
+                const tbody = modal.querySelector('.modal-table tbody');
+                const tfoot = modal.querySelector('.modal-table tfoot');
 
-        closeConfirmModal();
-        if (currentMainModal) {
-            currentMainModal.classList.remove('show');
-        }
+                if (!tbody || !tfoot) return;
 
-        console.log('✅ Modal closed after saving');
-    }
-</script>
+                const totals = [0, 0, 0, 0];
+
+                const rows = tbody.querySelectorAll('tr');
+                rows.forEach(row => {
+                    for (let i = 0; i < 4; i++) {
+                        const input = row.querySelector(`td:nth-child(${i + 4}) input`);
+                        if (input && !input.readOnly) {
+                            const value = parseFloat(input.value.replace(/,/g, '')) || 0;
+                            totals[i] += value;
+                        }
+                    }
+                });
+
+                const totalInputs = tfoot.querySelectorAll('input');
+                totals.forEach((total, index) => {
+                    if (totalInputs[index]) {
+                        totalInputs[index].value = formatNumber(total);
+                    }
+                });
+            }
+
+            // ✅ تنسيق الأرقام
+            function formatNumber(num) {
+                return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+
+            // ✅ تنسيق الأرقام عند الخروج من الـ input
+            document.addEventListener('blur', function (e) {
+                if (e.target.classList.contains('model-table-input') &&
+                    !e.target.readOnly &&
+                    !e.target.closest('.name-cell')) {
+                    const value = parseFloat(e.target.value.replace(/,/g, '')) || 0;
+                    e.target.value = formatNumber(value);
+                }
+            }, true);
+
+            // ✅ فتح موديل التأكيد
+            function openConfirmModal() {
+                document.getElementById('modal-confirm-save').classList.add('show');
+            }
+
+            // ✅ إغلاق موديل التأكيد
+            function closeConfirmModal() {
+                document.getElementById('modal-confirm-save').classList.remove('show');
+            }
+
+            // ✅ إغلاق بدون حفظ
+            function closeWithoutSaving() {
+                closeConfirmModal();
+                if (currentMainModal) {
+                    currentMainModal.classList.remove('show');
+                }
+                console.log('❌ Closed without saving');
+            }
+
+            // ✅ حفظ وإغلاق
+            function saveAndClose() {
+                console.log('✅ Data saved!');
+
+                closeConfirmModal();
+                if (currentMainModal) {
+                    currentMainModal.classList.remove('show');
+                }
+
+                console.log('✅ Modal closed after saving');
+            }
+        </script>
 
         <script src="validation.js"></script>
         <script src="conditional-show-hide.js"></script>

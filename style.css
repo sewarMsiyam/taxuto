@@ -393,10 +393,12 @@ body {
     color: var(--white);
     text-transform: uppercase;
 }
+
 .modal .section-header-text {
     width: 100%;
     text-align: center;
 }
+
 .expand-arrow {
     width: 16px;
     height: 16px;
@@ -1853,12 +1855,16 @@ input.table-input:not([readonly]):focus {
     height: 100%;
     overflow: auto;
 
-      display: flex;           /* ⭐ Flexbox */
-    flex-direction: column;  /* ⭐ عمودي */
-    overflow: hidden;        /* ⭐ منع الـ overflow */
-    height: 100%; 
+    display: flex;
+    /* ⭐ Flexbox */
+    flex-direction: column;
+    /* ⭐ عمودي */
+    overflow: hidden;
+    /* ⭐ منع الـ overflow */
+    height: 100%;
 }
-.modal-header{
+
+.modal-header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1873,8 +1879,8 @@ input.table-input:not([readonly]):focus {
     flex: 1 1 auto;
     padding: var(--bs-modal-padding);
     min-height: 83%;
-     flex: 1;         
-    overflow-y: auto;  
+    flex: 1;
+    overflow-y: auto;
 }
 
 .modal-close {
@@ -1889,7 +1895,7 @@ input.table-input:not([readonly]):focus {
 }
 
 .modal-footer {
-   display: flex;
+    display: flex;
     gap: 10px;
     justify-content: space-between;
     width: 87%;
@@ -1897,6 +1903,7 @@ input.table-input:not([readonly]):focus {
     flex-wrap: wrap;
     margin: auto;
 }
+
 .gap-10 {
     gap: 10px;
 }
@@ -1919,6 +1926,7 @@ input.table-input:not([readonly]):focus {
     ransition: all 0.3s;
     height: 44px;
 }
+
 .modal-btn {
     display: flex;
     justify-content: center;
@@ -2071,12 +2079,20 @@ input.table-input:not([readonly]):focus {
     }
 }
 
-.modal-body .action-cell{
+.modal-body .action-cell {
     width: 10%;
 }
-.modal .label-cell{
-    width: 50% ;
+
+.modal .label-cell {
+    width: 50%;
 }
+
+.btn-copy {
+    background: #00000000;
+    border: 0;
+    padding: 0 10px;
+}
+
 /***************/
 /* ✅ الجدول */
 .modal-table {
@@ -2100,10 +2116,12 @@ input.table-input:not([readonly]):focus {
 .modal-table thead th:first-child {
     border-radius: 8px 0 0 8px;
 }
+
 .modal-table thead th:last-child {
     border-radius: 0 8px 8px 0;
     border-right: none;
 }
+
 .primary-model-icon-table {
     display: flex;
     justify-content: center;
@@ -2114,6 +2132,7 @@ input.table-input:not([readonly]):focus {
     width: 24px;
     margin: auto;
 }
+
 .section-title-model {
     font-weight: 500;
     font-size: 16px;
@@ -2121,6 +2140,7 @@ input.table-input:not([readonly]):focus {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
+
 .modal-table tbody td {
     text-align: center;
     color: #64748B;
@@ -2191,12 +2211,13 @@ input.table-input:not([readonly]):focus {
     border: 1px solid var(--border-color) !important;
     font-weight: 600;
     color: #1E293B !important;
-        padding-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .model-total-row td:first-child {
-     border-radius: 8px 0 0 8px;
+    border-radius: 8px 0 0 8px;
 }
+
 .model-total-row td:last-child {
     border-radius: 0 8px 8px 0;
 }
@@ -2206,28 +2227,34 @@ input.table-input:not([readonly]):focus {
     color: #059669 !important;
 }
 
-.text-center{
-text-align: center !important;
+.text-center {
+    text-align: center !important;
 }
-.text-left{
-text-align: start !important;
+
+.text-left {
+    text-align: start !important;
 }
-.px-10{
-    padding-left:10px !important;
-    padding-right:10px !important;
+
+.px-10 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
 }
-.overflow-x-auto{
+
+.overflow-x-auto {
     overflow-x: auto !important;
 }
-.w-75{
+
+.w-75 {
     width: 75% !important;
     margin: auto !important;
 }
-.w-98{
+
+.w-98 {
     width: 98% !important;
     margin: auto !important;
 }
-.mx-auto{
+
+.mx-auto {
     margin-left: auto !important;
     margin-right: auto !important;
 }

@@ -5,7 +5,7 @@
 
     // Validation rules for each page
     const pageValidations = {
-        1: validatePage1,  // Basic Information - DISABLED (commented out)
+        1: validatePage1,
         2: validatePage2,
         3: validatePage3,
         4: validatePage4,
@@ -21,7 +21,6 @@
      * Main validation function called before page navigation
      */
     window.validateCurrentPage = function(pageNumber) {
-        // Clear previous errors
         clearAllErrors();
         window.validationErrors = [];
         
@@ -42,102 +41,22 @@
      * Clear all error messages and highlights
      */
     function clearAllErrors() {
-        // Remove error highlights
         document.querySelectorAll('.validation-error').forEach(el => {
             el.classList.remove('validation-error');
         });
         
-        // Remove error messages
         document.querySelectorAll('.error-message').forEach(el => {
             el.remove();
         });
         
-        // Remove summary
         const summary = document.querySelector('.validation-summary');
         if (summary) summary.remove();
     }
 
     /**
      * Page 1: Basic Information Validation - DISABLED
-     * Uncomment the code below to enable validation for Basic Information
      */
     function validatePage1() {
-        // VALIDATION DISABLED FOR BASIC INFORMATION PAGE
-        // To enable, uncomment the code below:
-        
-        /*
-        const page = document.getElementById('page-1');
-        let isValid = true;
-
-        // Return Type
-        const returnType = page.querySelector('select.input-field');
-        if (!returnType || !returnType.value) {
-            addFieldError(returnType, 'Return Type is required');
-            isValid = false;
-        }
-
-        // Period From Date
-        const fromDate = page.querySelectorAll('input[type="date"]')[0];
-        if (!fromDate || !fromDate.value) {
-            addFieldError(fromDate, 'Period From Date is required');
-            isValid = false;
-        }
-
-        // Period To Date
-        const toDate = page.querySelectorAll('input[type="date"]')[1];
-        if (!toDate || !toDate.value) {
-            addFieldError(toDate, 'Period To Date is required');
-            isValid = false;
-        }
-
-        // Validate date range
-        if (fromDate && toDate && fromDate.value && toDate.value) {
-            if (new Date(fromDate.value) >= new Date(toDate.value)) {
-                addFieldError(toDate, 'Period To Date must be after From Date');
-                isValid = false;
-            }
-        }
-
-        // Taxpayer Details
-        const taxpayerInputs = page.querySelectorAll('.input-group-basic input[type="number"]');
-        const taxpayerLabels = ['Taxpayer', 'Electronic Mail', 'Mobile No.', 'Tin ID'];
-        taxpayerInputs.forEach((input, index) => {
-            if (index < 4 && (!input.value || input.value === '0.00')) {
-                addFieldError(input, `${taxpayerLabels[index]} is required`);
-                isValid = false;
-            }
-        });
-
-        // Shareholder Percentages
-        const saudiCapital = taxpayerInputs[4];
-        const nonSaudiCapital = taxpayerInputs[5];
-        const saudiProfit = taxpayerInputs[6];
-        const nonSaudiProfit = taxpayerInputs[7];
-
-        // Validate capital shares total 100%
-        if (saudiCapital && nonSaudiCapital) {
-            const capitalTotal = parseFloat(saudiCapital.value || 0) + parseFloat(nonSaudiCapital.value || 0);
-            if (Math.abs(capitalTotal - 100) > 0.01) {
-                addFieldError(saudiCapital, 'Total must equal 100%');
-                addFieldError(nonSaudiCapital, 'Total must equal 100%');
-                isValid = false;
-            }
-        }
-
-        // Validate profit shares total 100%
-        if (saudiProfit && nonSaudiProfit) {
-            const profitTotal = parseFloat(saudiProfit.value || 0) + parseFloat(nonSaudiProfit.value || 0);
-            if (Math.abs(profitTotal - 100) > 0.01) {
-                addFieldError(saudiProfit, 'Total must equal 100%');
-                addFieldError(nonSaudiProfit, 'Total must equal 100%');
-                isValid = false;
-            }
-        }
-
-        return isValid;
-        */
-        
-        // Return true to skip validation
         return true;
     }
 
@@ -185,6 +104,7 @@
 
     /**
      * Generic validation for pages with radio groups and inputs
+     * ✅ REVERSED: applicable opens modal, not-applicable sets to 0.00
      */
     function validateRadioGroupsAndInputs(page) {
         if (!page) return true;
@@ -205,6 +125,7 @@
                 window.validationErrors.push(`${label}: Please select`);
                 isValid = false;
             } else {
+                // ✅ REVERSED: "not-applicable" → صفّر القيمة
                 const notApplicableRadio = Array.from(radios).find(r => 
                     r.value === 'not-applicable' && r.checked
                 );
@@ -214,17 +135,14 @@
                     valueInput.readOnly = true;
                 }
                 
+                // ✅ REVERSED: "applicable" → يفتح الموديل (لا validation هنا)
                 const applicableRadio = Array.from(radios).find(r => 
                     r.value === 'applicable' && r.checked
                 );
                 
                 if (applicableRadio && valueInput) {
                     valueInput.readOnly = false;
-                    if (!valueInput.value || valueInput.value === '0.00') {
-                        addFieldError(valueInput, 'Please enter a value');
-                        window.validationErrors.push(`${label}: Please enter value`);
-                        isValid = false;
-                    }
+                    // ما نطلب validation - الموديل رح يفتح
                 }
             }
         });
@@ -314,6 +232,7 @@
 
     /**
      * Auto-handle radio button changes
+     * ✅ REVERSED: applicable → modal opens, not-applicable → 0.00
      */
     function setupRadioHandlers() {
         document.querySelectorAll('.radio-group-table input[type="radio"]').forEach(radio => {
@@ -330,6 +249,7 @@
                 
                 if (!valueInput) return;
                 
+                // ✅ REVERSED: "not-applicable" → صفّر القيمة
                 if (this.value === 'not-applicable') {
                     valueInput.value = '0.00';
                     valueInput.readOnly = true;
@@ -338,14 +258,13 @@
                     valueInput.classList.remove('validation-error');
                     const errorMsg = valueInput.closest('td')?.querySelector('.error-message');
                     if (errorMsg) errorMsg.remove();
-                } else if (this.value === 'applicable') {
+                } 
+                // ✅ REVERSED: "applicable" → الموديل يفتح (من modal script)
+                else if (this.value === 'applicable') {
                     valueInput.readOnly = false;
                     valueInput.style.opacity = '1';
                     valueInput.style.cursor = 'text';
-                    if (valueInput.value === '0.00') {
-                        valueInput.value = '';
-                        valueInput.focus();
-                    }
+                    // ما نحط قيمة - الموديل رح يفتح
                 }
             });
         });
@@ -375,11 +294,13 @@
 
 // ========================================
 // SET DEFAULT "NOT APPLICABLE" FOR ALL RADIO BUTTONS
+// ✅ KEEP THIS: Default still "not-applicable" (sets to 0.00)
 // ========================================
 
 (function() {
     /**
      * Set all "Not Applicable" radio buttons as checked by default
+     * ✅ REVERSED BEHAVIOR: not-applicable sets value to 0.00
      */
     function setDefaultNotApplicable() {
         const radioGroups = document.querySelectorAll('.radio-group-table');
