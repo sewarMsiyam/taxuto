@@ -2048,7 +2048,10 @@ input.table-input:not([readonly]):focus {
 }
 
 .modal-body .action-cell{
-    width: 25%;
+    width: 10%;
+}
+.modal .label-cell{
+    width: 50% ;
 }
 /***************/
 /* ✅ الجدول */
