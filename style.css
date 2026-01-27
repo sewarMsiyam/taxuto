@@ -2199,3 +2199,11 @@ text-align: start !important;
     width: 75% !important;
     margin: auto !important;
 }
+.w-98{
+    width: 98% !important;
+    margin: auto !important;
+}
+.mx-auto{
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
