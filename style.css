@@ -1849,6 +1849,11 @@ input.table-input:not([readonly]):focus {
     position: relative;
     height: 100%;
     overflow: auto;
+
+      display: flex;           /* ⭐ Flexbox */
+    flex-direction: column;  /* ⭐ عمودي */
+    overflow: hidden;        /* ⭐ منع الـ overflow */
+    height: 100%; 
 }
 .modal-header{
     display: flex;
@@ -1864,7 +1869,9 @@ input.table-input:not([readonly]):focus {
     position: relative;
     flex: 1 1 auto;
     padding: var(--bs-modal-padding);
-    min-height: 90%;
+    min-height: 83%;
+     flex: 1;         
+    overflow-y: auto;  
 }
 
 .modal-close {
@@ -1885,6 +1892,7 @@ input.table-input:not([readonly]):focus {
     width: 87%;
     flex-shrink: 0;
     flex-wrap: wrap;
+     flex-shrink: 0;
 }
 
 .modal-btn {
@@ -2039,7 +2047,9 @@ input.table-input:not([readonly]):focus {
     }
 }
 
-
+.modal-body .action-cell{
+    width: 25%;
+}
 /***************/
 /* ✅ الجدول */
 .modal-table {
