@@ -1848,7 +1848,7 @@ input.table-input:not([readonly]):focus {
 .modal-content {
     background: #fff;
     border-radius: 8px;
-    padding: 0 0 30px 0;
+    padding: 0 0 14px 0;
     position: relative;
     height: 100%;
     overflow: auto;
