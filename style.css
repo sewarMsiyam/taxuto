@@ -2279,3 +2279,16 @@ select.model-table-input {
 .w-35px{
     width: 35px !important;
 }
+.w-p-0{
+    padding: 0 !important;
+    width: 0 !important;
+}
+.maxW-text{
+max-width: 300px !important;
+    width: 300px !important;
+}
+.ptext-3{
+  padding: 6px !important;
+padding-bottom: 5px !important;
+text-align: left !important;
+}
