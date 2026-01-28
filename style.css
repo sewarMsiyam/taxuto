@@ -1122,7 +1122,7 @@ body {
 
 .table-container {
     width: 100%;
-    overflow: visible;
+    overflow: auto;
     margin-top: 8px;
     position: relative;
     z-index: 10;
@@ -2096,7 +2096,9 @@ input.table-input:not([readonly]):focus {
 /***************/
 /* ✅ الجدول */
 .modal-table {
+    table-layout: fixed;
     width: 100%;
+    min-width: 100%;
     border-collapse: separate;
     border-spacing: 0 8px;
     font-size: 14px;
@@ -2104,7 +2106,7 @@ input.table-input:not([readonly]):focus {
 }
 
 .modal-table thead th {
-    padding: 8px 12px;
+    padding: 8px 10px;
     text-align: center;
     font-weight: 600;
     color: #1e293b;
@@ -2112,7 +2114,18 @@ input.table-input:not([readonly]):focus {
     background: var(--bg-color);
     border-right: 1px solid var(--border-color);/
 }
+.modal-table th, .modal-table td {
+    width: 124px;
+    min-width: 100px;
+    max-width: 200px;
+}
 
+.modal-table th:first-child,
+.modal-table td:first-child {
+    width: 100px;
+    min-width: 30px;
+    max-width: 100px;
+}
 .modal-table thead th:first-child {
     border-radius: 8px 0 0 8px;
 }
@@ -2170,7 +2183,7 @@ input.table-input:not([readonly]):focus {
     gap: 8px;
     justify-content: center;
     align-items: center;
-    padding: 0 10px 0 0;
+    padding: 0 5px 0 0;
 }
 
 .model-action-cell .btn-action {
@@ -2188,7 +2201,7 @@ input.table-input:not([readonly]):focus {
 .model-table-input {
     width: 100%;
     height: 100%;
-    padding: 10px 12px;
+    padding: 10px 4px;
     border: 1px solid #e5e7eb00;
     text-align: end;
     font-size: 14px;
@@ -2253,8 +2266,13 @@ input.table-input:not([readonly]):focus {
     width: 98% !important;
     margin: auto !important;
 }
-
 .mx-auto {
     margin-left: auto !important;
     margin-right: auto !important;
+}
+.w-75px{
+    width: 75px !important;
+}
+.w-35px{
+    width: 35px !important;
 }
