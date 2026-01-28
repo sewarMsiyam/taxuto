@@ -2215,10 +2215,13 @@ input.table-input:not([readonly]):focus {
 }
 
 .model-table-input:read-only {
-    background: #f9fafb00;
+    background: #f8f8f8;
     color: #000000;
 }
-
+select.model-table-input {
+     background: #ffffff !important;
+    color: #1E293B !important;
+}
 .model-total-row td {
     background: var(--bg-color) !important;
     border: 1px solid var(--border-color) !important;
