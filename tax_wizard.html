@@ -3947,16 +3947,6 @@
                                 <table class="modal-table">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                <span class="primary-model-icon-table"><svg width="14" height="10"
-                                                        viewBox="0 0 14 10" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <rect x="3.00012" y="6" width="1.66667" height="8.16667"
-                                                            rx="0.833333" transform="rotate(-90 3.00012 6)"
-                                                            fill="white" />
-                                                    </svg>
-                                                </span>
-                                            </th>
                                             <th>Line Item</th>
                                             <th>Adjusted carried forward CIT losses</th>
                                             <th>Adjusted declared net profit</th>
@@ -3966,35 +3956,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <div class="model-action-cell">
-                                                    <button class="btn-action btn-add">
-                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M10 5L10 15" stroke="#33363F" stroke-width="2"
-                                                                stroke-linecap="round" />
-                                                            <path d="M15 10L5 10" stroke="#33363F" stroke-width="2"
-                                                                stroke-linecap="round" />
-                                                        </svg>
-                                                    </button>
-                                                    <button class="btn-action btn-remove">
-                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="10" cy="10" r="7.5" stroke="#33363F"
-                                                                stroke-width="2" />
-                                                            <path d="M7.50012 12.5L12.5001 7.5" stroke="#33363F"
-                                                                stroke-width="2" />
-                                                            <path d="M12.5 12.5L7.5 7.5" stroke="#33363F"
-                                                                stroke-width="2" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </td>
+                                            <td><input type="text" class="model-table-input" value="1" readonly=""></td>
                                             <td><input type="text" class="model-table-input" value="0.00"></td>
                                             <td><input type="text" class="model-table-input" value="0.00"></td>
-                                            <td><input type="text" class="model-table-input" value="0.00"></td>
-                                            <td><input type="text" class="model-table-input" value="0.00"></td>
-                                            <td><input type="text" class="model-table-input" value="0.00"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00" readonly=""></td>
+                                            <td><input type="text" class="model-table-input" value="0.00" readonly=""></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -4038,6 +4004,521 @@
                 </div>
             </div>
         </div>
+
+
+
+        
+        <div class="modal" id="modal-taxable">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header">
+                            <div class="section-header-m w-75">
+                                <span class="section-header-text">RE-INSURANCE</span>
+                                <button class="modal-close">&times;</button>
+                            </div>
+                        </div>
+                        <div class="section-m">
+                            <div class="section-item w-75">
+                                <div class="table-container">
+                                    <table class="data-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="label-cell h-60px" colspan="4">
+                                                    <b>Statement</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Total insurance premiums earned and payable (subscribed)</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span> Total insurance premiums earned and payable subscribed</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell" colspan="4">
+                                                    <b>Deductions</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Cancelled Insurance premiums</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span> Cancelled Insurance premiums</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Reinsurance premiums issued to local entities
+                                                </td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span> Reinsurance premiums issued to local entities</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Reinsurance premiums issued to external entities</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span> Reinsurance premiums issued to external entities</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00" readonly="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Net premiums earned and vested</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span> Net premiums earned and vested</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Reserve component of unearned premium at the end of the previous year</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span> Reserve component of unearned premium at the end of the previous year</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                            <tr class="primary-row">
+                                                <td class="label-cell primary-label">Total reserves at the end of the previous year </td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Total reserves at the end of the previous year</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00" readonly="">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell h-60px" colspan="4">
+                                                    <b>Investment revenue for non-resident companies practicing their activities through a permanent establishment</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Local general insurance premiums written </td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Local general insurance premiums written</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Global general insurance premiums</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Global general insurance premiums</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00" >
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Global Investment Income</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Global Investment Income</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Investment revenue for non-resident companies</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Investment revenue for non-resident companies</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Other income for the permanent establishment</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Other income for the permanent establishment</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                            <tr class="primary-row">
+                                                <td class="label-cell primary-label">Total</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Total</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00" readonly="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell h-60px" colspan="4">
+                                                    <b>Deductions</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="label-cell">Compensation paid according to the insurance policies on property or dangers in KSA</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span> Compensation paid according to the insurance policies on property or dangers in KSA</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">The amounts covered by re-insurance</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>The amounts covered by re-insurance</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Net compensation paid after exclusions covered by re-insurance</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Net compensation paid after exclusions covered by re-insurance</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Unearned premium reserves at the end of the current year</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Unearned premium reserves at the end of the current year</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Existing dangers reserve made at the end of the current year</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Existing dangers reserve made at the end of the current year</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Non-legal deducted expenses</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Non-legal deducted expenses</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Permanent establishment book expenses incurred in KSA</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Permanent establishment book expenses incurred in KSA</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Legal deducted permanent establishment expenses incurred in KSA</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Legal deducted permanent establishment expenses incurred in KSA</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Local general insurance premiums written</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Local general insurance premiums written</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Global general insurance premiums</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Global general insurance premiums</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">General and administrative expenses for the main Centre</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>General and administrative expenses for the main Centre</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Permanent establishment share of the general and administrative expenses for the main Centre</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Permanent establishment share of the general and administrative expenses for the main Centre</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr class="primary-row">
+                                                <td class="label-cell primary-label">Total</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Total</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00" readonly="">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">The taxable (According to paragraph 2 of item no.15 of the Implementing Regulations)</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span></span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00" readonly>
+                                                </td>
+                                            </tr>
+                                              <tr>
+                                                <td class="label-cell h-60px" colspan="4">
+                                                    <b>Determining the tax base according to the international equation</b>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Local general insurance premiums written</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Local general insurance premiums written</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Global general insurance premiums</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Global general insurance premiums</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Global net profit before tax</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Global net profit before tax</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Tax base (Using international equation)</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Tax base (Using international equation)</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">The taxable for general insurance activity for the permanent establishment</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>The taxable for general insurance activity for the permanent establishment</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell h-60px" colspan="4">
+                                                    <b>Savings insurance</b>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Local Savings premiums written</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Local Savings premiums written</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Savings global insurance premiums</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Savings global insurance premiums</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Global investment income</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Global investment income</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Total of taxable for the permanent establishment on the savings insurance activity</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Total of taxable for the permanent establishment on the savings insurance activity</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Revenue loans with increased and realized losses from the sale of marketable securities and investment profit</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Revenue loans with increased and realized losses from the sale of marketable securities and investment profit</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">Realized gains from sale of marketable securities, carried over losses and investment profit</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>Realized gains from sale of marketable securities, carried over losses and investment profit</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">The taxable for general insurance activity for the permanent establishment</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>The taxable for general insurance activity for the permanent establishment</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td class="label-cell">The taxable of the permanent establishment</td>
+                                                <td class="action-cell"></td>
+                                                <td class="info-cell">
+                                                    <i class="fa-solid fa-circle-exclamation info-icon"></i>
+                                                    <span>The taxable of the permanent establishment</span>
+                                                </td>
+                                                <td class="value-cell">
+                                                    <input type="text" class="table-input" value="0.00">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="flex gap-10">
+                        </div>
+                        <div class="flex gap-10">
+                            <button class="modal-btn button-save-modal">
+                                <i class="fa-solid fa-check"></i> Save
+                            </button>
+                            <button class="modal-btn button-close-modal"
+                                onclick="this.closest('.modal').classList.remove('show')">
+                                <i class="fa-solid fa-times"></i> close
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 
    <script>

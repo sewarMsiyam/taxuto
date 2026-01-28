@@ -2292,3 +2292,8 @@ max-width: 300px !important;
 padding-bottom: 5px !important;
 text-align: left !important;
 }
+
+.h-60px{
+    height: 60px !important;
+    color: #363636;
+}
