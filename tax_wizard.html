@@ -5946,59 +5946,94 @@
             }
 
             // ✅ إضافة صف جديد
-            function addNewRow(tbody, afterRow) {
-                const firstRow = tbody.querySelector('tr');
-                if (!firstRow) return;
+            // ✅ إضافة صف جديد - النسخة النهائية
+function addNewRow(tbody, afterRow) {
+    const firstRow = tbody.querySelector('tr');
+    if (!firstRow) return;
 
-                rowCounter++;
-                const newRow = firstRow.cloneNode(true);
+    rowCounter++;
+    const newRow = firstRow.cloneNode(true);
 
-                // تحديث Serial Number
-                const serialInput = newRow.querySelector('td:nth-child(2) input');
-                if (serialInput) {
-                    serialInput.value = rowCounter;
-                }
+    // تنظيف كل cell
+    newRow.querySelectorAll('td').forEach((cell, colIndex) => {
+        const input = cell.querySelector('input');
+        const select = cell.querySelector('select');
+        const textarea = cell.querySelector('textarea');
 
-                // تنظيف الـ inputs و selects
-                newRow.querySelectorAll('td').forEach((cell, colIndex) => {
-                    const input = cell.querySelector('input');
-                    const select = cell.querySelector('select');
+        // تخطي الأزرار
+        if (colIndex === 0) return;
 
-                    // تخطي Actions
-                    if (colIndex === 0) return;
+        // Serial Number
+        if (colIndex === 1 && input) {
+            input.value = rowCounter;
+            return;
+        }
 
-                    // Serial Number
-                    if (colIndex === 1 && input) {
-                        input.value = rowCounter;
-                        return;
-                    }
+        // Select
+        if (select) {
+            select.selectedIndex = 0;
+            return;
+        }
 
-                    // Select
-                    if (select) {
-                        select.selectedIndex = 0;
-                        return;
-                    }
+        // Textarea
+        if (textarea) {
+            textarea.value = '';
+            return;
+        }
 
-                    // Input
-                    if (input) {
-                        if (input.readOnly) {
-                            input.value = input.type === 'date' ? '' : '0.00';
+        // Input
+        if (input) {
+            const originalValue = input.value;
+            const inputType = input.type;
+            const isReadonly = input.readOnly || input.hasAttribute('readonly');
+
+            if (isReadonly) {
+                // Readonly inputs
+                input.value = inputType === 'date' ? '' : '0.00';
+            } else {
+                // Editable inputs
+                switch (inputType) {
+                    case 'date':
+                    case 'datetime-local':
+                    case 'time':
+                    case 'month':
+                    case 'week':
+                        input.value = '';
+                        break;
+
+                    case 'number':
+                        input.value = '0.00';
+                        break;
+
+                    case 'email':
+                    case 'tel':
+                    case 'url':
+                        input.value = '';
+                        break;
+
+                    case 'checkbox':
+                    case 'radio':
+                        input.checked = false;
+                        break;
+
+                    case 'text':
+                    default:
+                        // Auto-detect: رقم أو نص
+                        const cleaned = originalValue.replace(/[,\s]/g, '');
+                        if (/^-?[\d.]+$/.test(cleaned) || originalValue === '0.00') {
+                            input.value = '0.00';
                         } else {
-                            if (input.type === 'date') {
-                                input.value = '';
-                            } else if (input.classList.contains('name-input') ||
-                                colIndex === 3 || colIndex === 4) {
-                                input.value = '';
-                            } else {
-                                input.value = '0.00';
-                            }
+                            input.value = '';
                         }
-                    }
-                });
-
-                afterRow.insertAdjacentElement('afterend', newRow);
-                updateSerialNumbers(tbody);
+                        break;
+                }
             }
+        }
+    });
+
+    afterRow.insertAdjacentElement('afterend', newRow);
+    updateSerialNumbers(tbody);
+}
 
             // ✅ حذف صف
             function removeRow(row, tbody) {
