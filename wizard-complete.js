@@ -279,35 +279,22 @@
     /**
      * النقر على Progress Steps
      */
-    progressSteps.forEach(function (step, index) {
-        step.style.cursor = 'pointer';
+progressSteps.forEach(function (step, index) {
+    step.style.cursor = 'pointer';
 
-        step.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const targetPage = index + 1;
+    step.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const targetPage = index + 1;
 
-            if (isSubmitted) {
-                // بعد Submit - يمكن التنقل بين جميع الصفحات
-                currentPage = targetPage;
-                showPage(currentPage);
-                updateButtons();
-                updateProgressBar();
-                return;
-            }
-
-            // قبل Submit - التنقل للخلف فقط
-            if (targetPage <= currentPage) {
-                currentPage = targetPage;
-                showPage(currentPage);
-                updateButtons();
-                updateProgressBar();
-            } else {
-                showToast('Navigation Restricted', 'Please complete the current page first', 'warning');
-            }
-        });
+        // ✅ تنقل حر بين جميع الصفحات
+        currentPage = targetPage;
+        showPage(currentPage);
+        updateButtons();
+        updateProgressBar();
     });
+});
 
     /**
      * حفظ مسودة
