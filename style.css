@@ -2553,3 +2553,323 @@ text-align: left !important;
     border-color: #10b981 !important;
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
+/* ✅ Tabs Bar */
+.tabs-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #202124;
+    z-index: 10000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tabs-container {
+    display: flex;
+    align-items: center;
+    padding: 8px 8px 0 8px;
+}
+
+.tabs-list {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.tab {
+    background: #35363a;
+    color: #9aa0a6;
+    border-radius: 8px 8px 0 0;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 180px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.tab:hover {
+    background: #3c4043;
+}
+
+.tab.active {
+    background: #292a2d;
+    color: white;
+}
+
+.tab.main-tab .tab-close {
+    display: none;
+}
+
+.tab-icon {
+    font-size: 14px;
+}
+
+.tab-title {
+    flex: 1;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tab-close {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: #9aa0a6;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.new-tab-btn {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    color: #9aa0a6;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+}
+
+.new-tab-btn:hover {
+    background: #3c4043;
+    color: white;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+      .tabs-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #202124;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .tabs-bar.show {
+            display: block;
+        }
+
+        .tabs-container {
+            display: flex;
+            align-items: center;
+            padding: 8px 8px 0 8px;
+        }
+
+        .tabs-list {
+            display: flex;
+            gap: 4px;
+            flex: 1;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .tab {
+            background: #35363a;
+            color: #9aa0a6;
+            border-radius: 8px 8px 0 0;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 180px;
+            max-width: 240px;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .tab:hover {
+            background: #3c4043;
+        }
+
+        .tab.active {
+            background: #292a2d;
+            color: white;
+        }
+
+        .tab-icon {
+            font-size: 14px;
+        }
+
+        .tab-title {
+            flex: 1;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tab-close {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            color: #9aa0a6;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .tab.main-tab .tab-close {
+            display: none;
+        }
+
+        /* ✅ Tab Panels */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* ✅ Alert Styles */
+        .custom-alert-draggable {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10000;
+        }
+
+        .custom-alert-content-draggable {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            min-width: 400px;
+            overflow: hidden;
+        }
+
+        .custom-alert-header-draggable {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: move;
+            user-select: none;
+        }
+
+        .alert-drag-icon {
+            font-size: 16px;
+            opacity: 0.7;
+        }
+
+        .alert-title {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .alert-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .custom-alert-body-draggable {
+            padding: 24px 20px;
+            color: #374151;
+        }
+
+        .custom-alert-body-draggable p {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .custom-alert-footer-draggable {
+            padding: 16px 20px;
+            background: #f9fafb;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .alert-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .alert-btn-action {
+            background: #dc2626;
+            color: white;
+        }
+
+        .alert-btn-action:hover {
+            background: #b91c1c;
+        }
+
+        .alert-btn-cancel {
+            background: white;
+            color: #6b7280;
+            border: 1px solid #d1d5db;
+        }
+
+        .alert-btn-cancel:hover {
+            background: #f3f4f6;
+        }

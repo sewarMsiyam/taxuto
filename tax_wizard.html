@@ -17,7 +17,17 @@
 </head>
 
 <body>
-    <div class="container-main">
+   
+   <div class="tabs-bar" id="tabsBar">
+        <div class="tabs-container">
+            <div class="tabs-list" id="tabsList">
+                <!-- Tabs تضاف هنا ديناميكياً -->
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="container-main" id="panel-main-tab">
         <div class="container-content">
             <!-- Header -->
             <div class="header">
@@ -2140,7 +2150,9 @@
                         <button class="button-next" id="nextBtn">Next >></button>
                     </div>
         </div>
+    </div>
 
+        <div id="dynamicPanels"></div>
 
 
         <div class="modal modal-confirmation" id="modal-confirm-save">
@@ -5771,161 +5783,334 @@
 
 
         <script src="all-models.js"></script>
-        <script>
-         
+  <script>
+        // ================================
+        // ✅ Event listener لأزرار Calculation
+        // ================================
+        document.addEventListener('click', function (e) {
+            const button = e.target.closest('.btn-calculation');
+            if (!button) return;
 
+            const type = button.dataset.type;
+            const row = button.closest('tr');
+            const zakatInput = row.querySelector('.zakat-amount');
 
+            if (type === 'manual') {
+                // ✅ تفعيل التعديل اليدوي
+                zakatInput.readOnly = false;
+                zakatInput.focus();
+                zakatInput.select();
+                zakatInput.style.background = '#fff3cd';
+                zakatInput.style.borderColor = '#ffc107';
 
+                button.style.background = '#10b981';
+                button.style.color = '#fff';
 
+                const otherBtn = row.querySelector('[data-type="sub-return"]');
+                if (otherBtn) {
+                    otherBtn.style.background = '';
+                    otherBtn.style.color = '';
+                }
+            }
+            else if (type === 'sub-return') {
+                // ✅ تصفير القيمة
+                if (zakatInput.value && zakatInput.value !== '0.00') {
+                    zakatInput.value = '0.00';
+                }
 
+                // ✅ إظهار Alert
+                showDraggableAlert(row);
 
+                zakatInput.readOnly = true;
+                zakatInput.style.background = '';
+                zakatInput.style.borderColor = '';
 
+                button.style.background = '#10b981';
+                button.style.color = '#fff';
 
+                const otherBtn = row.querySelector('[data-type="manual"]');
+                if (otherBtn) {
+                    otherBtn.style.background = '';
+                    otherBtn.style.color = '';
+                }
+            }
+        });
 
-// ✅ Event listener لأزرار Calculation
-document.addEventListener('click', function(e) {
-    const button = e.target.closest('.btn-calculation');
-    if (!button) return;
+        // ================================
+        // ✅ Alert قابل للسحب
+        // ================================
+        function showDraggableAlert(row) {
+            const existingAlert = document.querySelector('.custom-alert-draggable');
+            if (existingAlert) existingAlert.remove();
 
-    const type = button.dataset.type;
-    const row = button.closest('tr');
-    const zakatInput = row.querySelector('.zakat-amount');
-
-    if (type === 'manual') {
-        // ✅ Manual - فتح input للإدخال
-        zakatInput.readOnly = false;
-        zakatInput.focus();
-        zakatInput.select();
-        zakatInput.style.background = '#fff3cd';
-        zakatInput.style.borderColor = '#ffc107';
-        
-        button.style.background = '#10b981';
-        button.style.color = '#fff';
-        
-        const otherBtn = row.querySelector('[data-type="sub-return"]');
-        if (otherBtn) {
-            otherBtn.style.background = '';
-            otherBtn.style.color = '';
-        }
-    } 
-    else if (type === 'sub-return') {
-        // ✅ Sub-return - إظهار alert
-        showDraggableAlert(row);
-        
-        zakatInput.readOnly = true;
-        zakatInput.style.background = '';
-        zakatInput.style.borderColor = '';
-        
-        button.style.background = '#10b981';
-        button.style.color = '#fff';
-        
-        const otherBtn = row.querySelector('[data-type="manual"]');
-        if (otherBtn) {
-            otherBtn.style.background = '';
-            otherBtn.style.color = '';
-        }
-    }
-});
-
-// ✅ Alert قابل للسحب - أحمر
-function showDraggableAlert(row) {
-    // إزالة أي alert سابق
-    const existingAlert = document.querySelector('.custom-alert-draggable');
-    if (existingAlert) existingAlert.remove();
-
-    const alert = document.createElement('div');
-    alert.className = 'custom-alert-draggable';
-    alert.innerHTML = `
-        <div class="custom-alert-content-draggable">
-            <div class="custom-alert-header-draggable" id="alert-header">
-                <div class="alert-drag-icon">
-                    <i class="fa-solid fa-grip-vertical"></i>
+            const alert = document.createElement('div');
+            alert.className = 'custom-alert-draggable';
+            alert.innerHTML = `
+                <div class="custom-alert-content-draggable">
+                    <div class="custom-alert-header-draggable" id="alert-header">
+                        <div class="alert-drag-icon">
+                            <i class="fa-solid fa-grip-vertical"></i>
+                        </div>
+                        <div class="alert-title">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            Sub-return Required
+                        </div>
+                        <button class="alert-close-btn" onclick="this.closest('.custom-alert-draggable').remove()">
+                            <i class="fa-solid fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="custom-alert-body-draggable">
+                        <p>This calculation requires sub-return data from the subsidiary company.</p>
+                        <p>Please ensure all subsidiary returns are filed before proceeding.</p>
+                    </div>
+                    <div class="custom-alert-footer-draggable">
+                        <button class="alert-btn alert-btn-action" onclick="handleSubReturnAction(this)">
+                            <i class="fa-solid fa-file-import"></i>
+                            Import Sub-return
+                        </button>
+                        <button class="alert-btn alert-btn-cancel" onclick="this.closest('.custom-alert-draggable').remove()">
+                            <i class="fa-solid fa-times"></i>
+                            Cancel
+                        </button>
+                    </div>
                 </div>
-                <div class="alert-title">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    Sub-return Required
-                </div>
-                <button class="alert-close-btn" onclick="this.closest('.custom-alert-draggable').remove()">
+            `;
+
+            document.body.appendChild(alert);
+            makeDraggable(alert);
+        }
+
+        function makeDraggable(element) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            const header = element.querySelector('#alert-header');
+
+            if (header) {
+                header.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                element.style.top = (element.offsetTop - pos2) + "px";
+                element.style.left = (element.offsetLeft - pos1) + "px";
+                element.style.right = 'auto';
+                element.style.transform = 'none';
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function handleSubReturnAction(button) {
+            const alert = button.closest('.custom-alert-draggable');
+            if (alert) alert.remove();
+
+            const investmentInput = document.querySelector('.modal-table tbody tr:first-child td:nth-child(2) input');
+            const companyName = investmentInput ? investmentInput.value : 'Company';
+
+            openSubReturn(companyName);
+        }
+
+        // ================================
+        // ✅ نظام Tabs
+        // ================================
+        let tabCounter = 0;
+        let activeTabId = 'main-tab';
+        let tabsInitialized = false;
+
+        function openSubReturn(companyName) {
+            if (!tabsInitialized) {
+                initializeTabs();
+                tabsInitialized = true;
+            }
+
+            const tabId = `tab-${++tabCounter}`;
+
+            const existingTab = Array.from(document.querySelectorAll('.tab')).find(tab =>
+                tab.querySelector('.tab-title')?.textContent === companyName
+            );
+
+            if (existingTab && existingTab.id !== 'main-tab') {
+                switchTab(existingTab.id);
+                return;
+            }
+
+            const tab = document.createElement('div');
+            tab.className = 'tab';
+            tab.id = tabId;
+            tab.innerHTML = `
+                <i class="fa-solid fa-building tab-icon"></i>
+                <span class="tab-title">${companyName}</span>
+                <button class="tab-close" onclick="closeTab('${tabId}', event)">
                     <i class="fa-solid fa-times"></i>
                 </button>
-            </div>
-            <div class="custom-alert-body-draggable">
-                <p>This calculation requires sub-return data from the subsidiary company.</p>
-                <p>Please ensure all subsidiary returns are filed before proceeding.</p>
-            </div>
-            <div class="custom-alert-footer-draggable">
-                <button class="alert-btn alert-btn-action" onclick="handleSubReturnAction(this)">
-                    <i class="fa-solid fa-file-import"></i>
-                    Import Sub-return
-                </button>
-                <button class="alert-btn alert-btn-cancel" onclick="this.closest('.custom-alert-draggable').remove()">
-                    <i class="fa-solid fa-times"></i>
-                    Cancel
-                </button>
-            </div>
-        </div>
-    `;
+            `;
+            tab.onclick = () => switchTab(tabId);
 
-    document.body.appendChild(alert);
+            document.getElementById('tabsList').appendChild(tab);
 
-    // ✅ جعل Alert قابل للسحب
-    makeDraggable(alert);
-}
+            const panel = document.createElement('div');
+            panel.className = 'tab-panel';
+            panel.id = `panel-${tabId}`;
+            panel.innerHTML = getSubReturnContent(companyName, tabId);
 
-// ✅ وظيفة السحب
-function makeDraggable(element) {
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    const header = element.querySelector('#alert-header');
+            document.getElementById('dynamicPanels').appendChild(panel);
 
-    if (header) {
-        header.style.cursor = 'move';
-        header.onmousedown = dragMouseDown;
-    }
+            switchTab(tabId);
+        }
 
-    function dragMouseDown(e) {
-        e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
+        function initializeTabs() {
+            const tabsBar = document.getElementById('tabsBar');
+            tabsBar.classList.add('show');
 
-    function elementDrag(e) {
-        e.preventDefault();
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        element.style.top = (element.offsetTop - pos2) + "px";
-        element.style.left = (element.offsetLeft - pos1) + "px";
-        element.style.right = 'auto';
-        element.style.transform = 'none';
-    }
+            const mainTab = document.createElement('div');
+            mainTab.className = 'tab main-tab active';
+            mainTab.id = 'main-tab';
+            mainTab.innerHTML = `
+                <i class="fa-solid fa-table tab-icon"></i>
+                <span class="tab-title">Main Table</span>
+                <button class="tab-close"></button>
+            `;
+            mainTab.onclick = () => switchTab('main-tab');
 
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-}
+            document.getElementById('tabsList').appendChild(mainTab);
 
-// ✅ الإجراء عند الضغط على الزر
-function handleSubReturnAction(button) {
-    const alert = button.closest('.custom-alert-draggable');
-    
-    // هنا حط الكود اللي بدك يصير لما يضغط الزر
-    console.log('✅ Import Sub-return clicked');
-    
-    // مثال: فتح موديل أو تنفيذ إجراء معين
-    showToast('Processing', 'Importing sub-return data...', 'info');
-    
-    // إغلاق الـ alert
-    setTimeout(() => {
-        if (alert) alert.remove();
-        showToast('Success', 'Sub-return data imported successfully!', 'success');
-    }, 2000);
-}
-        </script>
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.paddingTop = '60px';
+            }
+        }
 
+        function getSubReturnContent(companyName, tabId) {
+            return `
+                <div class="container-main" style="padding-top: 80px;">
+                    <div class="container-content">
+                        اقرار مصغر جديد 
+                    </div>
+                </div>
+            `;
+        }
+
+        function calculateSubReturnTotal(tabId) {
+            const revenueInput = document.getElementById(`revenue-${tabId}`);
+            const expensesInput = document.getElementById(`expenses-${tabId}`);
+            const netProfitInput = document.getElementById(`netprofit-${tabId}`);
+            const zakatInput = document.getElementById(`zakat-${tabId}`);
+
+            if (revenueInput && expensesInput && netProfitInput && zakatInput) {
+                const revenue = parseFloat(revenueInput.value.replace(/,/g, '')) || 0;
+                const expenses = parseFloat(expensesInput.value.replace(/,/g, '')) || 0;
+                const netProfit = revenue - expenses;
+                const zakat = netProfit * 0.025;
+
+                netProfitInput.value = formatNumber(netProfit);
+                zakatInput.value = formatNumber(zakat);
+            }
+        }
+
+        function submitSubReturnData(companyName, tabId) {
+            const crNumber = document.getElementById(`cr-number-${tabId}`).value;
+            const taxId = document.getElementById(`tax-id-${tabId}`).value;
+            const revenue = document.getElementById(`revenue-${tabId}`).value;
+            const expenses = document.getElementById(`expenses-${tabId}`).value;
+
+            if (!crNumber || !taxId || !revenue || !expenses) {
+                alert('⚠️ Please fill all required fields (*)');
+                return;
+            }
+
+            const zakatValue = document.getElementById(`zakat-${tabId}`).value;
+
+            const rows = document.querySelectorAll('.modal-table tbody tr');
+            let applied = false;
+
+            rows.forEach(row => {
+                const investmentInput = row.querySelector('td:nth-child(2) input');
+                if (investmentInput && investmentInput.value.trim() === companyName.trim()) {
+                    const zakatInput = row.querySelector('.zakat-amount');
+                    if (zakatInput) {
+                        zakatInput.value = zakatValue;
+                        zakatInput.style.background = '#d1fae5';
+                        zakatInput.style.borderColor = '#10b981';
+
+                        setTimeout(() => {
+                            zakatInput.style.background = '';
+                            zakatInput.style.borderColor = '';
+                        }, 2000);
+
+                        applied = true;
+                    }
+                }
+            });
+
+            closeTab(tabId);
+            switchTab('main-tab');
+
+            if (applied) {
+                showToast('Success', `Data from ${companyName} applied successfully!`, 'success');
+            }
+        }
+
+        function switchTab(tabId) {
+            console.log('Switching to:', tabId);
+
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+            const tab = document.getElementById(tabId);
+            const panel = document.getElementById(`panel-${tabId}`);
+
+            if (tab) {
+                tab.classList.add('active');
+                activeTabId = tabId;
+            }
+
+            if (panel) {
+                panel.classList.add('active');
+            }
+        }
+
+        function closeTab(tabId, event) {
+            if (event) event.stopPropagation();
+            if (tabId === 'main-tab') return;
+
+            const tab = document.getElementById(tabId);
+            const panel = document.getElementById(`panel-${tabId}`);
+
+            const wasActive = tab && tab.classList.contains('active');
+
+            if (tab) tab.remove();
+            if (panel) panel.remove();
+
+            if (wasActive) switchTab('main-tab');
+        }
+
+        function formatNumber(num) {
+            return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        function showToast(title, message, type = 'info') {
+            const colors = { success: '#10B981', error: '#EF4444', info: '#3B82F6' };
+            const toast = document.createElement('div');
+            toast.style.cssText = `position: fixed; top: 80px; right: 20px; background: white; border-left: 4px solid ${colors[type]}; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); padding: 16px 20px; min-width: 300px; z-index: 10001;`;
+            toast.innerHTML = `<div style="font-weight: 600; color: #1F2937; margin-bottom: 4px;">${title}</div><div style="font-size: 14px; color: #6B7280;">${message}</div>`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+    </script>
         <script src="validation.js"></script>
         <script src="conditional-show-hide.js"></script>
         <script src="set-default-not-applicable.js"></script>
