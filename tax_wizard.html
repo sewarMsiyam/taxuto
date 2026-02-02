@@ -5093,37 +5093,52 @@
                         </div>
                         <div class="mx-auto w-98">
                             <div class="table-container">
-                                
+                                <table class="modal-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="w-35px">
+                                                <span class="primary-model-icon-table"><svg width="14" height="10"
+                                                        viewBox="0 0 14 10" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="3.00012" y="6" width="1.66667" height="8.16667"
+                                                            rx="0.833333" transform="rotate(-90 3.00012 6)"
+                                                            fill="white" />
+                                                    </svg>
+                                                </span>
+                                            </th>
+                                            <th class="text-center">Investment</th>
+                                            <th class="text-center">Type</th>
+                                            <th>Calculation</th>
+                                            <th>Zakat Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="model-table-input" value="1" readonly></td>
+                                            <td><input type="text" class="model-table-input text-center"
+                                                    value="Company A"></td>
+                                            <td><input type="text" class="model-table-input text-center"
+                                                    value="Fund Investment"></td>
+                                            <td>
+                                                <button class="btn-calculation"
+                                                    data-type="sub-return">Sub-return</button>
+                                                <button class="btn-calculation" data-type="manual">Manual</button>
+                                            </td>
+                                            <td><input type="text" class="model-table-input zakat-amount" value="0.00"
+                                                    readonly></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
 
                     <div class="modal-footer">
                         <div class="flex gap-10">
-                            <button class="button-primary">
-                                <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M14 13.75C14 15.4833 13.416 16.9583 12.248 18.175C11.08 19.3917 9.664 20 8 20C6.336 20 4.92 19.3917 3.752 18.175C2.584 16.9583 2 15.4833 2 13.75V4.5C2 3.25 2.42 2.1875 3.26 1.3125C4.1 0.4375 5.12 0 6.32 0C7.52 0 8.54 0.4375 9.38 1.3125C10.22 2.1875 10.64 3.25 10.64 4.5V13.25C10.64 14.0167 10.384 14.6667 9.872 15.2C9.36 15.7333 8.736 16 8 16C7.264 16 6.64 15.7333 6.128 15.2C5.616 14.6667 5.36 14.0167 5.36 13.25V4H7.28V13.25C7.28 13.4667 7.348 13.6458 7.484 13.7875C7.62 13.9292 7.792 14 8 14C8.208 14 8.38 13.9292 8.516 13.7875C8.652 13.6458 8.72 13.4667 8.72 13.25V4.5C8.704 3.8 8.468 3.20833 8.012 2.725C7.556 2.24167 6.992 2 6.32 2C5.648 2 5.08 2.24167 4.616 2.725C4.152 3.20833 3.92 3.8 3.92 4.5V13.75C3.904 14.9333 4.296 15.9375 5.096 16.7625C5.896 17.5875 6.864 18 8 18C9.12 18 10.072 17.5875 10.856 16.7625C11.64 15.9375 12.048 14.9333 12.08 13.75V4H14V13.75Z"
-                                        fill="#1A1A1A" />
-                                </svg>
-
-                                upload
-                            </button>
-                            <button class="button-primary">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M8 10.667L7.29289 11.3741L8 12.0812L8.70711 11.3741L8 10.667ZM9 2.66699C9 2.11471 8.55229 1.66699 8 1.66699C7.44772 1.66699 7 2.11471 7 2.66699L8 2.66699L9 2.66699ZM4 6.66699L3.29289 7.3741L7.29289 11.3741L8 10.667L8.70711 9.95989L4.70711 5.95989L4 6.66699ZM8 10.667L8.70711 11.3741L12.7071 7.3741L12 6.66699L11.2929 5.95989L7.29289 9.95989L8 10.667ZM8 10.667L9 10.667L9 2.66699L8 2.66699L7 2.66699L7 10.667L8 10.667Z"
-                                        fill="#253632" />
-                                    <path d="M3.33301 14L12.6663 14" stroke="#253632" stroke-width="2" />
-                                </svg>
-                                download excel format
-                            </button>
                         </div>
                         <div class="flex gap-10">
                             <button class="modal-btn button-save-modal">
-                                <i class="fa-solid fa-check"></i> Save
+                                <i class="fa-solid fa-check"></i> Confirm& apply
                             </button>
                             <button class="modal-btn button-close-modal"
                                 onclick="this.closest('.modal').classList.remove('show')">
@@ -5755,408 +5770,160 @@
         </div>
 
 
-
+        <script src="all-models.js"></script>
         <script>
-            let currentMainModal = null;
-            let rowCounter = 1;
+         
 
-            document.addEventListener('DOMContentLoaded', function () {
-                const modalMap = {
-                    'insurance': 'modal-insurance',
-                    'contracts': 'modal-contracts',
-                    'subcon': 'modal-subcontractors',
-                    'machinery': 'modal-machinery',
-                    'provisions': 'modal-provisions',
-                    'Royalties': 'modal-royalties',
-                    'other-expenses': 'modal-other-expenses',
-                    'zakat-adjustment': 'modal-zakat-adj',
-                    'tax-adjustment': 'modal-tax-adj',
-                    'repair-maintenance': 'modal-repair',
-                    'depreciation': 'modal-depreciation',
-                    'loan-charges': 'modal-loan',
-                    'equity': 'modal-equity',
-                    'liabilities': 'modal-liabilities',
-                    'non-current-assets': 'modal-noncurrent',
-                    'investments': 'modal-investments',
-                    'real-estate-dev': 'modal-realestate',
-                    'off-plan': 'modal-offplan',
-                    'current-assets': 'modal-current',
-                    'losses_up': 'modal-losses',
-                    'Taxable_amount': 'modal-taxable'
-                };
 
-                // ✅ Radio buttons
-                const allRadios = document.querySelectorAll('input[type="radio"]');
-                allRadios.forEach(radio => {
-                    radio.addEventListener('click', function () {
-                        const radioName = this.name;
-                        const radioValue = this.value;
-                        const modalId = modalMap[radioName];
 
-                        if (radioValue === 'applicable') {
-                            if (modalId) {
-                                openModalById(modalId);
-                            }
-                            enableButtonForRadio(radioName);
-                        }
-                        else if (radioValue === 'not-applicable') {
-                            resetValue(radioName, this);
-                            disableButtonForRadio(radioName);
-                        }
-                    });
-                });
 
-                // ✅ فتح الموديل من الأزرار
-                document.addEventListener('click', function (e) {
-                    const button = e.target.closest('[data-modal]');
-                    if (button && !button.disabled) {
-                        e.preventDefault();
-                        const modalId = button.dataset.modal;
-                        openModalById(modalId);
-                    }
-                });
 
-                // ✅ X button
-                document.addEventListener('click', function (e) {
-                    if (e.target.classList.contains('modal-close')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (currentMainModal) {
-                            currentMainModal.classList.remove('show');
-                        }
-                    }
-                });
 
-                // ✅ Close button
-                document.querySelectorAll('.button-close-modal').forEach(btn => {
-                    btn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (currentMainModal) {
-                            currentMainModal.classList.remove('show');
-                        }
-                    });
-                });
 
-                // ✅ Save button
-                document.querySelectorAll('.button-save-modal').forEach(btn => {
-                    btn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        openConfirmModal();
-                    });
-                });
 
-                // ✅ Event Delegation لأزرار الإضافة والحذف
-                document.addEventListener('click', function (e) {
-                    if (e.target.closest('.btn-add')) {
-                        e.preventDefault();
-                        const button = e.target.closest('.btn-add');
-                        const row = button.closest('tr');
-                        const tbody = row.closest('tbody');
-                        addNewRow(tbody, row);
-                    }
 
-                    if (e.target.closest('.btn-remove')) {
-                        e.preventDefault();
-                        const button = e.target.closest('.btn-remove');
-                        const row = button.closest('tr');
-                        const tbody = row.closest('tbody');
-                        removeRow(row, tbody);
-                    }
-                });
+// ✅ Event listener لأزرار Calculation
+document.addEventListener('click', function(e) {
+    const button = e.target.closest('.btn-calculation');
+    if (!button) return;
 
-                // ✅ تهيئة الأزرار عند تحميل الصفحة
-                initializeButtons();
-            });
+    const type = button.dataset.type;
+    const row = button.closest('tr');
+    const zakatInput = row.querySelector('.zakat-amount');
 
-            // ✅ دالة فتح الموديل
-            function openModalById(modalId) {
-                const modal = document.getElementById(modalId);
-                if (modal) {
-                    currentMainModal = modal;
-                    modal.classList.add('show');
-
-                    const tbody = modal.querySelector('.modal-table tbody');
-                    if (tbody) {
-                        rowCounter = tbody.querySelectorAll('tr').length;
-                    }
-                    console.log('✅ Modal opened:', modalId);
-                } else {
-                    console.warn('⚠️ Modal not found:', modalId);
-                }
-            }
-
-            // ✅ تفعيل الزر المرتبط بـ radio
-            function enableButtonForRadio(radioName) {
-                const button = document.querySelector(`[data-radio-name="${radioName}"]`);
-                if (button) {
-                    button.disabled = false;
-                    button.style.opacity = '1';
-                    button.style.cursor = 'pointer';
-                }
-            }
-
-            // ✅ تعطيل الزر المرتبط بـ radio
-            function disableButtonForRadio(radioName) {
-                const button = document.querySelector(`[data-radio-name="${radioName}"]`);
-                if (button) {
-                    button.disabled = true;
-                    button.style.opacity = '0.5';
-                    button.style.cursor = 'not-allowed';
-                }
-            }
-
-            // ✅ تهيئة حالة الأزرار عند التحميل
-            function initializeButtons() {
-                document.querySelectorAll('[data-radio-name]').forEach(button => {
-                    const radioName = button.dataset.radioName;
-                    const applicableRadio = document.querySelector(
-                        `input[type="radio"][name="${radioName}"][value="applicable"]`
-                    );
-
-                    if (applicableRadio && applicableRadio.checked) {
-                        enableButtonForRadio(radioName);
-                    } else {
-                        disableButtonForRadio(radioName);
-                    }
-                });
-            }
-
-            // ✅ دالة تصفير القيمة عند اختيار "not-applicable"
-            function resetValue(fieldName, radioElement) {
-                const row = radioElement.closest('tr');
-                if (row) {
-                    const valueInput = row.querySelector('.value-cell input, input.table-input, input[type="number"]');
-                    if (valueInput) {
-                        valueInput.value = '0.00';
-                        console.log(`✅ Reset ${fieldName} to 0.00`);
-                        return;
-                    }
-                }
-
-                const input = document.querySelector(`input[name="${fieldName}-value"]`);
-                if (input) {
-                    input.value = '0.00';
-                    console.log(`✅ Reset ${fieldName} to 0.00`);
-                    return;
-                }
-
-                console.warn(`⚠️ Could not find input for: ${fieldName}`);
-            }
-
-            // ✅ إضافة صف جديد
-            // ✅ إضافة صف جديد - النسخة النهائية
-function addNewRow(tbody, afterRow) {
-    const firstRow = tbody.querySelector('tr');
-    if (!firstRow) return;
-
-    rowCounter++;
-    const newRow = firstRow.cloneNode(true);
-
-    // تنظيف كل cell
-    newRow.querySelectorAll('td').forEach((cell, colIndex) => {
-        const input = cell.querySelector('input');
-        const select = cell.querySelector('select');
-        const textarea = cell.querySelector('textarea');
-
-        // تخطي الأزرار
-        if (colIndex === 0) return;
-
-        // Serial Number
-        if (colIndex === 1 && input) {
-            input.value = rowCounter;
-            return;
+    if (type === 'manual') {
+        // ✅ Manual - فتح input للإدخال
+        zakatInput.readOnly = false;
+        zakatInput.focus();
+        zakatInput.select();
+        zakatInput.style.background = '#fff3cd';
+        zakatInput.style.borderColor = '#ffc107';
+        
+        button.style.background = '#10b981';
+        button.style.color = '#fff';
+        
+        const otherBtn = row.querySelector('[data-type="sub-return"]');
+        if (otherBtn) {
+            otherBtn.style.background = '';
+            otherBtn.style.color = '';
         }
-
-        // Select
-        if (select) {
-            select.selectedIndex = 0;
-            return;
+    } 
+    else if (type === 'sub-return') {
+        // ✅ Sub-return - إظهار alert
+        showDraggableAlert(row);
+        
+        zakatInput.readOnly = true;
+        zakatInput.style.background = '';
+        zakatInput.style.borderColor = '';
+        
+        button.style.background = '#10b981';
+        button.style.color = '#fff';
+        
+        const otherBtn = row.querySelector('[data-type="manual"]');
+        if (otherBtn) {
+            otherBtn.style.background = '';
+            otherBtn.style.color = '';
         }
+    }
+});
 
-        // Textarea
-        if (textarea) {
-            textarea.value = '';
-            return;
-        }
+// ✅ Alert قابل للسحب - أحمر
+function showDraggableAlert(row) {
+    // إزالة أي alert سابق
+    const existingAlert = document.querySelector('.custom-alert-draggable');
+    if (existingAlert) existingAlert.remove();
 
-        // Input
-        if (input) {
-            const originalValue = input.value;
-            const inputType = input.type;
-            const isReadonly = input.readOnly || input.hasAttribute('readonly');
+    const alert = document.createElement('div');
+    alert.className = 'custom-alert-draggable';
+    alert.innerHTML = `
+        <div class="custom-alert-content-draggable">
+            <div class="custom-alert-header-draggable" id="alert-header">
+                <div class="alert-drag-icon">
+                    <i class="fa-solid fa-grip-vertical"></i>
+                </div>
+                <div class="alert-title">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Sub-return Required
+                </div>
+                <button class="alert-close-btn" onclick="this.closest('.custom-alert-draggable').remove()">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="custom-alert-body-draggable">
+                <p>This calculation requires sub-return data from the subsidiary company.</p>
+                <p>Please ensure all subsidiary returns are filed before proceeding.</p>
+            </div>
+            <div class="custom-alert-footer-draggable">
+                <button class="alert-btn alert-btn-action" onclick="handleSubReturnAction(this)">
+                    <i class="fa-solid fa-file-import"></i>
+                    Import Sub-return
+                </button>
+                <button class="alert-btn alert-btn-cancel" onclick="this.closest('.custom-alert-draggable').remove()">
+                    <i class="fa-solid fa-times"></i>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    `;
 
-            if (isReadonly) {
-                // Readonly inputs
-                input.value = inputType === 'date' ? '' : '0.00';
-            } else {
-                // Editable inputs
-                switch (inputType) {
-                    case 'date':
-                    case 'datetime-local':
-                    case 'time':
-                    case 'month':
-                    case 'week':
-                        input.value = '';
-                        break;
+    document.body.appendChild(alert);
 
-                    case 'number':
-                        input.value = '0.00';
-                        break;
-
-                    case 'email':
-                    case 'tel':
-                    case 'url':
-                        input.value = '';
-                        break;
-
-                    case 'checkbox':
-                    case 'radio':
-                        input.checked = false;
-                        break;
-
-                    case 'text':
-                    default:
-                        // Auto-detect: رقم أو نص
-                        const cleaned = originalValue.replace(/[,\s]/g, '');
-                        if (/^-?[\d.]+$/.test(cleaned) || originalValue === '0.00') {
-                            input.value = '0.00';
-                        } else {
-                            input.value = '';
-                        }
-                        break;
-                }
-            }
-        }
-    });
-
-    afterRow.insertAdjacentElement('afterend', newRow);
-    updateSerialNumbers(tbody);
+    // ✅ جعل Alert قابل للسحب
+    makeDraggable(alert);
 }
 
-            // ✅ حذف صف
-            function removeRow(row, tbody) {
-                const allRows = tbody.querySelectorAll('tr');
+// ✅ وظيفة السحب
+function makeDraggable(element) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    const header = element.querySelector('#alert-header');
 
-                if (allRows.length <= 1) {
-                    alert('يجب أن يحتوي الجدول على صف واحد على الأقل');
-                    return;
-                }
+    if (header) {
+        header.style.cursor = 'move';
+        header.onmousedown = dragMouseDown;
+    }
 
-                row.remove();
-                updateSerialNumbers(tbody);
-            }
+    function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
 
-            // ✅ تحديث الأرقام التسلسلية
-            function updateSerialNumbers(tbody) {
-                const rows = tbody.querySelectorAll('tr');
-                rows.forEach((row, index) => {
-                    const serialInput = row.querySelector('td:nth-child(2) input');
-                    if (serialInput) {
-                        serialInput.value = index + 1;
-                    }
-                });
-                rowCounter = rows.length;
-            }
+    function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+        element.style.right = 'auto';
+        element.style.transform = 'none';
+    }
 
-            // ✅ حساب المجاميع
-            function calculateTotals() {
-                const modal = currentMainModal;
-                if (!modal) return;
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
 
-                const tbody = modal.querySelector('.modal-table tbody');
-                const tfoot = modal.querySelector('.modal-table tfoot');
-
-                if (!tbody || !tfoot) return;
-
-                const totals = [0, 0, 0, 0];
-
-                const rows = tbody.querySelectorAll('tr');
-                rows.forEach(row => {
-                    for (let i = 0; i < 4; i++) {
-                        const input = row.querySelector(`td:nth-child(${i + 4}) input`);
-                        if (input && !input.readOnly) {
-                            const value = parseFloat(input.value.replace(/,/g, '')) || 0;
-                            totals[i] += value;
-                        }
-                    }
-                });
-
-                const totalInputs = tfoot.querySelectorAll('input');
-                totals.forEach((total, index) => {
-                    if (totalInputs[index]) {
-                        totalInputs[index].value = formatNumber(total);
-                    }
-                });
-            }
-
-            // ✅ تنسيق الأرقام
-            function formatNumber(num) {
-                return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            }
-
-            // ✅ تنسيق الأرقام عند الخروج من الـ input
-            document.addEventListener('blur', function (e) {
-                const input = e.target;
-
-                if (!input.classList.contains('model-table-input')) return;
-                if (input.readOnly) return;
-                if (input.type === 'date') return;
-                if (input.tagName === 'SELECT') return;
-                if (input.closest('.name-cell')) return;
-
-                const cell = input.closest('td');
-                const cellIndex = cell ? Array.from(cell.parentElement.children).indexOf(cell) : -1;
-
-                // استثني الأعمدة النصية
-                if (cellIndex === 3 || cellIndex === 4) return;
-
-                const value = input.value.trim();
-                if (value === '') return;
-
-                const numValue = parseFloat(value.replace(/,/g, ''));
-                if (!isNaN(numValue)) {
-                    input.value = formatNumber(numValue);
-                }
-            }, true);
-
-            // ✅ فتح موديل التأكيد
-            function openConfirmModal() {
-                const confirmModal = document.getElementById('modal-confirm-save');
-                if (confirmModal) {
-                    confirmModal.classList.add('show');
-                }
-            }
-
-            // ✅ إغلاق موديل التأكيد
-            function closeConfirmModal() {
-                const confirmModal = document.getElementById('modal-confirm-save');
-                if (confirmModal) {
-                    confirmModal.classList.remove('show');
-                }
-            }
-
-            // ✅ إغلاق بدون حفظ
-            function closeWithoutSaving() {
-                closeConfirmModal();
-                if (currentMainModal) {
-                    currentMainModal.classList.remove('show');
-                }
-                console.log('❌ Closed without saving');
-            }
-
-            // ✅ حفظ وإغلاق
-            function saveAndClose() {
-                console.log('✅ Data saved!');
-
-                closeConfirmModal();
-                if (currentMainModal) {
-                    currentMainModal.classList.remove('show');
-                }
-
-                console.log('✅ Modal closed after saving');
-            }
+// ✅ الإجراء عند الضغط على الزر
+function handleSubReturnAction(button) {
+    const alert = button.closest('.custom-alert-draggable');
+    
+    // هنا حط الكود اللي بدك يصير لما يضغط الزر
+    console.log('✅ Import Sub-return clicked');
+    
+    // مثال: فتح موديل أو تنفيذ إجراء معين
+    showToast('Processing', 'Importing sub-return data...', 'info');
+    
+    // إغلاق الـ alert
+    setTimeout(() => {
+        if (alert) alert.remove();
+        showToast('Success', 'Sub-return data imported successfully!', 'success');
+    }, 2000);
+}
         </script>
 
         <script src="validation.js"></script>

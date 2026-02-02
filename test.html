@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Tabs with Main Tab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3f4f6;
+        }
+
+        /* ✅ Tabs Bar */
+        .tabs-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #202124;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .tabs-container {
+            display: flex;
+            align-items: center;
+            padding: 8px 8px 0 8px;
+            background: #202124;
+        }
+
+        .tabs-list {
+            display: flex;
+            gap: 4px;
+            flex: 1;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #5f6368 #202124;
+        }
+
+        .tabs-list::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tabs-list::-webkit-scrollbar-track {
+            background: #202124;
+        }
+
+        .tabs-list::-webkit-scrollbar-thumb {
+            background: #5f6368;
+            border-radius: 3px;
+        }
+
+        /* ✅ Tab */
+        .tab {
+            background: #35363a;
+            color: #9aa0a6;
+            border-radius: 8px 8px 0 0;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 180px;
+            max-width: 220px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            border: 1px solid transparent;
+            user-select: none;
+        }
+
+        .tab:hover {
+            background: #3c4043;
+        }
+
+        .tab.active {
+            background: #292a2d;
+            color: white;
+            border-color: #5f6368;
+        }
+
+        /* ✅ Tab ثابت (Main) - بدون زر إغلاق */
+        .tab.main-tab .tab-close {
+            display: none;
+        }
+
+        .tab.main-tab {
+            background: #2d2e30;
+        }
+
+        .tab.main-tab.active {
+            background: #292a2d;
+        }
+
+        .tab-icon {
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .tab-title {
+            flex: 1;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tab-close {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            color: #9aa0a6;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .tab-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* ✅ زر + */
+        .new-tab-btn {
+            width: 36px;
+            height: 36px;
+            background: transparent;
+            border: none;
+            color: #9aa0a6;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .new-tab-btn:hover {
+            background: #3c4043;
+            color: white;
+        }
+
+        /* ✅ المحتوى */
+        .main-content {
+            padding: 20px;
+            margin-top: 60px;
+        }
+
+        .tab-panel {
+            display: none;
+            padding: 0;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f9fafb;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            margin: 0 4px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #f3f4f6;
+        }
+
+        .btn-primary {
+            background: #dc2626;
+            color: white;
+            border-color: #dc2626;
+        }
+
+        .btn-primary:hover {
+            background: #b91c1c;
+        }
+
+        /* ✅ Sub-return محتوى */
+        .sub-section {
+            margin-bottom: 30px;
+        }
+
+        .sub-section h3 {
+            color: #1f2937;
+            font-size: 18px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 15px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .info-value.amount {
+            color: #10b981;
+        }
+
+        .info-value.highlight {
+            color: #dc2626;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✅ Tabs Bar -->
+<div class="tabs-bar" id="tabsBar">
+    <div class="tabs-container">
+        <div class="tabs-list" id="tabsList">
+            <!-- ✅ Tab الرئيسي (ثابت) -->
+            <div class="tab main-tab active" id="main-tab" onclick="switchTab('main-tab')">
+                <i class="fa-solid fa-table tab-icon"></i>
+                <span class="tab-title">Main Table</span>
+                <button class="tab-close">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <button class="new-tab-btn" onclick="addNewTab()" title="New Tab">
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </div>
+</div>
+
+<!-- ✅ المحتوى -->
+<div class="main-content">
+    <!-- ✅ Panel الرئيسي -->
+    <div class="tab-panel active" id="panel-main-tab">
+        <div class="card">
+            <h2 style="margin-bottom: 20px;">
+                <i class="fa-solid fa-table"></i>
+                Investment Calculation - Main Table
+            </h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Investment</th>
+                        <th>Type</th>
+                        <th>Calculation</th>
+                        <th>Zakat Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" value="Company A" readonly></td>
+                        <td><input type="text" value="Fund Investment" readonly></td>
+                        <td>
+                            <button class="btn btn-primary" onclick="openSubReturn('Company A')">
+                                <i class="fa-solid fa-file-import"></i>
+                                Sub-return
+                            </button>
+                            <button class="btn">Manual</button>
+                        </td>
+                        <td><input type="text" id="zakatAmount1" value="0.00" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" value="Company B" readonly></td>
+                        <td><input type="text" value="Stock Investment" readonly></td>
+                        <td>
+                            <button class="btn btn-primary" onclick="openSubReturn('Company B')">
+                                <i class="fa-solid fa-file-import"></i>
+                                Sub-return
+                            </button>
+                            <button class="btn">Manual</button>
+                        </td>
+                        <td><input type="text" id="zakatAmount2" value="0.00" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" value="Company C" readonly></td>
+                        <td><input type="text" value="Real Estate" readonly></td>
+                        <td>
+                            <button class="btn btn-primary" onclick="openSubReturn('Company C')">
+                                <i class="fa-solid fa-file-import"></i>
+                                Sub-return
+                            </button>
+                            <button class="btn">Manual</button>
+                        </td>
+                        <td><input type="text" id="zakatAmount3" value="0.00" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ✅ Panels ديناميكية تضاف هنا -->
+    <div id="dynamicPanels"></div>
+</div>
+
+<script>
+let tabCounter = 0;
+let activeTabId = 'main-tab';
+
+// ✅ فتح Sub-return كـ Tab جديد
+function openSubReturn(companyName) {
+    const tabId = `tab-${++tabCounter}`;
+    
+    // تحقق إذا في tab مفتوح لنفس الشركة
+    const existingTab = Array.from(document.querySelectorAll('.tab')).find(tab => 
+        tab.querySelector('.tab-title')?.textContent.includes(companyName)
+    );
+    
+    if (existingTab && existingTab.id !== 'main-tab') {
+        switchTab(existingTab.id);
+        return;
+    }
+    
+    // إنشاء Tab
+    const tab = document.createElement('div');
+    tab.className = 'tab';
+    tab.id = tabId;
+    tab.innerHTML = `
+        <i class="fa-solid fa-building tab-icon"></i>
+        <span class="tab-title">${companyName}</span>
+        <button class="tab-close" onclick="closeTab('${tabId}', event)">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    `;
+    tab.onclick = () => switchTab(tabId);
+    
+    document.getElementById('tabsList').appendChild(tab);
+    
+    // إنشاء Panel
+    const panel = document.createElement('div');
+    panel.className = 'tab-panel';
+    panel.id = `panel-${tabId}`;
+    panel.innerHTML = getSubReturnContent(companyName);
+    
+    document.getElementById('dynamicPanels').appendChild(panel);
+    
+    // تفعيل Tab
+    switchTab(tabId);
+}
+
+// ✅ محتوى Sub-return
+function getSubReturnContent(companyName) {
+    return `
+        <div class="card">
+            <h2 style="margin-bottom: 30px;">
+                <i class="fa-solid fa-building"></i>
+                ${companyName} - Subsidiary Return
+            </h2>
+            
+            <div class="sub-section">
+                <h3>Company Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Company Name:</span>
+                        <span class="info-value">${companyName} - Subsidiary</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">CR Number:</span>
+                        <span class="info-value">123456789${Math.floor(Math.random() * 10)}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Tax ID:</span>
+                        <span class="info-value">30012345678900${Math.floor(Math.random() * 10)}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Filing Period:</span>
+                        <span class="info-value">Q1 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <h3>Financial Data</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Total Revenue:</span>
+                        <span class="info-value amount">5,250,000.00 SAR</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Total Expenses:</span>
+                        <span class="info-value amount">3,800,000.00 SAR</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Net Profit:</span>
+                        <span class="info-value amount">1,450,000.00 SAR</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Zakat Amount:</span>
+                        <span class="info-value highlight">36,250.00 SAR</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <h3>Assets & Liabilities</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Amount (SAR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cash & Bank</td>
+                            <td>850,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>Accounts Receivable</td>
+                            <td>1,200,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>Inventory</td>
+                            <td>650,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>Fixed Assets</td>
+                            <td>2,100,000.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="text-align: right; margin-top: 30px; display: flex; gap: 10px; justify-content: flex-end;">
+                <button class="btn" onclick="switchTab('main-tab')">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to Main
+                </button>
+                <button class="btn btn-primary" onclick="applySubReturnData('${companyName}')">
+                    <i class="fa-solid fa-check"></i>
+                    Apply to Main Calculation
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// ✅ إضافة Tab جديد
+function addNewTab() {
+    const tabId = `tab-${++tabCounter}`;
+    
+    const tab = document.createElement('div');
+    tab.className = 'tab';
+    tab.id = tabId;
+    tab.innerHTML = `
+        <i class="fa-solid fa-file tab-icon"></i>
+        <span class="tab-title">New Document ${tabCounter}</span>
+        <button class="tab-close" onclick="closeTab('${tabId}', event)">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    `;
+    tab.onclick = () => switchTab(tabId);
+    
+    document.getElementById('tabsList').appendChild(tab);
+    
+    const panel = document.createElement('div');
+    panel.className = 'tab-panel';
+    panel.id = `panel-${tabId}`;
+    panel.innerHTML = `
+        <div class="card">
+            <h2>
+                <i class="fa-solid fa-file"></i>
+                New Document ${tabCounter}
+            </h2>
+            <p style="margin-top: 20px; color: #6b7280;">
+                Start working on your new document here...
+            </p>
+        </div>
+    `;
+    
+    document.getElementById('dynamicPanels').appendChild(panel);
+    switchTab(tabId);
+}
+
+// ✅ التبديل بين Tabs
+function switchTab(tabId) {
+    // إلغاء تفعيل الكل
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    
+    // تفعيل المحدد
+    const tab = document.getElementById(tabId);
+    const panel = document.getElementById(`panel-${tabId}`);
+    
+    if (tab && panel) {
+        tab.classList.add('active');
+        panel.classList.add('active');
+        activeTabId = tabId;
+        
+        // Scroll to active tab
+        tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+}
+
+// ✅ إغلاق Tab
+function closeTab(tabId, event) {
+    if (event) {
+        event.stopPropagation();
+    }
+    
+    // ✅ منع إغلاق Tab الرئيسي
+    if (tabId === 'main-tab') {
+        return;
+    }
+    
+    const tab = document.getElementById(tabId);
+    const panel = document.getElementById(`panel-${tabId}`);
+    
+    const wasActive = tab.classList.contains('active');
+    
+    tab.remove();
+    panel.remove();
+    
+    // إذا كان Tab المغلق هو النشط، افتح Main Tab
+    if (wasActive) {
+        switchTab('main-tab');
+    }
+}
+
+// ✅ تطبيق البيانات
+function applySubReturnData(companyName) {
+    alert(`✅ Applied data from ${companyName} to main calculation!`);
+    
+    // هنا حط الكود لتطبيق البيانات
+    // مثلاً: تعبئة Zakat Amount
+    
+    // الرجوع للـ Main Tab
+    switchTab('main-tab');
+}
+
+// ✅ Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    // Ctrl/Cmd + T = New Tab
+    if ((e.ctrlKey || e.metaKey) && e.key === 't') {
+        e.preventDefault();
+        addNewTab();
+    }
+    
+    // Ctrl/Cmd + W = Close Tab
+    if ((e.ctrlKey || e.metaKey) && e.key === 'w') {
+        e.preventDefault();
+        if (activeTabId !== 'main-tab') {
+            closeTab(activeTabId);
+        }
+    }
+});
+</script>
+
+</body>
+</html>

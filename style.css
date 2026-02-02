@@ -1450,6 +1450,7 @@ body {
     transform: translateX(-50%) translateY(5px);
     background: linear-gradient(135deg, var(--primary) 0%, #2D9B75 100%);
     color: white;
+    border:1px solid #ffffff8c;
     padding: 12px 16px;
     border-radius: 10px;
     font-size: 13px;
@@ -2305,4 +2306,250 @@ text-align: left !important;
 }
 .font-16px{
     font-size: 16px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ✅ Alert قابل للسحب - أحمر */
+.custom-alert-draggable {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
+    animation: alertSlideIn 0.3s ease-out;
+}
+
+.custom-alert-content-draggable {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    min-width: 400px;
+    max-width: 500px;
+    overflow: hidden;
+}
+
+/* ✅ Header - أحمر */
+.custom-alert-header-draggable {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+}
+
+.alert-drag-icon {
+    font-size: 16px;
+    opacity: 0.7;
+    cursor: move;
+}
+
+.alert-title {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.alert-title i {
+    font-size: 20px;
+}
+
+.alert-close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.alert-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* ✅ Body */
+.custom-alert-body-draggable {
+    padding: 24px 20px;
+    color: #374151;
+}
+
+.custom-alert-body-draggable p {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.custom-alert-body-draggable p:last-child {
+    margin-bottom: 0;
+}
+
+/* ✅ Footer */
+.custom-alert-footer-draggable {
+    padding: 16px 20px;
+    background: #f9fafb;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    border-top: 1px solid #e5e7eb;
+}
+
+.alert-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.alert-btn-action {
+    background: #dc2626;
+    color: white;
+}
+
+.alert-btn-action:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.alert-btn-cancel {
+    background: white;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+}
+
+.alert-btn-cancel:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+/* ✅ Animation */
+@keyframes alertSlideIn {
+    from {
+        transform: translate(100%, -50%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, -50%);
+        opacity: 1;
+    }
+}
+
+/* ✅ أزرار Calculation */
+.btn-calculation {
+    padding: 6px 16px;
+    margin: 0 4px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    color: #374151;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-calculation:hover {
+    background: #f3f4f6;
+    border-color: #10b981;
+}
+
+/* ✅ Input focus */
+.zakat-amount:focus {
+    outline: none;
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
