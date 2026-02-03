@@ -2567,7 +2567,7 @@ text-align: left !important;
 .tabs-container {
     display: flex;
     align-items: center;
-    padding: 8px 8px 0 8px;
+    /* padding: 8px 8px 0 8px; */
 }
 
 .tabs-list {
@@ -2668,25 +2668,53 @@ text-align: left !important;
     to { opacity: 1; }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.btn-open-all-tabs {
+    transition: all 0.2s;
+}
+
+.btn-open-all-tabs:hover {
+    background: #2a9d7a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(60, 181, 139, 0.3);
+}
+
+.btn-open-all-tabs:active {
+    transform: translateY(0);
+}
+
       .tabs-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #202124;
-            z-index: 9999;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            display: none;
+              position: relative;
+            
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--primary-50);
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
         }
 
         .tabs-bar.show {
             display: block;
-        }
-
-        .tabs-container {
-            display: flex;
-            align-items: center;
-            padding: 8px 8px 0 8px;
+              padding: 5px 5px 0 5px;
         }
 
         .tabs-list {
@@ -2698,10 +2726,10 @@ text-align: left !important;
         }
 
         .tab {
-            background: #35363a;
-            color: #9aa0a6;
+               background: #e7e7e7;
+    color: #000;
             border-radius: 8px 8px 0 0;
-            padding: 10px 16px;
+            padding: 5px 10px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -2717,7 +2745,7 @@ text-align: left !important;
         }
 
         .tab.active {
-            background: #292a2d;
+            background:  var(--primary);
             color: white;
         }
 

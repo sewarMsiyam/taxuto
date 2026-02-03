@@ -5118,6 +5118,7 @@
                                             <th class="text-center">Type</th>
                                             <th>Calculation</th>
                                             <th>Zakat Amount</th>
+                                            <th>test</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -5134,6 +5135,8 @@
                                             </td>
                                             <td><input type="text" class="model-table-input zakat-amount" value="0.00"
                                                     readonly></td>
+                                             <td><input type="text" class="model-table-input text-center"
+                                                    value="test"></td>
                                         </tr>
                                          <tr>
                                             <td><input type="text" class="model-table-input" value="2" readonly></td>
@@ -5148,8 +5151,24 @@
                                             </td>
                                             <td><input type="text" class="model-table-input zakat-amount" value="0.00"
                                                     readonly></td>
+                                             <td><input type="text" class="model-table-input text-center"
+                                                    value="test"></td>
                                         </tr>
                                     </tbody>
+                                    <tfoot>
+                                        <tr class="model-total-row">
+                                            <td colspan="3" class="total-label"></td>
+                                            <td>
+                                                <button class="btn-open-all-tabs" onclick="openAllSubReturns()" style="padding: 10px 20px; background: #3CB58B; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+                <i class="fa-solid fa-layer-group"></i>
+                all sub-returns
+            </button>
+                                            </td>
+                                            <td><input type="text" class="model-table-input" value="0.00" readonly>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
@@ -6208,6 +6227,8 @@
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
     }
+
+    
 </script>
         <script src="validation.js"></script>
         <script src="conditional-show-hide.js"></script>
