@@ -100,7 +100,7 @@ function goToTab(companyName) {
         switchTab(existingTab.id);
         showToast('Info', `Switched to ${companyName}`, 'info');
     } else {
-        alert(`⚠️ Tab for ${companyName} not found!`);
+       openSubReturn(companyName);
     }
 }
 
@@ -375,11 +375,11 @@ function submitSubReturnData(companyName, tabId) {
         }
     });
 
-    closeTab(tabId);
+    // ✅ ما نحذف الـ Tab - بس نرجع للـ Main
     switchTab('main-tab');
 
     if (applied) {
-        showToast('Success', `Data from ${companyName} applied successfully!`, 'success');
+        showToast('Success', `Data from ${companyName} saved successfully!`, 'success');
     }
 }
 
@@ -468,6 +468,13 @@ function openAllSubReturns() {
     showDraggableAlert();
 }
 
+function confirmAllSubReturns() {
+    const alert = document.querySelector('.custom-alert-draggable');
+    if (alert) alert.remove();
+    
+    openAllSubReturnsDirectly();
+}
+
 function openAllSubReturnsDirectly() {
     const subReturnButtons = document.querySelectorAll('.modal-table tbody .btn-calculation[data-type="sub-return"]');
     
@@ -482,6 +489,7 @@ function openAllSubReturnsDirectly() {
     }
 
     let openedCount = 0;
+    let firstTabId = null;
 
     subReturnButtons.forEach((button, index) => {
         const row = button.closest('tr');
@@ -508,7 +516,6 @@ function openAllSubReturnsDirectly() {
             }
         }
 
-        // ✅ تفعيل زر Edit
         const editBtn = row.querySelector('td:nth-child(4) button:first-child');
         const investmentInput = row.querySelector('td:nth-child(2) input');
         const companyName = investmentInput ? investmentInput.value.trim() : '';
@@ -525,16 +532,70 @@ function openAllSubReturnsDirectly() {
         const rowNumber = rowNumberInput ? rowNumberInput.value.trim() : (index + 1);
         
         if (companyName && companyName !== '') {
-            openSubReturnInBackground(companyName, rowNumber);
+            const tabId = openSubReturnAndGetId(companyName, rowNumber);
+            
+            if (index === 0) {
+                firstTabId = tabId;
+            }
+            
             openedCount++;
         }
     });
+
+    // ✅ الانتقال لأول Tab
+    if (firstTabId) {
+        setTimeout(() => {
+            switchTab(firstTabId);
+        }, 100);
+    }
 
     setTimeout(() => {
         showToast('Success', `Opened ${openedCount} sub-returns!`, 'success');
     }, 300);
 }
 
+function openSubReturnAndGetId(companyName, rowNumber = '') {
+    if (!tabsInitialized) {
+        initializeTabs();
+        tabsInitialized = true;
+    }
+
+    const tabDisplayName = rowNumber ? `${rowNumber}. ${companyName}` : companyName;
+
+    const existingTab = Array.from(document.querySelectorAll('.tab')).find(tab => 
+        tab.getAttribute('data-company') === companyName
+    );
+
+    if (existingTab && existingTab.id !== 'main-tab') {
+        return existingTab.id;
+    }
+
+    const tabId = `tab-${++tabCounter}`;
+
+    const tab = document.createElement('div');
+    tab.className = 'tab';
+    tab.id = tabId;
+    tab.setAttribute('data-company', companyName);
+    tab.innerHTML = `
+        <i class="fa-solid fa-building tab-icon"></i>
+        <span class="tab-title">${tabDisplayName}</span>
+        <button class="tab-close" onclick="closeTab('${tabId}', event)">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    `;
+    tab.onclick = () => switchTab(tabId);
+
+    document.getElementById('tabsList').appendChild(tab);
+
+    const panel = document.createElement('div');
+    panel.className = 'tab-panel';
+    panel.id = `panel-${tabId}`;
+    panel.innerHTML = getSubReturnContent(companyName, tabId);
+
+    document.getElementById('dynamicPanels').appendChild(panel);
+
+    return tabId;
+}
 document.addEventListener('click', function(e) {
     const closeBtn = e.target.closest('.modal-close, .button-close-modal');
     

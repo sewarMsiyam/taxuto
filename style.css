@@ -2810,9 +2810,9 @@ text-align: left !important;
         }
 
         .custom-alert-header-draggable {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            background: #3cb58b;
             color: white;
-            padding: 16px 20px;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
             gap: 12px;
