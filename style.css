@@ -2901,3 +2901,8 @@ text-align: left !important;
         .alert-btn-cancel:hover {
             background: #f3f4f6;
         }
+
+    .section-header-m .button-close-modal{
+        border: 0;
+        background: transparent;
+    }
