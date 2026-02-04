@@ -16,14 +16,21 @@ document.addEventListener('click', function (e) {
         zakatInput.style.background = '#fff3cd';
         zakatInput.style.borderColor = '#ffc107';
 
-        // ✅ لون Manual
-        button.style.background = '#2F2CB0';
+        button.style.background = '#10b981';
         button.style.color = '#fff';
 
         const otherBtn = row.querySelector('[data-type="sub-return"]');
         if (otherBtn) {
             otherBtn.style.background = '';
             otherBtn.style.color = '';
+        }
+
+        // ✅ تعطيل زر Edit
+        const editBtn = row.querySelector('td:nth-child(4) button:first-child');
+        if (editBtn) {
+            editBtn.disabled = true;
+            editBtn.style.opacity = '0.5';
+            editBtn.style.cursor = 'not-allowed';
         }
 
         // ✅ حذف الـ Tab المفتوحة
@@ -39,18 +46,11 @@ document.addEventListener('click', function (e) {
             zakatInput.value = '0.00';
         }
 
-        // ✅ فتح Tab مباشرة بدون Alert
-        const investmentInput = row.querySelector('td:nth-child(2) input');
-        const companyName = investmentInput ? investmentInput.value : 'Company';
-        
-        openSubReturn(companyName);
-
         zakatInput.readOnly = true;
         zakatInput.style.background = '';
         zakatInput.style.borderColor = '';
 
-        // ✅ لون Sub-return
-        button.style.background = '#3CB58B';
+        button.style.background = '#10b981';
         button.style.color = '#fff';
 
         const otherBtn = row.querySelector('[data-type="manual"]');
@@ -58,8 +58,98 @@ document.addEventListener('click', function (e) {
             otherBtn.style.background = '';
             otherBtn.style.color = '';
         }
+
+        // ✅ تفعيل زر Edit
+        const editBtn = row.querySelector('td:nth-child(4) button:first-child');
+        const investmentInput = row.querySelector('td:nth-child(2) input');
+        const companyName = investmentInput ? investmentInput.value.trim() : '';
+
+        if (editBtn) {
+            editBtn.disabled = false;
+            editBtn.style.opacity = '1';
+            editBtn.style.cursor = 'pointer';
+            editBtn.setAttribute('data-company', companyName);
+            editBtn.classList.add('edit-btn-active');
+        }
+
+        // ✅ فتح Tab في الخلفية (بدون الانتقال)
+        openSubReturnInBackground(companyName);
     }
 });
+
+// ✅ Event listener لزر Edit
+document.addEventListener('click', function(e) {
+    const button = e.target.closest('td:nth-child(4) button:first-child');
+    if (!button || button.disabled) return;
+
+    const companyName = button.getAttribute('data-company');
+    
+    if (companyName && button.classList.contains('edit-btn-active')) {
+        e.preventDefault();
+        goToTab(companyName);
+    }
+});
+
+// ✅ الانتقال إلى Tab موجود
+function goToTab(companyName) {
+    const existingTab = Array.from(document.querySelectorAll('.tab')).find(tab => 
+        tab.getAttribute('data-company') === companyName
+    );
+
+    if (existingTab && existingTab.id !== 'main-tab') {
+        switchTab(existingTab.id);
+        showToast('Info', `Switched to ${companyName}`, 'info');
+    } else {
+        alert(`⚠️ Tab for ${companyName} not found!`);
+    }
+}
+
+// ✅ فتح Tab في الخلفية (بدون الانتقال)
+function openSubReturnInBackground(companyName, rowNumber = '') {
+    if (!tabsInitialized) {
+        initializeTabs();
+        tabsInitialized = true;
+    }
+
+    const tabDisplayName = rowNumber ? `${rowNumber}. ${companyName}` : companyName;
+
+    // ✅ تحقق إذا في tab مفتوح لنفس الشركة
+    const existingTab = Array.from(document.querySelectorAll('.tab')).find(tab => 
+        tab.getAttribute('data-company') === companyName
+    );
+
+    if (existingTab && existingTab.id !== 'main-tab') {
+        // ✅ Tab موجود، ما نفتح واحد جديد
+        return;
+    }
+
+    const tabId = `tab-${++tabCounter}`;
+
+    const tab = document.createElement('div');
+    tab.className = 'tab';
+    tab.id = tabId;
+    tab.setAttribute('data-company', companyName);
+    tab.innerHTML = `
+        <i class="fa-solid fa-building tab-icon"></i>
+        <span class="tab-title">${tabDisplayName}</span>
+        <button class="tab-close" onclick="closeTab('${tabId}', event)">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    `;
+    tab.onclick = () => switchTab(tabId);
+
+    document.getElementById('tabsList').appendChild(tab);
+
+    const panel = document.createElement('div');
+    panel.className = 'tab-panel';
+    panel.id = `panel-${tabId}`;
+    panel.innerHTML = getSubReturnContent(companyName, tabId);
+
+    document.getElementById('dynamicPanels').appendChild(panel);
+
+    // ✅ لا نفعّل الـ Tab (يبقى في الخلفية)
+    console.log(`✅ Created tab in background: ${companyName}`);
+}
 
 // ================================
 // ✅ Alert قابل للسحب (للاستخدام في all sub-returns فقط)
@@ -140,12 +230,10 @@ function makeDraggable(element) {
     }
 }
 
-// ✅ تأكيد فتح كل الإقرارات الفرعية
 function confirmAllSubReturns() {
     const alert = document.querySelector('.custom-alert-draggable');
     if (alert) alert.remove();
     
-    // ✅ فتح كل الإقرارات
     openAllSubReturnsDirectly();
 }
 
@@ -228,7 +316,7 @@ function getSubReturnContent(companyName, tabId) {
             <div class="container-content">
                 <div style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
                     <div style="text-align: center; margin-bottom: 20px;">
-                        <div style="width: 120px; height: 120px; margin: 0 auto 30px; background: linear-gradient(135deg, #3CB58B 0%, #2a9d7a 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(60, 181, 139, 0.3);">
+                        <div style="width: 120px; height: 120px; margin: 0 auto 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);">
                             <i class="fa-solid fa-file-invoice" style="font-size: 60px; color: white;"></i>
                         </div>
                         
@@ -250,7 +338,7 @@ function getSubReturnContent(companyName, tabId) {
                             <button onclick="closeTab('${tabId}')" style="padding: 14px 28px; background: white; border: 2px solid #e5e7eb; color: #6b7280; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 15px;">
                                 إلغاء
                             </button>
-                            <button onclick="submitSubReturnData('${companyName}', '${tabId}')" style="padding: 14px 28px; background: #3CB58B; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 15px;">
+                            <button onclick="submitSubReturnData('${companyName}', '${tabId}')" style="padding: 14px 28px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 15px;">
                                 إرسال
                             </button>
                         </div>
@@ -262,25 +350,8 @@ function getSubReturnContent(companyName, tabId) {
     `;
 }
 
-function calculateSubReturnTotal(tabId) {
-    const revenueInput = document.getElementById(`revenue-${tabId}`);
-    const expensesInput = document.getElementById(`expenses-${tabId}`);
-    const netProfitInput = document.getElementById(`netprofit-${tabId}`);
-    const zakatInput = document.getElementById(`zakat-${tabId}`);
-
-    if (revenueInput && expensesInput && netProfitInput && zakatInput) {
-        const revenue = parseFloat(revenueInput.value.replace(/,/g, '')) || 0;
-        const expenses = parseFloat(expensesInput.value.replace(/,/g, '')) || 0;
-        const netProfit = revenue - expenses;
-        const zakat = netProfit * 0.025;
-
-        netProfitInput.value = formatNumber(netProfit);
-        zakatInput.value = formatNumber(zakat);
-    }
-}
-
 function submitSubReturnData(companyName, tabId) {
-    const zakatValue = '0.00'; // قيمة افتراضية
+    const zakatValue = '0.00';
 
     const rows = document.querySelectorAll('.modal-table tbody tr');
     let applied = false;
@@ -291,8 +362,8 @@ function submitSubReturnData(companyName, tabId) {
             const zakatInput = row.querySelector('.zakat-amount');
             if (zakatInput) {
                 zakatInput.value = zakatValue;
-                zakatInput.style.background = '#ecf9f4';
-                zakatInput.style.borderColor = '#3CB58B';
+                zakatInput.style.background = '#d1fae5';
+                zakatInput.style.borderColor = '#10b981';
 
                 setTimeout(() => {
                     zakatInput.style.background = '';
@@ -364,8 +435,6 @@ function closeTabByCompanyName(companyName) {
             if (wasActive) {
                 switchTab('main-tab');
             }
-            
-            console.log(`🗑️ Deleted tab: ${companyName}`);
         }
     });
 
@@ -374,8 +443,6 @@ function closeTabByCompanyName(companyName) {
 
 function checkAndHideTabsBar() {
     const remainingTabs = document.querySelectorAll('.tab:not(.main-tab)');
-    
-    console.log('🔍 Tabs remaining:', remainingTabs.length);
     
     if (remainingTabs.length === 0) {
         const tabsBar = document.getElementById('tabsBar');
@@ -394,22 +461,15 @@ function checkAndHideTabsBar() {
         tabsInitialized = false;
         tabCounter = 0;
         activeTabId = 'main-tab';
-        
-        console.log('✅ Tabs bar hidden - all tabs closed');
     }
 }
 
-// ✅ فتح كل الصفوف كـ Tabs مع Alert
 function openAllSubReturns() {
-    // ✅ إظهار الـ Alert أولاً
     showDraggableAlert();
 }
 
-// ✅ فتح كل الصفوف مباشرة (بعد التأكيد)
 function openAllSubReturnsDirectly() {
     const subReturnButtons = document.querySelectorAll('.modal-table tbody .btn-calculation[data-type="sub-return"]');
-    
-    console.log('🔍 عدد أزرار Sub-return:', subReturnButtons.length);
     
     if (subReturnButtons.length === 0) {
         alert('⚠️ No sub-return buttons found!');
@@ -428,18 +488,15 @@ function openAllSubReturnsDirectly() {
         
         if (!row) return;
         
-        // ✅ تفعيل زر Sub-return
-        button.style.background = '#3CB58B';
+        button.style.background = '#10b981';
         button.style.color = '#fff';
         
-        // ✅ إلغاء تفعيل زر Manual
         const manualBtn = row.querySelector('[data-type="manual"]');
         if (manualBtn) {
             manualBtn.style.background = '';
             manualBtn.style.color = '';
         }
         
-        // ✅ تعطيل input الزكاة
         const zakatInput = row.querySelector('.zakat-amount');
         if (zakatInput) {
             zakatInput.readOnly = true;
@@ -450,17 +507,25 @@ function openAllSubReturnsDirectly() {
                 zakatInput.value = '0.00';
             }
         }
+
+        // ✅ تفعيل زر Edit
+        const editBtn = row.querySelector('td:nth-child(4) button:first-child');
+        const investmentInput = row.querySelector('td:nth-child(2) input');
+        const companyName = investmentInput ? investmentInput.value.trim() : '';
+
+        if (editBtn && companyName) {
+            editBtn.disabled = false;
+            editBtn.style.opacity = '1';
+            editBtn.style.cursor = 'pointer';
+            editBtn.setAttribute('data-company', companyName);
+            editBtn.classList.add('edit-btn-active');
+        }
         
         const rowNumberInput = row.querySelector('td:nth-child(1) input');
         const rowNumber = rowNumberInput ? rowNumberInput.value.trim() : (index + 1);
         
-        const investmentInput = row.querySelector('td:nth-child(2) input');
-        const companyName = investmentInput ? investmentInput.value.trim() : '';
-        
-        console.log(`📌 صف ${index + 1}: رقم=${rowNumber}, شركة=${companyName}`);
-        
         if (companyName && companyName !== '') {
-            openSubReturn(companyName, rowNumber);
+            openSubReturnInBackground(companyName, rowNumber);
             openedCount++;
         }
     });
@@ -470,7 +535,6 @@ function openAllSubReturnsDirectly() {
     }, 300);
 }
 
-// ✅ إخفاء الشريط عند إغلاق Modal
 document.addEventListener('click', function(e) {
     const closeBtn = e.target.closest('.modal-close, .button-close-modal');
     
@@ -491,18 +555,15 @@ document.addEventListener('click', function(e) {
         tabsInitialized = false;
         tabCounter = 0;
         activeTabId = 'main-tab';
-        
-        console.log('✅ Modal closed - tabs reset');
     }
 });
 
-// ✅ Utilities
 function formatNumber(num) {
     return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function showToast(title, message, type = 'info') {
-    const colors = { success: '#3CB58B', error: '#EF4444', info: '#3B82F6' };
+    const colors = { success: '#10B981', error: '#EF4444', info: '#3B82F6' };
     const toast = document.createElement('div');
     toast.style.cssText = `position: fixed; top: 80px; right: 20px; background: white; border-left: 4px solid ${colors[type]}; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); padding: 16px 20px; min-width: 300px; z-index: 10001;`;
     toast.innerHTML = `<div style="font-weight: 600; color: #1F2937; margin-bottom: 4px;">${title}</div><div style="font-size: 14px; color: #6B7280;">${message}</div>`;

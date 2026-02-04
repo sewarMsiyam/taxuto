@@ -2542,25 +2542,9 @@ text-align: left !important;
     transition: all 0.2s;
 }
 
-.btn-sub-return{
-    background-color: #D9F2E9;
-    color: #267358;
-    border: 1px solid #D9F2E9;
-}
-.btn-manual{
-    background-color: #2e2cb02f;
-    color: #2F2CB0;
-    border: 1px solid #2F2CB02E;
-}
-.btn-sub-return:hover{
-    background-color: #f3f4f6;
-    color: #267358;
-    border: 1px solid #267358;
-}
-.btn-manual:hover{
-    background-color: #f3f4f6;
-    color: #2F2CB0;
-    border: 1px solid #2F2CB0;
+.btn-calculation:hover {
+    background: #f3f4f6;
+    border-color: #10b981;
 }
 
 /* ✅ Input focus */
