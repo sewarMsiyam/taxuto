@@ -40,7 +40,7 @@ body {
 }
 
 .container-main {
-    min-height: 100vh;
+    min-height: auto;
     width: 100%;
     background: var(--white);
     padding: 5px 24px;
@@ -2741,7 +2741,7 @@ text-align: left !important;
         }
 
         .tab:hover {
-            background: #3c4043;
+            background: #3cb58b69;
         }
 
         .tab.active {
@@ -2767,7 +2767,7 @@ text-align: left !important;
             border-radius: 50%;
             background: transparent;
             border: none;
-            color: #9aa0a6;
+            color: #fff;
             cursor: pointer;
             display: flex;
             align-items: center;

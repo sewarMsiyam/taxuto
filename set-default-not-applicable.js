@@ -41,6 +41,27 @@
                 }
             }
         });
+
+        // ✅ تأكد من أن كل الـ inputs تبقى readonly
+        makeAllInputsReadonly();
+    }
+
+    /**
+     * ✅ جعل كل الـ inputs في الجدول readonly
+     */
+    function makeAllInputsReadonly() {
+        const allInputs = document.querySelectorAll('.value-cell input.table-input');
+        
+        allInputs.forEach(input => {
+            input.readOnly = true;
+            input.style.cursor = 'not-allowed';
+            
+            // ✅ إذا القيمة فاضية، حط 0.00
+            if (!input.value || input.value.trim() === '') {
+                input.value = '0.00';
+                input.style.opacity = '0.6';
+            }
+        });
     }
 
     // Run when DOM is ready
@@ -51,7 +72,6 @@
     }
 
     // Also run when navigating between wizard pages
-    // Listen for page changes
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.attributeName === 'class' || mutation.attributeName === 'style') {
@@ -72,6 +92,32 @@
             attributes: true,
             attributeFilter: ['class', 'style']
         });
+    });
+
+    // ✅ Event listener لتغيير Radio Buttons
+    document.addEventListener('change', function(e) {
+        if (e.target.type === 'radio') {
+            const row = e.target.closest('tr');
+            const valueInput = row?.querySelector('.value-cell input.table-input');
+            
+            if (valueInput) {
+                // ✅ دائماً readonly
+                valueInput.readOnly = true;
+                valueInput.style.cursor = 'not-allowed';
+                
+                if (e.target.value === 'not-applicable') {
+                    // Not Applicable - تصفير القيمة
+                    valueInput.value = '0.00';
+                    valueInput.style.opacity = '0.6';
+                } else if (e.target.value === 'applicable') {
+                    // Applicable - السماح بالقيمة الموجودة أو الافتراضية
+                    valueInput.style.opacity = '1';
+                    if (!valueInput.value || valueInput.value === '0.00') {
+                        valueInput.value = '0.00';
+                    }
+                }
+            }
+        }
     });
 
 })();
