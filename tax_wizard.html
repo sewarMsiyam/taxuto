@@ -6228,7 +6228,51 @@
         setTimeout(() => toast.remove(), 3000);
     }
 
+    // ✅ فتح كل الصفوف كـ Tabs (بعدد أزرار Sub-return)
+function openAllSubReturns() {
+    // ✅ جيب بس الصفوف اللي فيها زر Sub-return
+    const subReturnButtons = document.querySelectorAll('.modal-table tbody .btn-calculation[data-type="sub-return"]');
     
+    console.log('🔍 عدد أزرار Sub-return:', subReturnButtons.length); // Debug
+    
+    if (subReturnButtons.length === 0) {
+        alert('⚠️ No sub-return buttons found!');
+        return;
+    }
+
+    if (!tabsInitialized) {
+        initializeTabs();
+        tabsInitialized = true;
+    }
+
+    let openedCount = 0;
+
+    // ✅ Loop على الأزرار (كل زر = صف واحد)
+    subReturnButtons.forEach((button, index) => {
+        const row = button.closest('tr');
+        
+        if (!row) return;
+        
+        // ✅ جيب رقم الصف
+        const rowNumberInput = row.querySelector('td:nth-child(1) input');
+        const rowNumber = rowNumberInput ? rowNumberInput.value.trim() : (index + 1);
+        
+        // ✅ جيب اسم الشركة من عمود Investment
+        const investmentInput = row.querySelector('td:nth-child(2) input');
+        const companyName = investmentInput ? investmentInput.value.trim() : '';
+        
+        console.log(`📌 صف ${index + 1}: رقم=${rowNumber}, شركة=${companyName}`);
+        
+        if (companyName && companyName !== '') {
+            openSubReturn(companyName, rowNumber);
+            openedCount++;
+        }
+    });
+
+    setTimeout(() => {
+        showToast('Success', `Opened ${openedCount} sub-returns!`, 'success');
+    }, 300);
+}
 </script>
         <script src="validation.js"></script>
         <script src="conditional-show-hide.js"></script>
