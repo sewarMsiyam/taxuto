@@ -5144,64 +5144,66 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input type="text" class="model-table-input text-center" value="1" readonly></td>
+                                            <td><input type="text" class="model-table-input text-center" value="1"
+                                                    readonly></td>
                                             <td><input type="text" class="model-table-input text-center"
                                                     value="Company A"></td>
                                             <td><input type="text" class="model-table-input text-center"
                                                     value="Fund Investment"></td>
                                             <td>
-                                                <button class="btn-calculation"
+                                                <button class="btn-calculation btn-sub-return"
                                                     data-type="sub-return">Sub-return</button>
-                                                <button class="btn-calculation" data-type="manual">Manual</button>
+                                                <button class="btn-calculation btn-manual"
+                                                    data-type="manual">Manual</button>
                                             </td>
                                             <td><input type="text" class="model-table-input zakat-amount" value="0.00"
                                                     readonly></td>
-                                            <td><input type="text" class="model-table-input text-center" value="test">
+                                            <td><input type="text" class="model-table-input text-center text-red"
+                                                    value="test">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" class="model-table-input text-center" value="2" readonly></td>
+                                            <td><input type="text" class="model-table-input text-center" value="2"
+                                                    readonly></td>
                                             <td><input type="text" class="model-table-input text-center"
                                                     value="Company B"></td>
                                             <td><input type="text" class="model-table-input text-center"
                                                     value="Fund Investment"></td>
                                             <td>
-                                                <button class="btn-calculation"
+                                                <button class="btn-calculation btn-sub-return"
                                                     data-type="sub-return">Sub-return</button>
-                                                <button class="btn-calculation" data-type="manual">Manual</button>
+                                                <button class="btn-calculation btn-manual"
+                                                    data-type="manual">Manual</button>
                                             </td>
                                             <td><input type="text" class="model-table-input zakat-amount" value="0.00"
                                                     readonly></td>
-                                            <td><input type="text" class="model-table-input text-center" value="test">
+                                            <td><input type="text" class="model-table-input text-center text-red"
+                                                    value="test">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" class="model-table-input text-center" value="3" readonly></td>
+                                            <td><input type="text" class="model-table-input text-center" value="3"
+                                                    readonly></td>
                                             <td><input type="text" class="model-table-input text-center"
                                                     value="Company C"></td>
-                                            <td><input type="text" class="model-table-input text-center"
+                                            <td><input type="text" class="model-table-input text-center text-red"
                                                     value="Fund Investment"></td>
                                             <td>
-                                                <button class="btn-calculation"
+                                                <button class="btn-calculation btn-sub-return"
                                                     data-type="sub-return">Sub-return</button>
-                                                <button class="btn-calculation" data-type="manual">Manual</button>
+                                                <button class="btn-calculation btn-manual"
+                                                    data-type="manual">Manual</button>
                                             </td>
                                             <td><input type="text" class="model-table-input zakat-amount" value="0.00"
                                                     readonly></td>
-                                            <td><input type="text" class="model-table-input text-center text-red" value="test">
+                                            <td><input type="text" class="model-table-input text-center text-red"
+                                                    value="test">
                                             </td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr class="model-total-row">
-                                            <td colspan="3" class="total-label"></td>
-                                            <td>
-                                                <button class="btn-open-all-tabs" onclick="openAllSubReturns()"
-                                                    style="padding: 10px 20px; background: #3CB58B; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
-                                                    <i class="fa-solid fa-layer-group"></i>
-                                                    all sub-returns
-                                                </button>
-                                            </td>
+                                            <td colspan="4" class="total-label"></td>
                                             <td><input type="text" class="model-table-input" value="0.00" readonly>
                                             </td>
                                             <td></td>
@@ -5214,6 +5216,11 @@
 
                     <div class="modal-footer">
                         <div class="flex gap-10">
+                            <button class="btn-open-all-tabs" onclick="openAllSubReturns()"
+                                style="padding: 10px 20px; background: #3CB58B; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+                                <i class="fa-solid fa-layer-group"></i>
+                                Prepare sub-returns
+                            </button>
                         </div>
                         <div class="flex gap-10">
                             <button class="modal-btn button-save-modal">
