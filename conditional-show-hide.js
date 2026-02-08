@@ -1,4 +1,4 @@
-// Conditional Show/Hide for "Other Income" Section
+// Conditional Show/Hide for "Do you have other Income or gains/losses?	" Section
 // Add this script after validation.js
 
 (function() {

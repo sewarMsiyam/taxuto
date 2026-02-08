@@ -5248,10 +5248,153 @@
                                 Prepare sub-returns
                             </button>
                         </div>
-                        <button onclick="restartZakatEntitiesTutorial(); startTutorial();" 
-        style="padding: 10px 20px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
-    <i class="fa-solid fa-question-circle"></i> إعادة التوضيح
-</button>
+                        <div class="flex gap-10">
+                            <button class="modal-btn button-save-modal">
+                                <i class="fa-solid fa-check"></i> Confirm& apply
+                            </button>
+                            <button class="modal-btn button-close-modal"
+                                onclick="this.closest('.modal').classList.remove('show')">
+                                <i class="fa-solid fa-times"></i> close
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="modal" id="modal-Zakat-Accountant">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-header">
+                            <div class="section-header-m w-98">
+                                <span class="section-header-text">Zakat On Investments In External Entities As Per The Certified Accountant</span>
+                                <button class="modal-close button-close-modal"
+                                    onclick="this.closest('.modal').classList.remove('show')">&times;</button>
+                            </div>
+                        </div>
+                        <div class="mx-auto w-98">
+                            <div class="table-container">
+                                <table class="modal-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="w-35px">
+                                                <span class="primary-model-icon-table"><svg width="14" height="10"
+                                                        viewBox="0 0 14 10" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <rect x="3.00012" y="6" width="1.66667" height="8.16667"
+                                                            rx="0.833333" transform="rotate(-90 3.00012 6)"
+                                                            fill="white" />
+                                                    </svg>
+                                                </span>
+                                            </th>
+                                            <th class="text-center">Investment</th>
+                                            <th class="text-center">Type</th>
+                                            <th>Calculation</th>
+                                            <th>Zakat Amount</th>
+                                            <th>test</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="model-table-input text-center" value="1"
+                                                    readonly></td>
+                                            <td><input type="text" class="model-table-input text-center"
+                                                    value="Company A"></td>
+                                            <td><input type="text" class="model-table-input text-center"
+                                                    value="Fund Investment"></td>
+                                            <td>
+                                                 <button class="" disabled="" style="opacity: 0.5; cursor: not-allowed;">
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                        <path d="M5.8335 5.8335H5.00016C4.55814 5.8335 4.13421 6.00909 3.82165 6.32165C3.50909 6.63421 3.3335 7.05814 3.3335 7.50016V15.0002C3.3335 15.4422 3.50909 15.8661 3.82165 16.1787C4.13421 16.4912 4.55814 16.6668 5.00016 16.6668H12.5002C12.9422 16.6668 13.3661 16.4912 13.6787 16.1787C13.9912 15.8661 14.1668 15.4422 14.1668 15.0002V14.1668" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M13.3333 4.16676L15.8333 6.66676M16.9875 5.48759C17.3157 5.15938 17.5001 4.71424 17.5001 4.25009C17.5001 3.78594 17.3157 3.34079 16.9875 3.01259C16.6593 2.68438 16.2142 2.5 15.75 2.5C15.2858 2.5 14.8407 2.68438 14.5125 3.01259L7.5 10.0001V12.5001H10L16.9875 5.48759Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                                <button class="btn-calculation btn-sub-return"
+                                                    data-type="sub-return">Sub-return</button>
+                                                <button class="btn-calculation btn-manual"
+                                                    data-type="manual">Manual</button>
+                                            </td>
+                                            <td><input type="text" class="model-table-input zakat-amount" value="0.00"
+                                                    readonly></td>
+                                            <td><input type="text" class="model-table-input text-center text-red"
+                                                    value="test">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="model-table-input text-center" value="2"
+                                                    readonly></td>
+                                            <td><input type="text" class="model-table-input text-center"
+                                                    value="Company B"></td>
+                                            <td><input type="text" class="model-table-input text-center"
+                                                    value="Fund Investment"></td>
+                                            <td>
+                                                 <button class="" disabled="" style="opacity: 0.5; cursor: not-allowed;">
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                        <path d="M5.8335 5.8335H5.00016C4.55814 5.8335 4.13421 6.00909 3.82165 6.32165C3.50909 6.63421 3.3335 7.05814 3.3335 7.50016V15.0002C3.3335 15.4422 3.50909 15.8661 3.82165 16.1787C4.13421 16.4912 4.55814 16.6668 5.00016 16.6668H12.5002C12.9422 16.6668 13.3661 16.4912 13.6787 16.1787C13.9912 15.8661 14.1668 15.4422 14.1668 15.0002V14.1668" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M13.3333 4.16676L15.8333 6.66676M16.9875 5.48759C17.3157 5.15938 17.5001 4.71424 17.5001 4.25009C17.5001 3.78594 17.3157 3.34079 16.9875 3.01259C16.6593 2.68438 16.2142 2.5 15.75 2.5C15.2858 2.5 14.8407 2.68438 14.5125 3.01259L7.5 10.0001V12.5001H10L16.9875 5.48759Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                                <button class="btn-calculation btn-sub-return"
+                                                    data-type="sub-return">Sub-return</button>
+                                                <button class="btn-calculation btn-manual"
+                                                    data-type="manual">Manual</button>
+                                            </td>
+                                            <td><input type="text" class="model-table-input zakat-amount" value="0.00"
+                                                    readonly></td>
+                                            <td><input type="text" class="model-table-input text-center text-red"
+                                                    value="test">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="model-table-input text-center" value="3"
+                                                    readonly></td>
+                                            <td><input type="text" class="model-table-input text-center"
+                                                    value="Company C"></td>
+                                            <td><input type="text" class="model-table-input text-center text-red"
+                                                    value="Fund Investment"></td>
+                                            <td>
+                                                 <button class="" disabled="" style="opacity: 0.5; cursor: not-allowed;">
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                        <path d="M5.8335 5.8335H5.00016C4.55814 5.8335 4.13421 6.00909 3.82165 6.32165C3.50909 6.63421 3.3335 7.05814 3.3335 7.50016V15.0002C3.3335 15.4422 3.50909 15.8661 3.82165 16.1787C4.13421 16.4912 4.55814 16.6668 5.00016 16.6668H12.5002C12.9422 16.6668 13.3661 16.4912 13.6787 16.1787C13.9912 15.8661 14.1668 15.4422 14.1668 15.0002V14.1668" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M13.3333 4.16676L15.8333 6.66676M16.9875 5.48759C17.3157 5.15938 17.5001 4.71424 17.5001 4.25009C17.5001 3.78594 17.3157 3.34079 16.9875 3.01259C16.6593 2.68438 16.2142 2.5 15.75 2.5C15.2858 2.5 14.8407 2.68438 14.5125 3.01259L7.5 10.0001V12.5001H10L16.9875 5.48759Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                                <button class="btn-calculation btn-sub-return"
+                                                    data-type="sub-return">Sub-return</button>
+                                               
+                                                <button class="btn-calculation btn-manual"
+                                                    data-type="manual">Manual</button>
+                                            </td>
+                                            <td><input type="text" class="model-table-input zakat-amount" value="0.00"
+                                                    readonly></td>
+                                            <td><input type="text" class="model-table-input text-center text-red"
+                                                    value="test">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="model-total-row">
+                                            <td colspan="4" class="total-label"></td>
+                                            <td><input type="text" class="model-table-input" value="0.00" readonly>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="flex gap-10">
+                            <button class="btn-open-all-tabs" onclick="openAllSubReturns()"
+                                style="padding: 10px 20px; background: #3CB58B; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+                                <i class="fa-solid fa-layer-group"></i>
+                                Prepare sub-returns
+                            </button>
+                        </div>
                         <div class="flex gap-10">
                             <button class="modal-btn button-save-modal">
                                 <i class="fa-solid fa-check"></i> Confirm& apply
@@ -5896,7 +6039,7 @@
     <!-- <script src="calculation.js"></script> -->
 <script>
     // ================================
-    // ✅ Driver.js - Tutorial للمستخدم
+    // modal-Zakat-Entities
     // ================================
     function startTutorial() {
         const driver = window.driver.js.driver({
@@ -5977,15 +6120,6 @@ function openModalById(modalId) {
     } else {
         console.warn('⚠️ Modal not found:', modalId);
     }
-}
-
-// ✅ إعادة تشغيل التوضيح (للتطوير أو لإضافة زر في الواجهة)
-function restartZakatEntitiesTutorial() {
-    localStorage.removeItem('zakatEntitiesTutorialSeen');
-    console.log('🔄 Tutorial reset - will show on next modal open');
-    
-    // أو شغّله مباشرة:
-    // startTutorial();
 }
   // ================================
     // ✅ Event listener لأزرار Calculation
