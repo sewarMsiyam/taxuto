@@ -2907,7 +2907,7 @@ text-align: left !important;
         background: transparent;
     }
 
-        .prepare-alert-overlay {
+          .prepare-alert-overlay {
         position: fixed;
         top: 0;
         left: 0;
@@ -2933,14 +2933,8 @@ text-align: left !important;
     }
 
     @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-50px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .prepare-alert-btn {
@@ -2952,7 +2946,7 @@ text-align: left !important;
         font-size: 18px;
         font-weight: 700;
         cursor: pointer;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 10px;
         transition: all 0.3s;
@@ -2964,3 +2958,64 @@ text-align: left !important;
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
     }
+
+    /* ✅ Maximum Specificity - Force Green Border */
+.modal-table tbody tr td:nth-child(4) button.edit-btn-saved,
+.modal-table tbody tr td button[data-status="saved"] {
+    border: 2px solid #10b981 !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    background: transparent !important;
+}
+
+/* ✅ Red Border */
+.modal-table tbody tr td:nth-child(4) button.edit-btn-opened,
+.modal-table tbody tr td button[data-status="opened"] {
+    border: 2px solid #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+
+/* ✅ Blue Border */
+.modal-table tbody tr td:nth-child(4) button.edit-btn-pending,
+.modal-table tbody tr td button[data-status="pending"] {
+    border: 2px solid #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+
+/* ✅ Override any inline styles */
+.modal-table tbody tr td button[style] {
+    border-width: 2px !important;
+    border-style: solid !important;
+}
+
+
+.button-saves-modal.btn-enabled {
+    background: #10b981 !important;
+    color: white !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.button-saves-modal.btn-enabled:hover {
+    background: #059669 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+}
+
+.button-saves-modal.btn-disabled {
+    background: #9ca3af !important;
+    color: #d1d5db !important;
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+}
+
+.button-saves-modal.btn-disabled:hover {
+    transform: none !important;
+}
