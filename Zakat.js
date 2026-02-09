@@ -1,5 +1,87 @@
-
+   // ================================
+    // modal-Zakat-Entities
     // ================================
+    function startTutorial() {
+        const driver = window.driver.js.driver({
+            showProgress: true,
+            showButtons: ['next', 'previous', 'close'],
+            steps: [
+                {
+                    element: '.modal-table tbody tr:first-child .btn-calculation[data-type="sub-return"]',
+                    popover: {
+                        title: 'الخطوة 1: اختر نوع الحساب',
+                        description: 'اختر <strong>Sub-return</strong> لإنشاء إقرار فرعي، أو <strong>Manual</strong> لإدخال القيمة يدوياً',
+                        side: "left",
+                        align: 'start'
+                    }
+                },
+                {
+                    element: '.btn-open-all-tabs',
+                    popover: {
+                        title: 'الخطوة 2: اضغط على "Prepare sub-returns"',
+                        description: 'بعد اختيار <strong>Sub-return</strong> في الصفوف المطلوبة، اضغط على هذا الزر لتفعيل أيقونات التعديل',
+                        side: "top",
+                        align: 'start'
+                    }
+                },
+                {
+                    element: '.modal-table tbody tr:first-child td:nth-child(4) button:first-child',
+                    popover: {
+                        title: 'الخطوة 3: اضغط على أيقونة القلم',
+                        description: 'بعد تفعيل الأيقونات، اضغط على <strong>أيقونة القلم</strong> لفتح نموذج تعبئة الإقرار الفرعي',
+                        side: "left",
+                        align: 'start'
+                    }
+                },
+                {
+                    popover: {
+                        title: '🎉 تم!',
+                        description: 'الآن يمكنك تعبئة الإقرارات الفرعية وحفظها. كرر الخطوات لكل شركة.',
+                    }
+                }
+            ],
+            nextBtnText: 'التالي',
+            prevBtnText: 'السابق',
+            doneBtnText: 'إنهاء',
+            progressText: '{{current}} من {{total}}'
+        });
+
+        driver.drive();
+    }
+
+// ✅ تشغيل التوضيح عند فتح Modal
+function openModalById(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        currentMainModal = modal;
+        modal.classList.add('show');
+
+        const tbody = modal.querySelector('.modal-table tbody');
+        if (tbody) {
+            rowCounter = tbody.querySelectorAll('tr').length;
+        }
+
+        // ✅ تشغيل التوضيح فقط لـ modal-Zakat-Entities وفي أول مرة
+        if (modalId === 'modal-Zakat-Entities') {
+            const hasSeenTutorial = localStorage.getItem('zakatEntitiesTutorialSeen');
+            
+            if (!hasSeenTutorial) {
+                setTimeout(() => {
+                    startTutorial();
+                    // ✅ تسجيل أنه شاف التوضيح
+                    localStorage.setItem('zakatEntitiesTutorialSeen', 'true');
+                }, 800);
+            } else {
+                console.log('ℹ️ Tutorial already seen - skipping');
+            }
+        }
+
+        console.log('✅ Modal opened:', modalId);
+    } else {
+        console.warn('⚠️ Modal not found:', modalId);
+    }
+}
+  // ================================
     // ✅ Event listener لأزرار Calculation
     // ================================
     document.addEventListener('click', function (e) {
@@ -26,7 +108,6 @@
                 otherBtn.style.color = '';
             }
 
-            // ✅ تعطيل زر Edit
             const editBtn = row.querySelector('td:nth-child(4) button:first-child');
             if (editBtn) {
                 editBtn.disabled = true;
@@ -35,7 +116,6 @@
                 editBtn.classList.remove('edit-btn-active');
             }
 
-            // ✅ حذف الـ Tab المفتوحة
             const investmentInput = row.querySelector('td:nth-child(2) input');
             const companyName = investmentInput ? investmentInput.value.trim() : '';
             
@@ -61,37 +141,36 @@
                 otherBtn.style.color = '';
             }
 
-            // ✅ تفعيل زر Edit بس (بدون فتح Tab)
-            const editBtn = row.querySelector('td:nth-child(4) button:first-child');
-            const investmentInput = row.querySelector('td:nth-child(2) input');
-            const companyName = investmentInput ? investmentInput.value.trim() : '';
-
-            if (editBtn && companyName) {
-                editBtn.disabled = false;
-                editBtn.style.opacity = '1';
-                editBtn.style.cursor = 'pointer';
-                editBtn.setAttribute('data-company', companyName);
-                editBtn.classList.add('edit-btn-active');
-            }
-
-            console.log(`✅ Sub-return activated for ${companyName}`);
+            console.log(`✅ Sub-return selected`);
         }
     });
 
-    // ✅ Event listener لزر Edit
     document.addEventListener('click', function(e) {
-        const button = e.target.closest('td:nth-child(4) button:first-child');
-        if (!button || button.disabled) return;
+        const button = e.target.closest('button');
+        if (!button) return;
+
+        const td = button.closest('td');
+        if (!td) return;
+
+        const tdIndex = Array.from(td.parentElement.children).indexOf(td);
+        if (tdIndex !== 3) return;
+
+        const buttons = td.querySelectorAll('button');
+        if (buttons[0] !== button) return;
+
+        if (button.disabled || !button.classList.contains('edit-btn-active')) {
+            return;
+        }
 
         const companyName = button.getAttribute('data-company');
         
-        if (companyName && button.classList.contains('edit-btn-active')) {
+        if (companyName) {
             e.preventDefault();
+            e.stopPropagation();
             openSubReturnFromEdit(companyName);
         }
     });
 
-    // ✅ فتح Tab من زر Edit
     function openSubReturnFromEdit(companyName) {
         const existingTab = Array.from(document.querySelectorAll('.tab')).find(tab => 
             tab.getAttribute('data-company') === companyName
@@ -106,89 +185,92 @@
     }
 
     // ================================
-    // ✅ Alert قابل للسحب
+    // ✅ Alert في وسط الشاشة
     // ================================
-    function showDraggableAlert() {
-        const existingAlert = document.querySelector('.custom-alert-draggable');
+    function showPrepareAlert() {
+        const existingAlert = document.querySelector('.prepare-alert-overlay');
         if (existingAlert) existingAlert.remove();
 
-        const alert = document.createElement('div');
-        alert.className = 'custom-alert-draggable';
-        alert.innerHTML = `
-            <div class="custom-alert-content-draggable">
-                <div class="custom-alert-header-draggable" id="alert-header">
-                    <div class="alert-drag-icon">
-                        <i class="fa-solid fa-grip-vertical"></i>
-                    </div>
-                    <div class="alert-title">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                        تنبيه هام
-                    </div>
-                    <button class="alert-close-btn" onclick="this.closest('.custom-alert-draggable').remove()">
-                        <i class="fa-solid fa-times"></i>
-                    </button>
+        const overlay = document.createElement('div');
+        overlay.className = 'prepare-alert-overlay';
+        overlay.innerHTML = `
+            <div class="prepare-alert-modal">
+                <div class="prepare-alert-header">
+                    <i class="fa-solid fa-info-circle" style="font-size: 50px; color: #10b981; margin-bottom: 20px;"></i>
+                    <h2 style="font-size: 28px; font-weight: 700; color: #1f2937; margin-bottom: 10px;">تنبيه هام</h2>
                 </div>
-                <div class="custom-alert-body-draggable">
-                    <p style="font-size: 15px; line-height: 1.8; color: #374151;">
+                <div class="prepare-alert-body">
+                    <p style="font-size: 18px; line-height: 1.8; color: #374151; text-align: center; margin-bottom: 20px;">
                         سيتم إنشاء إقرارات فرعية ويلزم تعبئتها بالكامل وحفظ لكل إقرار للانتقال للمرحلة التانية
                     </p>
+                    <p style="font-size: 16px; color: #6b7280; text-align: center; margin-bottom: 30px;">
+                        <i class="fa-solid fa-hand-pointer"></i> اضغط على أيقونة القلم <i class="fa-solid fa-pen"></i> لفتح كل إقرار
+                    </p>
                 </div>
-                <div class="custom-alert-footer-draggable">
-                    <button class="alert-btn alert-btn-action" onclick="confirmAllSubReturns()">
+                <div class="prepare-alert-footer">
+                    <button class="prepare-alert-btn" onclick="confirmPrepare()">
                         <i class="fa-solid fa-check"></i>
-                        متابعة
-                    </button>
-                    <button class="alert-btn alert-btn-cancel" onclick="this.closest('.custom-alert-draggable').remove()">
-                        <i class="fa-solid fa-times"></i>
-                        إلغاء
+                        موافق
                     </button>
                 </div>
             </div>
         `;
 
-        document.body.appendChild(alert);
-        makeDraggable(alert);
+        document.body.appendChild(overlay);
     }
 
-    function makeDraggable(element) {
-        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        const header = element.querySelector('#alert-header');
+    function confirmPrepare() {
+        const overlay = document.querySelector('.prepare-alert-overlay');
+        if (overlay) overlay.remove();
 
-        if (header) {
-            header.onmousedown = dragMouseDown;
-        }
+        activateAllEditButtons();
 
-        function dragMouseDown(e) {
-            e.preventDefault();
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            document.onmousemove = elementDrag;
-        }
-
-        function elementDrag(e) {
-            e.preventDefault();
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            element.style.top = (element.offsetTop - pos2) + "px";
-            element.style.left = (element.offsetLeft - pos1) + "px";
-            element.style.right = 'auto';
-            element.style.transform = 'none';
-        }
-
-        function closeDragElement() {
-            document.onmouseup = null;
-            document.onmousemove = null;
-        }
+        showToast('Success', 'تم تفعيل أيقونات القلم للإقرارات الفرعية', 'success');
     }
 
-    function confirmAllSubReturns() {
-        const alert = document.querySelector('.custom-alert-draggable');
-        if (alert) alert.remove();
-        
-        openAllSubReturnsDirectly();
+    function activateAllEditButtons() {
+        const rows = document.querySelectorAll('.modal-table tbody tr');
+        let activatedCount = 0;
+
+        rows.forEach(row => {
+            const subReturnBtn = row.querySelector('[data-type="sub-return"]');
+            const editBtn = row.querySelector('td:nth-child(4) button:first-child');
+            const investmentInput = row.querySelector('td:nth-child(2) input');
+            const companyName = investmentInput ? investmentInput.value.trim() : '';
+            const zakatInput = row.querySelector('.zakat-amount');
+
+            const isSubReturnActive = subReturnBtn && 
+                (subReturnBtn.style.background === 'rgb(16, 185, 129)' || 
+                 subReturnBtn.style.background === '#10b981' ||
+                 subReturnBtn.style.backgroundColor === 'rgb(16, 185, 129)' ||
+                 subReturnBtn.style.backgroundColor === '#10b981');
+
+            if (isSubReturnActive) {
+                if (zakatInput) {
+                    zakatInput.readOnly = true;
+                    zakatInput.style.background = '';
+                    zakatInput.style.borderColor = '';
+                    if (zakatInput.value && zakatInput.value !== '0.00') {
+                        zakatInput.value = '0.00';
+                    }
+                }
+
+                if (editBtn && companyName) {
+                    editBtn.disabled = false;
+                    editBtn.style.opacity = '1';
+                    editBtn.style.cursor = 'pointer';
+                    editBtn.setAttribute('data-company', companyName);
+                    editBtn.classList.add('edit-btn-active');
+                    activatedCount++;
+                }
+            }
+        });
+
+        console.log(`✅ Activated ${activatedCount} edit buttons`);
+    }
+
+    function openAllSubReturns() {
+        showPrepareAlert();
     }
 
     // ================================
@@ -270,7 +352,7 @@
                 <div class="container-content">
                     <div style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
                         <div style="text-align: center; margin-bottom: 20px;">
-                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);">
+                            <div style="width: 120px; height: 120px; margin: 0 auto 30px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);">
                                 <i class="fa-solid fa-file-invoice" style="font-size: 60px; color: white;"></i>
                             </div>
                             
@@ -329,7 +411,6 @@
             }
         });
 
-        // ✅ ما نحذف الـ Tab - بس نرجع للـ Main
         switchTab('main-tab');
 
         if (applied) {
@@ -389,8 +470,6 @@
                 if (wasActive) {
                     switchTab('main-tab');
                 }
-                
-                console.log(`🗑️ Deleted tab: ${companyName}`);
             }
         });
 
@@ -399,8 +478,6 @@
 
     function checkAndHideTabsBar() {
         const remainingTabs = document.querySelectorAll('.tab:not(.main-tab)');
-        
-        console.log('🔍 Tabs remaining:', remainingTabs.length);
         
         if (remainingTabs.length === 0) {
             const tabsBar = document.getElementById('tabsBar');
@@ -419,134 +496,7 @@
             tabsInitialized = false;
             tabCounter = 0;
             activeTabId = 'main-tab';
-            
-            console.log('✅ Tabs bar hidden - all tabs closed');
         }
-    }
-
-    function openAllSubReturns() {
-        showDraggableAlert();
-    }
-
-    function openAllSubReturnsDirectly() {
-        const subReturnButtons = document.querySelectorAll('.modal-table tbody .btn-calculation[data-type="sub-return"]');
-        
-        if (subReturnButtons.length === 0) {
-            alert('⚠️ No sub-return buttons found!');
-            return;
-        }
-
-        if (!tabsInitialized) {
-            initializeTabs();
-            tabsInitialized = true;
-        }
-
-        let openedCount = 0;
-        let firstTabId = null;
-
-        subReturnButtons.forEach((button, index) => {
-            const row = button.closest('tr');
-            
-            if (!row) return;
-            
-            button.style.background = '#10b981';
-            button.style.color = '#fff';
-            
-            const manualBtn = row.querySelector('[data-type="manual"]');
-            if (manualBtn) {
-                manualBtn.style.background = '';
-                manualBtn.style.color = '';
-            }
-            
-            const zakatInput = row.querySelector('.zakat-amount');
-            if (zakatInput) {
-                zakatInput.readOnly = true;
-                zakatInput.style.background = '';
-                zakatInput.style.borderColor = '';
-                
-                if (zakatInput.value && zakatInput.value !== '0.00') {
-                    zakatInput.value = '0.00';
-                }
-            }
-
-            const editBtn = row.querySelector('td:nth-child(4) button:first-child');
-            const investmentInput = row.querySelector('td:nth-child(2) input');
-            const companyName = investmentInput ? investmentInput.value.trim() : '';
-
-            if (editBtn && companyName) {
-                editBtn.disabled = false;
-                editBtn.style.opacity = '1';
-                editBtn.style.cursor = 'pointer';
-                editBtn.setAttribute('data-company', companyName);
-                editBtn.classList.add('edit-btn-active');
-            }
-            
-            const rowNumberInput = row.querySelector('td:nth-child(1) input');
-            const rowNumber = rowNumberInput ? rowNumberInput.value.trim() : (index + 1);
-            
-            if (companyName && companyName !== '') {
-                const tabId = openSubReturnAndGetId(companyName, rowNumber);
-                
-                if (index === 0) {
-                    firstTabId = tabId;
-                }
-                
-                openedCount++;
-            }
-        });
-
-        if (firstTabId) {
-            setTimeout(() => {
-                switchTab(firstTabId);
-            }, 100);
-        }
-
-        setTimeout(() => {
-            showToast('Success', `Opened ${openedCount} sub-returns!`, 'success');
-        }, 300);
-    }
-
-    function openSubReturnAndGetId(companyName, rowNumber = '') {
-        if (!tabsInitialized) {
-            initializeTabs();
-            tabsInitialized = true;
-        }
-
-        const tabDisplayName = rowNumber ? `${rowNumber}. ${companyName}` : companyName;
-
-        const existingTab = Array.from(document.querySelectorAll('.tab')).find(tab => 
-            tab.getAttribute('data-company') === companyName
-        );
-
-        if (existingTab && existingTab.id !== 'main-tab') {
-            return existingTab.id;
-        }
-
-        const tabId = `tab-${++tabCounter}`;
-
-        const tab = document.createElement('div');
-        tab.className = 'tab';
-        tab.id = tabId;
-        tab.setAttribute('data-company', companyName);
-        tab.innerHTML = `
-            <i class="fa-solid fa-building tab-icon"></i>
-            <span class="tab-title">${tabDisplayName}</span>
-            <button class="tab-close" onclick="closeTab('${tabId}', event)">
-                <i class="fa-solid fa-times"></i>
-            </button>
-        `;
-        tab.onclick = () => switchTab(tabId);
-
-        document.getElementById('tabsList').appendChild(tab);
-
-        const panel = document.createElement('div');
-        panel.className = 'tab-panel';
-        panel.id = `panel-${tabId}`;
-        panel.innerHTML = getSubReturnContent(companyName, tabId);
-
-        document.getElementById('dynamicPanels').appendChild(panel);
-
-        return tabId;
     }
 
     document.addEventListener('click', function(e) {
@@ -569,14 +519,8 @@
             tabsInitialized = false;
             tabCounter = 0;
             activeTabId = 'main-tab';
-            
-            console.log('✅ Modal closed - tabs reset');
         }
     });
-
-    function formatNumber(num) {
-        return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
 
     function showToast(title, message, type = 'info') {
         const colors = { success: '#10B981', error: '#EF4444', info: '#3B82F6' };

@@ -58,35 +58,34 @@
                 });
 
                 // ✅ X button
-                document.addEventListener('click', function (e) {
-                    if (e.target.classList.contains('modal-close')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (currentMainModal) {
-                            currentMainModal.classList.remove('show');
-                        }
-                    }
-                });
+               document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('modal-close')) {
+            const confirmModal = e.target.closest('#modal-confirm-save');
+            if (confirmModal) return;
+            
+            e.preventDefault();
+            e.stopPropagation();
+            openConfirmModal(); 
+        }
+    });
 
                 // ✅ Close button
-                document.querySelectorAll('.button-close-modal').forEach(btn => {
-                    btn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (currentMainModal) {
-                            currentMainModal.classList.remove('show');
-                        }
-                    });
-                });
+               document.querySelectorAll('.button-close-modal').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openConfirmModal(); 
+        });
+    });
 
                 // ✅ Save button
-                document.querySelectorAll('.button-save-modal').forEach(btn => {
-                    btn.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        openConfirmModal();
-                    });
-                });
+             document.querySelectorAll('.button-save-modal').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            saveAndClose();
+        });
+    });
 
                 // ✅ Event Delegation لأزرار الإضافة والحذف
                 document.addEventListener('click', function (e) {
@@ -362,42 +361,110 @@
                 }
             }, true);
 
-            // ✅ فتح موديل التأكيد
-            function openConfirmModal() {
-                const confirmModal = document.getElementById('modal-confirm-save');
-                if (confirmModal) {
-                    confirmModal.classList.add('show');
-                }
-            }
+         // ✅ فتح موديل التأكيد
+function openConfirmModal() {
+    const confirmModal = document.getElementById('modal-confirm-save');
+    if (confirmModal) {
+        confirmModal.classList.add('show');
+    }
+}
 
-            // ✅ إغلاق موديل التأكيد
-            function closeConfirmModal() {
-                const confirmModal = document.getElementById('modal-confirm-save');
-                if (confirmModal) {
-                    confirmModal.classList.remove('show');
-                }
-            }
+// ✅ إغلاق موديل التأكيد
+function closeConfirmModal() {
+    const confirmModal = document.getElementById('modal-confirm-save');
+    if (confirmModal) {
+        confirmModal.classList.remove('show');
+    }
+}
 
-            // ✅ إغلاق بدون حفظ
-            function closeWithoutSaving() {
-                closeConfirmModal();
-                if (currentMainModal) {
-                    currentMainModal.classList.remove('show');
-                }
-                console.log('❌ Closed without saving');
-            }
+// ✅ إغلاق بدون حفظ
+function closeWithoutSaving() {
+    closeConfirmModal();
+    
+    if (currentMainModal) {
+        currentMainModal.classList.remove('show');
+    }
 
-            // ✅ حفظ وإغلاق
-            function saveAndClose() {
-                console.log('✅ Data saved!');
+    // ✅ إغلاق نظام الـ Tabs
+    const modalType = typeof getCurrentModalType === 'function' ? getCurrentModalType() : null;
+    
+    if (modalType === 'entities') {
+        const tabsBar = document.getElementById('tabsBar');
+        if (tabsBar) tabsBar.classList.remove('show');
+        
+        document.querySelectorAll('#tabsList .tab').forEach(tab => tab.remove());
+        document.querySelectorAll('#dynamicPanels .tab-panel').forEach(panel => panel.remove());
+        
+        if (typeof tabsInitializedEntities !== 'undefined') {
+            tabsInitializedEntities = false;
+            tabCounterEntities = 0;
+            activeTabIdEntities = 'main-tab-entities';
+        }
+        
+    } else if (modalType === 'accountant') {
+        const tabsBar = document.getElementById('tabsBarAccountant');
+        if (tabsBar) tabsBar.classList.remove('show');
+        
+        document.querySelectorAll('#tabsListAccountant .tab').forEach(tab => tab.remove());
+        document.querySelectorAll('#dynamicPanelsAccountant .tab-panel').forEach(panel => panel.remove());
+        
+        if (typeof tabsInitializedAccountant !== 'undefined') {
+            tabsInitializedAccountant = false;
+            tabCounterAccountant = 0;
+            activeTabIdAccountant = 'main-tab-accountant';
+        }
+    }
 
-                closeConfirmModal();
-                if (currentMainModal) {
-                    currentMainModal.classList.remove('show');
-                }
+    console.log('❌ Closed without saving');
+}
 
-                console.log('✅ Modal closed after saving');
-            }
+// ✅ حفظ وإغلاق (بدون موديل تأكيد)
+function saveAndClose() {
+    console.log('✅ Data saved!');
+
+    // ✅ إغلاق موديل التأكيد لو كان مفتوح
+    closeConfirmModal();
+
+    if (currentMainModal) {
+        currentMainModal.classList.remove('show');
+    }
+
+    // ✅ إغلاق نظام الـ Tabs
+    const modalType = typeof getCurrentModalType === 'function' ? getCurrentModalType() : null;
+    
+    if (modalType === 'entities') {
+        const tabsBar = document.getElementById('tabsBar');
+        if (tabsBar) tabsBar.classList.remove('show');
+        
+        document.querySelectorAll('#tabsList .tab').forEach(tab => tab.remove());
+        document.querySelectorAll('#dynamicPanels .tab-panel').forEach(panel => panel.remove());
+        
+        if (typeof tabsInitializedEntities !== 'undefined') {
+            tabsInitializedEntities = false;
+            tabCounterEntities = 0;
+            activeTabIdEntities = 'main-tab-entities';
+        }
+        
+    } else if (modalType === 'accountant') {
+        const tabsBar = document.getElementById('tabsBarAccountant');
+        if (tabsBar) tabsBar.classList.remove('show');
+        
+        document.querySelectorAll('#tabsListAccountant .tab').forEach(tab => tab.remove());
+        document.querySelectorAll('#dynamicPanelsAccountant .tab-panel').forEach(panel => panel.remove());
+        
+        if (typeof tabsInitializedAccountant !== 'undefined') {
+            tabsInitializedAccountant = false;
+            tabCounterAccountant = 0;
+            activeTabIdAccountant = 'main-tab-accountant';
+        }
+    }
+
+    if (typeof showToast === 'function') {
+        showToast('Success', 'تم الحفظ بنجاح!', 'success');
+    }
+    
+    console.log('✅ Modal closed after saving');
+}
 
 
 
