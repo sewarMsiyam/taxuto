@@ -7003,34 +7003,6 @@
         }
     }
 
-    function closeWithoutSaving() {
-        console.log('🔴 Closing without saving...');
-        
-        closeConfirmModal();
-        
-        if (currentMainModal) {
-            currentMainModal.classList.remove('show');
-            currentMainModal.style.display = 'none';
-        }
-
-        cleanupTabs();
-        
-        setTimeout(() => {
-            const mainContainer = document.querySelector('.container-main');
-            if (mainContainer) {
-                mainContainer.style.display = 'block';
-                mainContainer.style.visibility = 'visible';
-                mainContainer.style.opacity = '1';
-            }
-            
-            document.body.style.display = 'block';
-            document.body.style.visibility = 'visible';
-            document.body.style.opacity = '1';
-        }, 100);
-        
-        console.log('❌ Closed without saving');
-    }
-
     function cleanupTabs() {
         const tabsBar = document.getElementById('tabsBar');
         if (tabsBar) {
