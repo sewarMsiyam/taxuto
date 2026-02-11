@@ -459,11 +459,11 @@ function saveAndClose() {
         }
     }
 
-    if (typeof showToast === 'function') {
-        showToast('Success', 'تم الحفظ بنجاح!', 'success');
-    }
+    // if (typeof showToast === 'function') {
+    //     showToast('Success', 'تم الحفظ بنجاح!', 'success');
+    // }
     
-    console.log('✅ Modal closed after saving');
+    // console.log('✅ Modal closed after saving');
 }
 
 
